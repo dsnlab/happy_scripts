@@ -52,8 +52,8 @@ palette_grey = "#54565B"
 ```{r, warning = FALSE}
 # define variables
 cred_file_location = '~/credentials.yaml.DEFAULT'
-sid_column_name = '(SID)'
-survey_name_filter = 'Freshman Project T1'
+sid_column_name = '(subjectID)'
+survey_name_filter = 'Freshman Project T1$'
 sid_pattern = 'FP[0-9]{3}'
 exclude_sid = c('FP999','999') # subject IDs to exclude
 identifiableData = c('IPAddress') # exclude when printing duplicates
