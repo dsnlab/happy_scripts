@@ -1,0 +1,382 @@
+---
+title: "Himmel 3 Pilot"
+author: "Dani Cosme"
+date: "4/15/2018"
+output:
+  html_document:
+    code_folding: hide
+    highlight: tango
+    theme: united
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(error = FALSE, message = FALSE)
+```
+
+# load libraries
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(psych)
+library(knitr)
+```
+
+# set color palettes
+```{r}
+palette = wesanderson::wes_palette("Zissou1", n = 4, type = "continuous")
+palette_sub = wesanderson::wes_palette("Zissou1", n = 44, type = "continuous")
+```
+
+# load data
+```{r, warning = FALSE}
+# define variables and paths
+sub_dir = "~/Dropbox (PfeiBer Lab)/FreshmanProject/Tasks/ROC-C/output/Himmel3_pilot/"
+sub_pattern = "HL[0-9]{3}"
+subjects = list.files(sub_dir, pattern = sub_pattern)
+runs = c("run1", "run2", "run3")
+
+# initialize data frame
+data = data.frame()
+
+# load data
+for (sub in subjects) {
+  for (run in runs) {
+    file = paste0(sub_dir, sub, '/', sub, '_', run,'.csv')
+    if (sub %in% c("HL001","HL002","HL003","HL004","HL005","HL006","HL007",
+                   "HL008","HL009","HL010","HL011","HL012","HL013","HL014",
+                   "HL015","HL016","HL017","HL018","HL019","HL020","HL021",
+                   "HL022","HL023","HL024","HL025","HL026","HL027","HL028",
+                   "HL029","HL030","HL031","HL032","HL033","HL034","HL035",
+                   "HL036","HL037")){
+          tmp = tryCatch(read.csv(file) %>% 
+                     mutate(subjectID = sub,
+                            run = run,
+                            respCue = as.integer(as.character(respCue)),
+                            respRating = as.integer(as.character(respRating)),
+                            respEffort = as.integer(as.character(respEffort)),
+                            batch = '1'), error = function(e) NULL)
+          data = rbind(data, tmp)
+    } else {
+      tmp = tryCatch(read.csv(file) %>% 
+                     mutate(subjectID = sub,
+                            run = run,
+                            respCue = as.integer(as.character(respCue)),
+                            respRating = as.integer(as.character(respRating)),
+                            respEffort = as.integer(as.character(respEffort)),
+                            batch = '2') %>%
+                       select(-craved), error = function(e) NULL)
+      data = bind_rows(data, tmp)
+      rm(tmp)
+    }
+  }
+}
+```
+
+# tidy data
+```{r}
+data1 = data %>%
+  #filter(subjectID %in% c("HL037","HL038","HL039","HL040","HL041","HL042","HL043")) %>%
+  mutate(rtCue = ifelse(rtCue == "NaN", NA, rtCue),
+         rtRating = ifelse(rtRating == "NaN", NA, rtRating),
+         rtEffort = ifelse(rtEffort == "NaN", NA, rtEffort),
+         action = ifelse(respCue == 1, "look",
+                  ifelse(respCue == 2, "regulate", NA)),
+         action = ifelse(cond == "LOOK" & is.na(respCue), "look",
+                  ifelse(cond == "REGULATE" & is.na(respCue), "regulate", action)),
+         choice = ifelse(cond %in% c("LOOK", "REGULATE"), "no",
+                  ifelse(cond == "CHOOSE", "yes", NA)),
+         ratingDiff = likingRating - respRating) %>%
+  extract(col = foodPic, into = "category", regex = "(.*)[0-9]{2}", remove = FALSE) %>%
+  group_by(subjectID) %>%
+  mutate(trial = row_number()) %>%
+  select(subjectID, run, action, choice, cond, respCue, trial, everything())
+```
+
+# percent regulate
+There are a few outliers, but most people chose to regulate around 40% of the time.
+```{r}
+percent.plot = data1 %>%
+  filter(choice == "yes") %>%
+  group_by(subjectID, action) %>%
+  summarize(n = n()) %>%
+  spread(action, n) %>%
+  mutate(percent.regulate = regulate / (look + regulate)) %>%
+  arrange(percent.regulate)
+
+ggplot(percent.plot, aes("", percent.regulate)) +
+  geom_boxplot() +
+  labs(x = "", y = "percent chosen to regulate")
+
+percent.plot %>%
+  ungroup() %>%
+  select(percent.regulate) %>%
+  as.data.frame() %>%
+  describe() %>%
+  select(n, mean, sd, min, max) %>%
+  kable(digits = 2, format = "pandoc", caption = "group average")
+
+percent.plot %>%
+  kable(digits = 2, format = "pandoc", caption = "by subject")
+```
+
+# craving ratings
+## mean ratings by condition
+looks like there is a main effect of action, doesn't look like an interaction with choice
+```{r}
+data1 %>%
+  group_by(action, choice) %>%
+  summarize(meanRating = mean(respRating, na.rm = TRUE),
+            n = n()) %>%
+  kable(digits = 2, format = "pandoc", caption = "mean craving ratings by condition")
+
+plot.rating = data1 %>%
+  group_by(subjectID, action, choice, batch) %>%
+  summarize(meanRating = mean(respRating, na.rm = TRUE)) %>%
+  filter(!is.na(action))
+
+ggplot(plot.rating, aes(action, meanRating, shape = batch)) +
+  geom_point(aes(group = subjectID), fill = "black", alpha = .05, size = 3) + 
+  geom_line(aes(group = subjectID), color = "black", alpha = .05, size = 1) + 
+  stat_summary(aes(color = action), fun.data = "mean_cl_boot", size = 1.5) +
+  facet_grid(~choice) +
+  scale_color_manual(values = c(palette[2],palette[4])) +
+  labs(y = "mean craving rating")
+
+ggplot(plot.rating, aes(choice, meanRating, shape = batch)) +
+  geom_point(aes(group = subjectID), fill = "black", alpha = .05, size = 3) + 
+  geom_line(aes(group = subjectID), color = "black", alpha = .05, size = 1) + 
+  stat_summary(aes(color = choice), fun.data = "mean_cl_boot", size = 1.5) +
+  facet_grid(~action) +
+  scale_color_manual(values = c(palette[1],palette[3])) +
+  labs(y = "mean craving rating")
+```
+
+## individual differences 
+```{r, fig.width=7, fig.height=10}
+ggplot(plot.rating, aes(action, meanRating, color = choice, shape = batch)) +
+  geom_point(aes(group =  interaction(subjectID, choice), color = choice)) +
+  geom_line(aes(group = interaction(subjectID, choice), color = choice)) + 
+  facet_wrap(~subjectID, ncol = 5) +
+  scale_color_manual(values = c(palette[1],palette[3])) +
+  labs(y = "mean craving rating")
+```
+
+## difference in pre-task and task craving ratings by condition
+```{r}
+data1 %>%
+  group_by(action, choice) %>%
+  summarize(meanRating = mean(ratingDiff, na.rm = TRUE),
+            n = n()) %>%
+  kable(digits = 2, format = "pandoc", caption = "mean difference in craving ratings by condition")
+
+plot.rating = data1 %>%
+  group_by(subjectID, action, choice) %>%
+  summarize(meanRating = mean(ratingDiff, na.rm = TRUE)) %>%
+  filter(!is.na(action))
+
+ggplot(plot.rating, aes(action, meanRating)) +
+  geom_point(aes(group = subjectID), fill = "black", alpha = .05, size = 3) + 
+  geom_line(aes(group = subjectID), color = "black", alpha = .15, size = 1) + 
+  stat_summary(aes(color = action), fun.data = "mean_cl_boot", size = 1.5) +
+  facet_grid(~choice) +
+  scale_color_manual(values = c(palette[2],palette[4])) +
+  labs(y = "difference in craving rating")
+
+ggplot(plot.rating, aes(choice, meanRating)) +
+  geom_point(aes(group = subjectID), fill = "black", alpha = .05, size = 3) + 
+  geom_line(aes(group = subjectID), color = "black", alpha = .15, size = 1) + 
+  stat_summary(aes(color = choice), fun.data = "mean_cl_boot", size = 1.5) +
+  facet_grid(~action) +
+  scale_color_manual(values = c(palette[1],palette[3])) +
+  labs(y = "difference in craving rating")
+```
+
+## craving rating means by subject and action (pre and task)
+There seem to be habituation effects with pre-task ratings being higher than task ratings
+```{r, fig.width=10}
+plot.rating = data1 %>%
+  group_by(subjectID, action) %>%
+  mutate(sort = mean(respRating, na.rm = TRUE)) %>%
+  filter(!is.na(action)) %>%
+  gather(condition, rating, respRating, likingRating) %>%
+  mutate(condition = ifelse(condition == "respRating", "task rating",
+                     ifelse(condition == "likingRating", "pre rating", condition)))
+  
+ggplot(plot.rating, aes(reorder(subjectID, sort), rating, color = action)) +
+  stat_summary(fun.y = mean, geom = "point", position = position_dodge(.9)) + 
+  stat_summary(fun.data = mean_cl_normal, geom = "errorbar", position = position_dodge(.9), width = 0) +
+  facet_grid(~condition) + 
+  scale_color_manual(values = c(palette[2], palette[4])) +
+  labs(x = "subject", y = "mean craving rating") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+```{r, fig.width = 8}
+plot.rating = data1 %>%
+  filter(!is.na(action)) %>%
+  gather(condition, rating, respRating, likingRating) %>%
+  mutate(condition = ifelse(condition == "respRating", "task rating",
+                     ifelse(condition == "likingRating", "pre rating", condition))) %>%
+  group_by(subjectID, action, choice, condition, batch) %>%
+  summarize(meanRating = mean(rating, na.rm = TRUE))
+
+ggplot(plot.rating, aes(action, meanRating, shape = batch)) +
+  geom_point(aes(group = subjectID), color = "black", alpha = .05, size = 3) + 
+  geom_line(aes(group = subjectID), color = "black", alpha = .05, size = 1) + 
+  stat_summary(aes(color = action), fun.data = "mean_cl_boot", size = 1) +
+  facet_grid(choice ~ condition) +
+  scale_color_manual(values = c(palette[2],palette[4])) +
+  labs(y = "mean craving rating")
+```
+
+## mean craving ratings across trials
+Looks like a slight decrease in craving ratings over time for both conditions, but it's more pronounced in the regulate condition. Probably habituation, but we've also gotten feedback that the regulate mindset began to bleed over into look trials.
+```{r, fig.width=8}
+# linear trend
+ggplot(filter(data1, !is.na(action)), aes(trial, respRating, color = action, linetype = choice)) + 
+  geom_smooth(method='lm', se=FALSE, aes(group=interaction(subjectID, choice, action)), alpha=.06, size=.1) +
+  geom_smooth(method='lm', se=FALSE, size = 1.5) + 
+  scale_color_manual(values = c(palette[2],palette[4])) +
+  labs(y = "mean craving rating")
+
+# LOESS trend
+ggplot(filter(data1, !is.na(action)), aes(trial, respRating, color = action, linetype = choice)) + 
+  geom_smooth(method='loess', se=FALSE, aes(group=interaction(subjectID, choice, action)), alpha=.06, size=.1) +
+  geom_smooth(method='loess', se=FALSE, size = 1.5) + 
+  scale_color_manual(values = c(palette[2],palette[4])) +
+  labs(y = "mean craving rating")
+```
+
+## mean craving rating by run
+Visualizing the decrease over time by collapsing across run
+```{r, fig.width = 8}
+data1 %>%
+  group_by(action, choice, run) %>%
+  summarize(meanRating = mean(respRating, na.rm=TRUE),
+            n = n()) %>%
+  kable(digits = 2, format = "pandoc", caption = "mean craving ratings by condition and run")
+
+plot.rating = data1 %>%
+  group_by(subjectID, action, choice, run, batch) %>%
+  summarize(meanRating = mean(respRating, na.rm=TRUE)) %>%
+  filter(!is.na(action))
+
+ggplot(plot.rating, aes(run, meanRating)) +
+  geom_point(aes(group=interaction(subjectID, action), color=action), alpha=.1, size=3) + 
+  geom_line(aes(group=interaction(subjectID, action), color=action), alpha=.1, size=1) + 
+  stat_summary(aes(color=action), fun.data = "mean_cl_boot", size = 1) +
+  stat_summary(aes(group = action, color=action), fun.y = "mean", geom = "line", size = 1) +
+  facet_grid(batch ~ choice) +
+  scale_color_manual(values = c(palette[2],palette[4])) +
+  labs(y = "mean craving rating")
+```
+
+# liking ratings (pre-task)
+## ratings by category and frequency chosen
+```{r, fig.width=8}
+plot.rating = data1 %>%
+  group_by(category) %>%
+  summarize(meanRating = mean(likingRating, na.rm=TRUE),
+            n = n(),
+            sd = sd(likingRating, na.rm=TRUE),
+            se = sd/sqrt(n),
+            upper = meanRating + 2*se,
+            lower = meanRating - 2*se)
+
+ggplot(plot.rating, aes(reorder(category, -n), meanRating, color = category)) + 
+  geom_point(aes(size = n)) + 
+  geom_errorbar(aes(ymin = lower, ymax = upper), width = 0) + 
+  # stat_summary(aes(group = category, color = category, size = n), fun.data = "mean_cl_boot", size = 1) +
+  # stat_summary(aes(group = category, color = category), fun.y = "mean", geom = "line", size = 1) +
+  scale_color_manual(values = wesanderson::wes_palette("Zissou1", 15, type = "continuous")) +
+  labs(x = "category", y = "mean liking rating") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+## distribution by subject and category
+We might want to consider changing the image population script to only choose images >2 if possible. Right now it's just choosing the bottom 20 images to maximize the spread between "highly desired" and "less desired" images, but since participants seem to be rating a number of images as 1s, we can change the script to prioritize more highly rated images first.
+```{r, fig.height=9, fig.width=8}
+ggplot(data1, aes(likingRating, fill=category)) + 
+  geom_histogram(stat = "bin", binwidth = .5) + 
+  facet_wrap(~subjectID, ncol=5) +
+  scale_fill_manual(values = wesanderson::wes_palette("Zissou1", 15, type = "continuous")) +
+  labs(x = "liking rating")
+```
+
+# effort ratings
+## effort rating means by subject and action
+It's more difficult to regulate than to look. Maybe a small interaction between action and choice.
+
+```{r}
+data1 %>%
+  group_by(action, choice) %>%
+  summarize(meanEffort = mean(respEffort, na.rm=TRUE),
+            n = n()) %>%
+  kable(digits = 2, format = "pandoc", caption = "mean effort ratings by condition")
+
+plot.rating = data1 %>%
+  group_by(subjectID, action, choice, batch) %>%
+  summarize(meanEffort = mean(respEffort, na.rm=TRUE)) %>%
+  filter(!is.na(action))
+
+ggplot(plot.rating, aes(action, meanEffort, shape = batch)) +
+  geom_point(aes(group = subjectID), fill = "black", alpha = .05, size = 3) + 
+  geom_line(aes(group = subjectID), color = "black", alpha = .15, size = 1) + 
+  stat_summary(aes(color = action), fun.data = "mean_cl_boot", size = 1.5) +
+  facet_grid(~choice) +
+  scale_color_manual(values = c(palette[1],palette[3])) +
+  labs(x = "action", y = "effort rating")
+
+ggplot(plot.rating, aes(choice, meanEffort, shape = batch)) +
+  geom_point(aes(group = subjectID), fill = "black", alpha = .05, size = 3) + 
+  geom_line(aes(group = subjectID), color = "black", alpha = .15, size = 1) + 
+  stat_summary(aes(color = choice), fun.data = "mean_cl_boot", size = 1.5) +
+  facet_grid(~action) +
+  scale_color_manual(values = c(palette[1],palette[3])) +
+  labs(x = "action", y = "effort rating")
+```
+
+## individual differences 
+```{r, fig.width=7, fig.height=10}
+ggplot(plot.rating, aes(action, meanEffort, color = choice, shape = batch)) +
+  geom_point(aes(group =  interaction(subjectID, choice), color = choice)) +
+  geom_line(aes(group = interaction(subjectID, choice), color = choice)) + 
+  facet_wrap(~subjectID, ncol = 5) +
+  scale_color_manual(values = c(palette[1],palette[3])) +
+  labs(y = "mean effort rating")
+```
+
+# reaction times
+Looks like some subjects might just be pressing buttons without really thinking (e.g. those around 500 ms). We might want to determine some cut off and throw out subjects under that time. On the whole, craving and effort ratings seem to be similarly difficult to answer (with a few subjects as notable exceptions).
+
+## RT boxplots by subject
+Boxplots for craving rating and effort for each subject
+```{r, fig.width=10}
+plot.RT = data1 %>%
+  gather("rating", "rt", rtEffort, rtRating) %>%
+  group_by(subjectID, rating) %>%
+  mutate(sort = median(rt, na.rm = TRUE))
+
+ggplot(plot.RT, aes(reorder(subjectID, sort), rt, fill = rating)) +
+  geom_boxplot() +
+  scale_fill_manual(values = palette[1:2], labels = c("effort", "craving")) + 
+  labs(x = "subject", y = "RT") +
+  theme(axis.text.x = element_text(angle = 45,hjust = 1))
+```
+
+## RT means by subject
+Means and 95% CIs for craving rating and effort for each subject
+```{r, fig.width=10}
+plot.RT = data1 %>%
+  gather("rating", "rt", rtEffort, rtRating) %>%
+  group_by(subjectID, rating) %>%
+  mutate(sort = mean(rt, na.rm = TRUE))
+
+ggplot(plot.RT, aes(reorder(subjectID, sort), rt, color = rating)) +
+  stat_summary(fun.y = mean, geom = "point", position = position_dodge(.9)) + 
+  stat_summary(fun.data = mean_cl_normal, geom = "errorbar", position = position_dodge(.9), width = 0) +
+  scale_color_manual(values = palette[1:2], labels = c("effort", "craving")) + 
+  labs(x = "subject", y = "RT") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```

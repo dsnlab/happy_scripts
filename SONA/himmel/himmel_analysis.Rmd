@@ -1,0 +1,966 @@
+---
+title: "Himmel 3 Analysis"
+author: "Dani Cosme"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    code_folding: hide
+    highlight: tango
+    theme: united
+    toc: true
+    toc_float: 
+      collapsed: TRUE
+      smooth_scroll: TRUE
+    df_print: paged
+---
+
+```{r setup, include=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(error = FALSE, message = FALSE)
+```
+
+# load libraries
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(psych)
+library(knitr)
+library(lme4)
+library(lmerTest)
+devtools::install_github('jflournoy/qualtrics')
+```
+
+# set color palettes
+```{r}
+palette = wesanderson::wes_palette("Zissou1", n = 4, type = "continuous")
+palette_cond = wesanderson::wes_palette("Darjeeling1", 3, "continuous")
+palette_grey = "#54565B"
+```
+
+# load data
+```{r, warning = FALSE}
+# define variables and paths
+sub_dir = "~/Dropbox (PfeiBer Lab)/FreshmanProject/Tasks/ROC-C/output/"
+sub_pattern = "HL[0-9]{3}"
+subjects = list.files(sub_dir, pattern = sub_pattern)
+runs = c("run1", "run2", "run3")
+
+# initialize data frame
+data = data.frame()
+
+# load data
+for (sub in subjects) {
+  for (run in runs) {
+    file = paste0(sub_dir, sub, '/', sub, '_', run,'.csv')
+    tmp = tryCatch(read.csv(file, stringsAsFactors = FALSE) %>%
+                   mutate(subjectID = sub,
+                          run = run,
+                          respCue = as.integer(as.character(respCue)),
+                          respRating = as.integer(as.character(respRating)),
+                          respEffort = as.integer(as.character(respEffort))), error = function(e) NULL)
+      data = bind_rows(data, tmp)
+      rm(tmp)
+  }
+}
+
+# load condition info
+condition = read.csv("Himmel Info - Himmel III Participant Info.csv", stringsAsFactors = FALSE) %>%
+  rename("subjectID" = Subject.ID,
+         "condition" = Condition,
+         "experimenter" = Experimenter) %>%
+  mutate(condition = ifelse(condition == "A", "control",
+                     ifelse(condition == "B", "food",
+                     ifelse(condition == "C", "autonomy", NA)))) %>%
+  select(subjectID, condition, experimenter)
+```
+
+# get experimental manipulation survey data
+```{r, warning = FALSE}
+# define variables
+cred_file_location = '~/credentials.yaml.DEFAULT'
+sid_column_name = '(SID)'
+survey_name_filter = 'Autonomy Manipulation'
+sid_pattern = 'HL[0-9]{3}'
+exclude_sid = 'HL999' # subject IDs to exclude
+identifiableData = c('IPAddress') # exclude when printing duplicates
+
+# load credential file
+credentials = scorequaltrics::creds_from_file(cred_file_location)
+
+# filter
+surveysAvail = scorequaltrics::get_surveys(credentials)
+surveysFiltered = filter(surveysAvail, grepl(survey_name_filter, SurveyName))
+
+# get survey
+surveys = scorequaltrics::get_survey_responses(credentials, 
+                                               surveyid = surveysFiltered$SurveyID[[1]])
+
+# tidy surveys
+surveys1 = surveys %>%
+  slice(-1:-48) %>% # filter out pilot observations in the first 48 rows 
+  mutate(subjectID = ifelse(grepl("^[0-9]{3}", SID), paste0("HL", SID),
+                     ifelse(grepl("HL[0-9]{3}", SID), SID, NA))) %>%
+  filter(!subjectID == "HL999")
+
+# check number of observations
+surveys1 %>%
+  group_by(subjectID) %>%
+  summarize(n = n()) %>%
+  arrange(desc(n))
+
+# filter our duplicate subject and recode condition B choices
+manipulation = surveys1 %>%
+  filter(!qid == "R_3HC8QsQwOBNYF9z") %>% # filter out first observation of HL009
+  select(subjectID, COND, B_1) %>%
+  rename("condition" = "COND") %>%
+  mutate(condition = ifelse(condition == "1", "food",
+                     ifelse(condition == "2", "autonomy", NA)),
+         taskChoice = ifelse(B_1 == "1", "regulate",
+                   ifelse(B_1 == "2", "look", NA))) %>%
+  select(-B_1)
+```
+
+# get post-task survey data
+```{r, warning = FALSE}
+# define variables
+survey_name_filter = 'Himmel Survey 2018'
+
+# filter
+surveysAvail = scorequaltrics::get_surveys(credentials)
+surveysFiltered = filter(surveysAvail, grepl(survey_name_filter, SurveyName))
+
+# get survey
+survey.post = scorequaltrics::get_survey_responses(credentials, 
+                                               surveyid = surveysFiltered$SurveyID[[1]])
+
+# tidy surveys
+survey.post1 = survey.post %>%
+  mutate(subjectID = ifelse(grepl("^[0-9]{3}", SID), paste0("HL", SID),
+                     ifelse(grepl("HL[0-9]{3}", SID), SID, NA))) %>%
+  filter(!subjectID == "HL999")
+
+# check number of observations
+survey.post1 %>%
+  group_by(subjectID) %>%
+  summarize(n = n()) %>%
+  arrange(desc(n))
+
+# filter our duplicate subject and recode condition B choices
+check = survey.post1 %>%
+  filter(!qid == "R_3OqwT3EzxpDlfOI") %>% # filter out first observation of HL009
+  select(subjectID, starts_with("CHECK"), starts_with("VALUES")) %>%
+  gather(set, value, starts_with("CHECK")) %>%
+  extract(set, c("set", "question"), "(CHECK_[1-2]{1})_([1-4]{1})") %>%
+  mutate(choice = ifelse(set == "CHECK_1", "yes",
+                  ifelse(set == "CHECK_2", "no", NA)),
+         question = ifelse(question == "1", "liking",
+                    ifelse(question == "2", "engagement",
+                    ifelse(question == "3", "motivation",
+                    ifelse(question == "4", "difficulty", NA)))),
+         value = as.numeric(value)) %>%
+  select(-set, -starts_with("VALUES"))
+
+values = survey.post1 %>%
+  filter(!qid == "R_3OqwT3EzxpDlfOI") %>% # filter out first observation of HL009
+  select(subjectID, starts_with("VALUES")) %>%
+  rename("Being healthy" = VALUES_1,
+         "Being physically fit" = VALUES_2,
+         "Eating healthfully" = VALUES_3,
+         "Making decisions for myself" = VALUES_4,
+         "Having a choice" = VALUES_5,
+         "Being independent" = VALUES_6,
+         "Enjoying what I eat" = VALUES_7,
+         "Controlling my desire for unhealthy foods" = VALUES_8,
+         "Not having to make decisions" = VALUES_9,
+         "Getting help from others to make decisions" = VALUES_10,
+         "Minimizing the number of decisions I make" = VALUES_11,
+         "Following instructions" = VALUES_12) %>%
+  gather(question, value, -subjectID)
+
+IMI = survey.post1 %>%
+  filter(!qid == "R_3OqwT3EzxpDlfOI") %>% # filter out first observation of HL009
+  select(subjectID, starts_with("IMI")) %>%
+  gather(item, value, -subjectID) %>%
+  mutate(factor = ifelse(item %in% sprintf("IMI_%d", 1:7), "interest_enjoyment",
+                  ifelse(item %in% sprintf("IMI_%d", 8:13), "competence",
+                  ifelse(item %in% sprintf("IMI_%d", 14:18), "effort_importance",
+                  ifelse(item %in% sprintf("IMI_%d", 19:23), "pressure_tension",
+                  ifelse(item %in% sprintf("IMI_%d", 24:30), "perceived_choice",
+                  ifelse(item %in% sprintf("IMI_%d", 31:37), "value_usefulness", NA)))))),
+         value = ifelse(item %in% sprintf("IMI_%d", c(3,4,13,15,18,19,21,25,26,27,28,30)) & value == 1, 7,
+                 ifelse(item %in% sprintf("IMI_%d", c(3,4,13,15,18,19,21,25,26,27,28,30)) & value == 2, 6,
+                 ifelse(item %in% sprintf("IMI_%d", c(3,4,13,15,18,19,21,25,26,27,28,30)) & value == 3, 5,
+                 ifelse(item %in% sprintf("IMI_%d", c(3,4,13,15,18,19,21,25,26,27,28,30)) & value == 5, 3,
+                 ifelse(item %in% sprintf("IMI_%d", c(3,4,13,15,18,19,21,25,26,27,28,30)) & value == 6, 2,
+                 ifelse(item %in% sprintf("IMI_%d", c(3,4,13,15,18,19,21,25,26,27,28,30)) & value == 7, 1, value))))))) %>%
+  group_by(subjectID, factor) %>%
+  summarize(mean = mean(as.numeric(value), na.rm = TRUE))
+```
+
+# tidy data
+```{r}
+data1 = data %>%
+  filter(!subjectID %in% c("HL999")) %>%
+  mutate(rtCue = ifelse(rtCue == "NaN", NA, rtCue),
+         rtRating = ifelse(rtRating == "NaN", NA, rtRating),
+         rtEffort = ifelse(rtEffort == "NaN", NA, rtEffort),
+         action = ifelse(respCue == 1, "look",
+                  ifelse(respCue == 2, "regulate", NA)),
+         action = ifelse(cond == "LOOK" & is.na(respCue), "look",
+                  ifelse(cond == "REGULATE" & is.na(respCue), "regulate", action)),
+         action = as.factor(action),
+         choice = ifelse(cond %in% c("LOOK", "REGULATE"), "no",
+                  ifelse(cond == "CHOOSE", "yes", NA)),
+         choice = as.factor(choice),
+         ratingDiff = respRating - likingRating) %>%
+  extract(col = foodPic, into = "category", regex = "(.*)[0-9]{2}", remove = FALSE) %>%
+  group_by(subjectID) %>%
+  mutate(trial = row_number()) %>%
+  left_join(condition, by = "subjectID") %>%
+  left_join(manipulation, by = c("subjectID", "condition")) %>%
+  left_join(check, by = c("subjectID", "choice")) %>%
+  select(subjectID, condition, taskChoice, run, action, choice, cond, respCue, trial, everything()) %>%
+  group_by(subjectID) %>%
+  mutate(meanLiking = mean(likingRating, na.rm = TRUE))
+```
+
+# engagement by task and experimental condition
+```{r, fig.width=8}
+data1 %>%
+  filter(!is.na(question)) %>%
+  group_by(subjectID, condition, choice) %>%
+  ggplot(aes(condition, value, color = choice)) +
+    stat_summary(aes(group = choice), fun.y = mean, geom = "line") +
+    stat_summary(fun.data = "mean_cl_boot") +
+    facet_grid(~question) + 
+    scale_color_manual(values = c(palette[1], palette[3])) + 
+    theme_minimal()
+```
+
+# intrinsic motivation
+```{r}
+IMI %>%
+  left_join(., select(data1, subjectID, condition), by = "subjectID") %>%
+  ggplot(aes(condition, mean, color = factor)) +
+    stat_summary(aes(group = factor), fun.y = mean, geom = "line") +
+    stat_summary(fun.data = "mean_cl_boot", size = .5) +
+    scale_color_manual(values = wesanderson::wes_palette("Zissou1", 7, "continuous")) + 
+    theme_minimal()
+
+IMI %>%
+  left_join(., select(data1, subjectID, condition), by = "subjectID") %>%
+  ggplot(aes(factor, mean, color = condition)) +
+    stat_summary(aes(group = condition), fun.y = mean, geom = "line") +
+    stat_summary(fun.data = "mean_cl_boot", size = .5) +
+    scale_color_manual(values = wesanderson::wes_palette("Darjeeling1", 3, "continuous")) + 
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+```
+
+# 
+```{r}
+values %>%
+  left_join(., select(data1, subjectID, condition), by = "subjectID") %>%
+  ggplot(aes(condition, value, color = question)) +
+    stat_summary(aes(group = question), fun.y = mean, geom = "line") +
+    stat_summary(aes(group = question), fun.data = "mean_cl_boot", size = .5) +
+    scale_color_manual(values = wesanderson::wes_palette("Zissou1", 12, "continuous")) + 
+    theme_minimal()
+
+values %>%
+  left_join(., select(data1, subjectID, condition), by = "subjectID") %>%
+  ggplot(aes(question, value, color = condition)) +
+    stat_summary(aes(group = condition), fun.y = mean, geom = "line") +
+    stat_summary(aes(group = condition), fun.data = "mean_cl_boot", size = .5) +
+    scale_color_manual(values = wesanderson::wes_palette("Darjeeling1", 3, "continuous")) + 
+    theme_minimal() + 
+    theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+```
+
+# missing choice data
+```{r}
+missing.plot = data1 %>%
+  filter(choice == "yes") %>%
+  group_by(subjectID, action) %>%
+  summarize(n = n()) %>%
+  spread(action, n) %>%
+  rename("missing" = `<NA>`) %>%
+  mutate(missing = ifelse(is.na(missing), 0, missing),
+         missingSets = missing / 3,
+         percentMissing = (missing / (look + regulate + missing)) * 100)
+
+ggplot(missing.plot, aes(missingSets)) +
+  geom_histogram(bins = 4) +
+  labs(x = "number of sets missing") + 
+  theme_minimal()
+
+missing.plot %>%
+  ungroup() %>%
+  summarize(n = n(),
+            mean = mean(percentMissing, na.rm = TRUE),
+            sd = sd(percentMissing, na.rm = TRUE),
+            min = min(percentMissing, na.rm = TRUE),
+            max = max(percentMissing, na.rm = TRUE)) %>%
+      kable(digits = 2, format = "pandoc", caption = "average percent of choice trials missing")
+```
+
+# percent regulate
+## all conditions
+There are a few outliers, but most people chose to regulate around 50% of the time.
+```{r}
+percent.plot = data1 %>%
+  filter(choice == "yes") %>%
+  group_by(subjectID, action, condition, taskChoice) %>%
+  summarize(n = n()) %>%
+  spread(action, n) %>%
+  mutate(percent.regulate = (regulate / (look + regulate)) * 100) %>%
+  arrange(percent.regulate)
+
+ggplot(percent.plot, aes("", percent.regulate)) +
+  geom_boxplot() +
+  facet_grid(~condition) + 
+  labs(x = "", y = "percent chosen to regulate") + 
+  theme_minimal()
+
+percent.plot %>%
+  group_by(condition) %>%
+  summarize(n = n(),
+            mean = mean(percent.regulate, na.rm = TRUE),
+            sd = sd(percent.regulate, na.rm = TRUE),
+            min = min(percent.regulate, na.rm = TRUE),
+            max = max(percent.regulate, na.rm = TRUE)) %>%
+      kable(digits = 2, format = "pandoc", caption = "group average by condition")
+
+percent.plot
+```
+
+## by profile in food manipulation condition
+```{r}
+ggplot(filter(percent.plot, condition == "food"), aes("", percent.regulate)) +
+  geom_boxplot() +
+  facet_grid(~taskChoice) + 
+  labs(x = "", y = "percent chosen to regulate", title = "percent regulation choices in food manipulation condition only") + 
+  theme_minimal()
+
+percent.plot %>%
+  group_by(condition, taskChoice) %>%
+  summarize(n = n(),
+            mean = mean(percent.regulate, na.rm = TRUE),
+            sd = sd(percent.regulate, na.rm = TRUE),
+            min = min(percent.regulate, na.rm = TRUE),
+            max = max(percent.regulate, na.rm = TRUE)) %>%
+      kable(digits = 2, format = "pandoc", caption = "group average by condition")
+```
+
+# liking descriptives
+## mean liking ratings by subject
+```{r}
+data1 %>%
+  group_by(subjectID) %>%
+  summarize(mean = mean(meanLiking, na.rm = TRUE)) %>%
+  ggplot(aes(mean)) +
+    geom_histogram(stat = "bin", bins = 10) +
+    theme_minimal()
+
+data1 %>%
+  group_by(subjectID) %>%
+  summarize(mean = mean(meanLiking, na.rm = TRUE)) %>%
+  mutate(lt2.5 = ifelse(mean < 2.5, 1, 0),
+         lt3 = ifelse(mean < 3, 1, 0)) %>%
+  summarize(`less than 2.5` = sum(lt2.5),
+            `less than 3` = sum(lt3))
+```
+
+# craving ratings
+## by subject and task condition
+```{r}
+plot.rating = data1 %>%
+  group_by(subjectID, action, choice, condition) %>%
+  summarize(meanRating = mean(respRating, na.rm = TRUE)) %>%
+  filter(!is.na(action))
+
+ggplot(plot.rating, aes(action, meanRating)) +
+  geom_point(aes(group = subjectID, color = condition), alpha = .05, size = 3) + 
+  geom_line(aes(group = subjectID, color = condition), alpha = .05, size = 1) + 
+  stat_summary(aes(group = 1), color = palette_grey, fun.y = mean, geom = "line") +
+  stat_summary(color = palette_grey, fun.data = "mean_cl_boot", size = 1) +
+  facet_grid(~choice) +
+  scale_color_manual(values = c(palette_cond)) +
+  labs(y = "mean craving rating") + 
+  theme_minimal()
+
+ggplot(plot.rating, aes(choice, meanRating)) +
+  geom_point(aes(group = subjectID, color = condition), alpha = .05, size = 3) + 
+  geom_line(aes(group = subjectID, color = condition), alpha = .05, size = 1) + 
+  stat_summary(aes(group = 1), color = palette_grey, fun.y = mean, geom = "line") +
+  stat_summary(color = palette_grey, fun.data = "mean_cl_boot", size = 1) +
+  facet_grid(~action) +
+  scale_color_manual(values = c(palette_cond, palette[1],palette[3])) +
+  labs(y = "mean craving rating") + 
+  theme_minimal()
+
+data1 %>%
+  group_by(action, choice) %>%
+  summarize(meanRating = mean(respRating, na.rm = TRUE),
+            n = n()) %>%
+  kable(digits = 2, format = "pandoc", caption = "mean craving ratings by condition")
+```
+
+## by task and experimental condition
+```{r}
+plot.rating = data1 %>%
+  group_by(subjectID, action, choice, condition, taskChoice) %>%
+  summarize(meanRating = mean(respRating, na.rm = TRUE)) %>%
+  filter(!is.na(action))
+
+ggplot(plot.rating, aes(action, meanRating, color = condition)) +
+  stat_summary(aes(group = condition), fun.y = mean, geom = "line") +
+  stat_summary(aes(color = condition), fun.data = "mean_cl_boot", size = 1) +
+  facet_grid(~choice) +
+  scale_color_manual(values = palette_cond) +
+  labs(y = "mean craving rating") + 
+  theme_minimal()
+
+ggplot(plot.rating, aes(choice, meanRating, color = condition)) +
+  stat_summary(aes(group = condition), fun.y = mean, geom = "line") +
+  stat_summary(aes(color = condition), fun.data = "mean_cl_boot", size = 1) +
+  facet_grid(~action) +
+  scale_color_manual(values = palette_cond) +
+  labs(y = "mean craving rating") + 
+  theme_minimal()
+
+data1 %>%
+  group_by(action, choice, condition) %>%
+  summarize(meanRating = mean(respRating, na.rm = TRUE),
+            n = n()) %>%
+  kable(digits = 2, format = "pandoc", caption = "mean craving ratings by condition")
+```
+
+## individual differences 
+```{r, fig.width=10, fig.height=30}
+ggplot(plot.rating, aes(action, meanRating, color = choice)) +
+  geom_point(aes(group =  interaction(subjectID, choice), color = choice)) +
+  geom_line(aes(group = interaction(subjectID, choice), color = choice)) + 
+  facet_wrap(~condition + subjectID, ncol = 5) +
+  geom_text(aes(x = 2.25, y = 3.5, label = taskChoice), color = "black", size = 3) + 
+  scale_color_manual(values = c(palette[1],palette[3])) +
+  labs(y = "mean craving rating") + 
+  theme_minimal()
+```
+
+## difference in pre-task and task craving ratings by task condition
+```{r}
+plot.rating = data1 %>%
+  group_by(subjectID, action, choice, condition) %>%
+  summarize(meanRating = mean(ratingDiff, na.rm = TRUE)) %>%
+  filter(!is.na(action))
+
+ggplot(plot.rating, aes(action, meanRating)) +
+  geom_point(aes(group = subjectID, color = condition), alpha = .05, size = 3) + 
+  geom_line(aes(group = subjectID, color = condition), alpha = .05, size = 1) + 
+  stat_summary(aes(group = 1), color = palette_grey, fun.y = mean, geom = "line") +
+  stat_summary(color = palette_grey, fun.data = "mean_cl_boot", size = 1) +
+  facet_grid(~choice) +
+  scale_color_manual(values = c(palette_cond, palette[2],palette[4])) +
+  labs(y = "difference in craving rating") + 
+  theme_minimal()
+
+ggplot(plot.rating, aes(choice, meanRating)) +
+  geom_point(aes(group = subjectID, color = condition), alpha = .05, size = 3) + 
+  geom_line(aes(group = subjectID, color = condition), alpha = .05, size = 1) + 
+  stat_summary(aes(group = 1), color = palette_grey, fun.y = mean, geom = "line") +
+  stat_summary(color = palette_grey, fun.data = "mean_cl_boot", size = 1) +
+  facet_grid(~action) +
+  scale_color_manual(values = c(palette_cond, palette[1],palette[3])) +
+  labs(y = "difference in craving rating") + 
+  theme_minimal()
+
+data1 %>%
+  group_by(action, choice) %>%
+  summarize(meanRating = mean(ratingDiff, na.rm = TRUE),
+            n = n()) %>%
+  kable(digits = 2, format = "pandoc", caption = "mean difference in craving ratings by condition")
+```
+
+## difference in pre-task and task craving ratings by task and experimental condition
+```{r}
+plot.rating = data1 %>%
+  group_by(subjectID, action, choice, condition) %>%
+  summarize(meanRating = mean(ratingDiff, na.rm = TRUE)) %>%
+  filter(!is.na(action))
+
+ggplot(plot.rating, aes(action, meanRating, color = condition)) +
+  stat_summary(aes(group = condition), fun.y = mean, geom = "line") +
+  stat_summary(aes(color = condition), fun.data = "mean_cl_boot", size = 1) +
+  facet_grid(~choice) +
+  scale_color_manual(values = palette_cond) +
+  labs(y = "difference in craving rating") + 
+  theme_minimal()
+
+ggplot(plot.rating, aes(choice, meanRating, color = condition)) +
+  stat_summary(aes(group = condition), fun.y = mean, geom = "line") +
+  stat_summary(aes(color = condition), fun.data = "mean_cl_boot", size = 1) +
+  facet_grid(~action) +
+  scale_color_manual(values = palette_cond) +
+  labs(y = "difference in craving rating") + 
+  theme_minimal()
+
+data1 %>%
+  group_by(action, choice, condition) %>%
+  summarize(meanRating = mean(ratingDiff, na.rm = TRUE),
+            n = n()) %>%
+  kable(digits = 2, format = "pandoc", caption = "mean difference in craving ratings by condition")
+```
+
+## pre-task and task craving ratings by task and experimental condition
+```{r, fig.width=8}
+plot.rating = data1 %>%
+  filter(!is.na(action)) %>%
+  gather(ratingCondition, rating, respRating, likingRating) %>%
+  mutate(ratingCondition = ifelse(ratingCondition == "respRating", "task rating",
+                     ifelse(ratingCondition == "likingRating", "pre rating", condition))) %>%
+  group_by(subjectID, action, choice, ratingCondition, condition) %>%
+  summarize(meanRating = mean(rating, na.rm = TRUE))
+
+ggplot(plot.rating, aes(action, meanRating)) +
+  geom_point(aes(group = subjectID, color = condition), alpha = .05, size = 3) + 
+  geom_line(aes(group = subjectID, color = condition), alpha = .05, size = 1) + 
+  stat_summary(aes(group = 1), color = palette_grey, fun.y = mean, geom = "line") +
+  stat_summary(color = palette_grey, fun.data = "mean_cl_boot", size = 1) +
+  facet_grid(choice ~ ratingCondition) +
+  scale_color_manual(values = c(palette_cond, palette[2],palette[4])) +
+  labs(y = "mean craving rating") +
+  theme_minimal()
+```
+
+## mean craving ratings across trials
+```{r, fig.width=8}
+# linear trend
+ggplot(filter(data1, !is.na(action)), aes(trial, respRating, color = action, linetype = choice)) + 
+  geom_smooth(method = 'lm', se=FALSE, aes(group = interaction(subjectID, choice, action)), alpha =.06, size=.1) +
+  geom_smooth(method = 'lm', se=FALSE, size = 1.5) + 
+  facet_grid(~condition) + 
+  scale_color_manual(values = c(palette[2],palette[4])) +
+  labs(y = "mean craving rating") +
+  theme_minimal()
+```
+
+## mean craving rating by run
+Visualizing the decrease over time by collapsing across run
+```{r, fig.width = 8}
+plot.rating = data1 %>%
+  group_by(subjectID, action, choice, run, condition) %>%
+  summarize(meanRating = mean(respRating, na.rm = TRUE)) %>%
+  filter(!is.na(action))
+
+ggplot(plot.rating, aes(run, meanRating, color = action, linetype = choice)) +
+  geom_point(aes(group = interaction(subjectID, action, choice)), alpha = .05, size = 3) + 
+  geom_line(aes(group = interaction(subjectID, action, choice)), alpha = .05, size = 1) + 
+  stat_summary(aes(group = interaction(action, choice)), fun.data = "mean_cl_boot", size = 1) +
+  stat_summary(aes(group = interaction(action, choice)), fun.y = "mean", geom = "line", size = 1) +
+  facet_grid(~ condition) +
+  scale_color_manual(values = c(palette[2], palette[4])) +
+  labs(y = "mean craving rating") +
+  theme_minimal()
+
+data1 %>%
+  group_by(action, choice, run, condition) %>%
+  summarize(meanRating = mean(respRating, na.rm=TRUE),
+            n = n()) %>%
+  kable(digits = 2, format = "pandoc", caption = "mean craving ratings by condition and run")
+```
+
+# test craving rating models
+* Model 1 = `respRating ~ action*choice + (1 + action | subjectID)`  
+* Model 2 = `respRating ~ action*choice*condition + (1 + action | subjectID)`  
+* Model 3 = `respRating ~ action*choice*condition*taskChoice + (1 + action | subjectID)`  
+
+```{r}
+# get complete data
+data.complete = data1 %>%
+  ungroup() %>%
+  mutate(taskChoice = ifelse(is.na(taskChoice), "none", taskChoice),
+         taskChoice = as.factor(taskChoice),
+         condition = as.factor(condition)) %>%
+  select(subjectID, condition, taskChoice, run, action, choice, trial, category, likingRating, craved, respRating, rtRating, ratingDiff) %>%
+  na.omit()
+
+# relevel condition
+data.complete$condition = relevel(data.complete$condition, "control")
+
+# run and compare models
+model.1 = lmer(ratingDiff ~ action*choice + (1 + action | subjectID), 
+               REML = FALSE,
+               data = data.complete)
+model.2 = lmer(ratingDiff ~ action*choice*condition + (1 + action | subjectID), 
+               REML = FALSE,
+               data = data.complete)
+model.3 = lmer(ratingDiff ~ action*choice*taskChoice*condition + (1 + action | subjectID), 
+               REML = FALSE,
+               data = data.complete)
+
+anova(model.1, model.2, model.3)
+summary(model.1)
+summary(model.2)
+
+# summarize
+control = lmer(ratingDiff ~ action*choice + (1 + action | subjectID), 
+               REML = FALSE,
+               data = filter(data.complete, condition == "control"))
+autonomy = lmer(ratingDiff ~ action*choice + (1 + action | subjectID), 
+                REML = FALSE, 
+               data = filter(data.complete, condition == "autonomy"))
+food = lmer(ratingDiff ~ action*choice*taskChoice + (1 + action | subjectID), 
+            REML = FALSE,
+            data = filter(data.complete, condition == "food"))
+
+summary(control)
+summary(autonomy)
+summary(food)
+```
+
+# effort ratings
+## by subject and task condition
+```{r}
+plot.rating = data1 %>%
+  group_by(subjectID, action, choice, condition) %>%
+  summarize(meanEffort = mean(respEffort, na.rm = TRUE)) %>%
+  filter(!is.na(action))
+
+ggplot(plot.rating, aes(action, meanEffort)) +
+  geom_point(aes(group = subjectID, color = condition), alpha = .05, size = 3) + 
+  geom_line(aes(group = subjectID, color = condition), alpha = .05, size = 1) + 
+  stat_summary(aes(group = 1), color = palette_grey, fun.y = mean, geom = "line") +
+  stat_summary(color = palette_grey, fun.data = "mean_cl_boot", size = 1) +
+  facet_grid(~choice) +
+  scale_color_manual(values = c(palette_cond, palette[2],palette[4])) +
+  labs(y = "mean effort rating") + 
+  theme_minimal()
+
+ggplot(plot.rating, aes(choice, meanEffort)) +
+  geom_point(aes(group = subjectID, color = condition), alpha = .05, size = 3) + 
+  geom_line(aes(group = subjectID, color = condition), alpha = .05, size = 1) + 
+  stat_summary(aes(group = 1), color = palette_grey, fun.y = mean, geom = "line") +
+  stat_summary(color = palette_grey, fun.data = "mean_cl_boot", size = 1) +
+  facet_grid(~action) +
+  scale_color_manual(values = c(palette_cond, palette[1],palette[3])) +
+  labs(y = "mean effort rating") + 
+  theme_minimal()
+
+data1 %>%
+  group_by(action, choice) %>%
+  summarize(meanEffort = mean(respEffort, na.rm = TRUE),
+            n = n()) %>%
+  kable(digits = 2, format = "pandoc", caption = "mean effort ratings by condition")
+```
+
+## by task and experimental condition
+```{r}
+plot.rating = data1 %>%
+  group_by(subjectID, action, choice, condition, taskChoice) %>%
+  summarize(meanEffort = mean(respEffort, na.rm = TRUE)) %>%
+  filter(!is.na(action))
+
+ggplot(plot.rating, aes(action, meanEffort, color = condition)) +
+  stat_summary(aes(group = condition), fun.y = mean, geom = "line") +
+  stat_summary(aes(color = condition), fun.data = "mean_cl_boot", size = 1) +
+  facet_grid(~choice) +
+  scale_color_manual(values = palette_cond) +
+  labs(y = "mean effort rating") + 
+  theme_minimal()
+
+ggplot(plot.rating, aes(choice, meanEffort, color = condition)) +
+  stat_summary(aes(group = condition), fun.y = mean, geom = "line") +
+  stat_summary(aes(color = condition), fun.data = "mean_cl_boot", size = 1) +
+  facet_grid(~action) +
+  scale_color_manual(values = palette_cond) +
+  labs(y = "mean effort rating") + 
+  theme_minimal()
+
+data1 %>%
+  group_by(action, choice, condition) %>%
+  summarize(meanEffort = mean(respEffort, na.rm = TRUE),
+            n = n()) %>%
+  kable(digits = 2, format = "pandoc", caption = "mean effort ratings by condition")
+```
+
+## individual differences 
+```{r, fig.width=10, fig.height=30}
+ggplot(plot.rating, aes(action, meanEffort, color = choice)) +
+  geom_point(aes(group =  interaction(subjectID, choice), color = choice)) +
+  geom_line(aes(group = interaction(subjectID, choice), color = choice)) + 
+  facet_wrap(~condition + subjectID, ncol = 5) +
+  geom_text(aes(x = 2.25, y = 3.5, label = taskChoice), color = "black", size = 3) + 
+  scale_color_manual(values = c(palette[1],palette[3])) +
+  labs(y = "mean effort rating") + 
+  theme_minimal()
+```
+
+# test effort rating models
+* Model 1 = `respEffort ~ action*choice + (1 + action | subjectID)`  
+* Model 2 = `respEffort ~ action*choice*condition + (1 + action | subjectID)`  
+* Model 3 = `respEffort ~ action*choice*condition*taskChoice + (1 + action | subjectID)`  
+
+```{r}
+# get complete data
+data.complete = data1 %>%
+  ungroup() %>%
+  mutate(taskChoice = ifelse(is.na(taskChoice), "none", taskChoice),
+         taskChoice = as.factor(taskChoice),
+         condition = as.factor(condition)) %>%
+  select(subjectID, condition, taskChoice, run, action, choice, trial, category, likingRating, craved, respEffort, rtEffort) %>%
+  na.omit()
+
+# relevel condition
+data.complete$condition = relevel(data.complete$condition, "control")
+
+# run and compare models
+model.1 = lmer(respEffort ~ action*choice + (1 + action | subjectID), 
+               REML = FALSE,
+               data = data.complete)
+model.2 = lmer(respEffort ~ action*choice*condition + (1 + action | subjectID), 
+               REML = FALSE,
+               data = data.complete)
+model.3 = lmer(respEffort ~ action*choice*condition*taskChoice + (1 + action | subjectID), 
+               REML = FALSE,
+               data = data.complete)
+
+anova(model.1, model.2, model.3)
+summary(model.1)
+
+# summarize
+control = lmer(respEffort ~ action*choice + (1 + action | subjectID), 
+               REML = FALSE,
+               data = filter(data.complete, condition == "control"))
+autonomy = lmer(respEffort ~ action*choice + (1 + action | subjectID), 
+                REML = FALSE, 
+               data = filter(data.complete, condition == "autonomy"))
+food = lmer(respEffort ~ action*choice*taskChoice + (1 + action | subjectID), 
+            REML = FALSE,
+            data = filter(data.complete, condition == "food"))
+
+summary(control)
+summary(autonomy)
+summary(food)
+```
+
+# reaction times
+## craving RTs by condition
+```{r, fig.width=8}
+plot.rating = data1 %>%
+  group_by(subjectID, action, choice, condition, taskChoice) %>%
+  summarize(meanRating = mean(rtRating, na.rm = TRUE)) %>%
+  filter(!is.na(action))
+
+ggplot(plot.rating, aes(action, meanRating, color = condition)) +
+  stat_summary(aes(group = condition), fun.y = mean, geom = "line") +
+  stat_summary(aes(color = condition), fun.data = "mean_cl_boot", size = 1) +
+  facet_grid(~choice) +
+  scale_color_manual(values = palette_cond) +
+  labs(y = "mean craving RT") + 
+  theme_minimal()
+
+ggplot(plot.rating, aes(choice, meanRating, color = condition)) +
+  stat_summary(aes(group = condition), fun.y = mean, geom = "line") +
+  stat_summary(aes(color = condition), fun.data = "mean_cl_boot", size = 1) +
+  facet_grid(~action) +
+  scale_color_manual(values = palette_cond) +
+  labs(y = "mean craving RT") + 
+  theme_minimal()
+
+data1 %>%
+  group_by(action, choice, condition) %>%
+  summarize(meanEffort = mean(respRating, na.rm = TRUE),
+            n = n()) %>%
+  kable(digits = 2, format = "pandoc", caption = "mean effort RTs by condition")
+```
+
+## craving RTs by condition and rating
+```{r, fig.width=8}
+plot.rating = data1 %>%
+  group_by(subjectID, action, choice, condition, respRating, taskChoice) %>%
+  summarize(meanRating = mean(rtRating, na.rm = TRUE)) %>%
+  filter(!is.na(action))
+
+ggplot(filter(plot.rating, !is.na(respRating)), aes(action, meanRating, color = condition)) +
+  stat_summary(aes(group = condition), fun.y = mean, geom = "line") +
+  stat_summary(aes(color = condition), fun.data = "mean_cl_boot", size = 1) +
+  facet_grid(choice~respRating) +
+  scale_color_manual(values = palette_cond) +
+  labs(y = "mean craving RT") + 
+  theme_minimal()
+
+ggplot(filter(plot.rating, !is.na(respRating)), aes(choice, meanRating, color = condition)) +
+  stat_summary(aes(group = condition), fun.y = mean, geom = "line") +
+  stat_summary(aes(color = condition), fun.data = "mean_cl_boot", size = 1) +
+  facet_grid(action~respRating) +
+  scale_color_manual(values = palette_cond) +
+  labs(y = "mean craving RT") + 
+  theme_minimal()
+
+data1 %>%
+  group_by(action, choice, condition) %>%
+  summarize(meanEffort = mean(respRating, na.rm = TRUE),
+            n = n()) %>%
+  kable(digits = 2, format = "pandoc", caption = "mean effort RTs by condition")
+```
+
+## effort RTs by condition
+```{r, fig.width=8}
+plot.rating = data1 %>%
+  group_by(subjectID, action, choice, condition, taskChoice) %>%
+  summarize(meanEffort = mean(rtEffort, na.rm = TRUE)) %>%
+  filter(!is.na(action))
+
+ggplot(plot.rating, aes(action, meanEffort, color = condition)) +
+  stat_summary(aes(group = condition), fun.y = mean, geom = "line") +
+  stat_summary(aes(color = condition), fun.data = "mean_cl_boot", size = 1) +
+  facet_grid(~choice) +
+  scale_color_manual(values = palette_cond) +
+  labs(y = "mean effort RT") + 
+  theme_minimal()
+
+ggplot(plot.rating, aes(choice, meanEffort, color = condition)) +
+  stat_summary(aes(group = condition), fun.y = mean, geom = "line") +
+  stat_summary(aes(color = condition), fun.data = "mean_cl_boot", size = 1) +
+  facet_grid(~action) +
+  scale_color_manual(values = palette_cond) +
+  labs(y = "mean effort RT") + 
+  theme_minimal()
+```
+
+## effort RTs by condition and rating
+```{r, fig.width=8}
+plot.rating = data1 %>%
+  group_by(subjectID, action, choice, condition, respEffort, taskChoice) %>%
+  summarize(meanEffort = mean(rtEffort, na.rm = TRUE)) %>%
+  filter(!is.na(action))
+
+ggplot(filter(plot.rating, !is.na(respEffort)), aes(action, meanEffort, color = condition)) +
+  stat_summary(aes(group = condition), fun.y = mean, geom = "line") +
+  stat_summary(aes(color = condition), fun.data = "mean_cl_boot", size = 1) +
+  facet_grid(choice~respEffort) +
+  scale_color_manual(values = palette_cond) +
+  labs(y = "mean effort RT") + 
+  theme_minimal()
+
+ggplot(filter(plot.rating, !is.na(respEffort)), aes(choice, meanEffort, color = condition)) +
+  stat_summary(aes(group = condition), fun.y = mean, geom = "line") +
+  stat_summary(aes(color = condition), fun.data = "mean_cl_boot", size = 1) +
+  facet_grid(action~respEffort) +
+  scale_color_manual(values = palette_cond) +
+  labs(y = "mean effort RT") + 
+  theme_minimal()
+```
+
+# liking ratings (pre-task)
+## ratings by category and frequency chosen
+These are only the ratings for the 90 images participants saw during the tasks
+```{r, fig.width=8}
+plot.rating = data1 %>%
+  group_by(category) %>%
+  summarize(meanRating = mean(likingRating, na.rm = TRUE),
+            n = n(),
+            sd = sd(likingRating, na.rm = TRUE),
+            se = sd/sqrt(n),
+            upper = meanRating + 2*se,
+            lower = meanRating - 2*se)
+
+ggplot(plot.rating, aes(reorder(category, -n), meanRating, color = category)) + 
+  geom_point(aes(size = n)) + 
+  geom_errorbar(aes(ymin = lower, ymax = upper), width = 0) + 
+  scale_color_manual(values = wesanderson::wes_palette("Zissou1", 15, type = "continuous")) +
+  labs(x = "category", y = "mean liking rating") +
+  theme_minimal() + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+## distribution by subject and category
+```{r, fig.width=10, fig.height=30}
+ggplot(data1, aes(likingRating, fill = category)) + 
+  geom_histogram(stat = "bin", binwidth = .5) + 
+  facet_wrap(~subjectID, ncol = 5) +
+  scale_fill_manual(values = wesanderson::wes_palette("Zissou1", 15, type = "continuous")) +
+  labs(x = "liking rating") +
+  theme_minimal()
+```
+
+## identify problematic categories and images
+These are the ratings for all 45 images in each category
+
+### load rating task data
+```{r}
+# define variables and paths
+sub_dir = "~/Dropbox (PfeiBer Lab)/FreshmanProject/Tasks/ROC-C/output/"
+sub_pattern = "HL[0-9]{3}"
+subjects = list.files(sub_dir, pattern = sub_pattern)
+runs = c("ratings")
+
+# initialize data frame
+ratings = data.frame()
+
+# load data
+for (sub in subjects) {
+  for (run in runs) {
+    file = paste0(sub_dir, sub, '/', sub, '_', run,'.csv')
+    tmp = tryCatch(read.csv(file, stringsAsFactors = FALSE, header = FALSE) %>%
+                     rename("rating" = V1,
+                            "ranking" = V2,
+                            "image" = V3) %>%
+                     mutate(subjectID = sub) %>%
+                     extract(image, "category", "(.*)[0-9]{2}.jpg", remove = FALSE), error = function(e) NULL)
+      ratings = bind_rows(ratings, tmp)
+      rm(tmp)
+  }
+}
+```
+
+### ratings by category and frequency chosen
+```{r, fig.width=8}
+plot.rating = ratings %>%
+  group_by(category) %>%
+  summarize(meanRating = mean(rating, na.rm = TRUE),
+            n = n(),
+            sd = sd(rating, na.rm = TRUE),
+            se = sd/sqrt(n),
+            upper = meanRating + 2*se,
+            lower = meanRating - 2*se)
+
+ggplot(plot.rating, aes(reorder(category, -n), meanRating, color = category)) + 
+  geom_point(aes(size = n)) + 
+  geom_errorbar(aes(ymin = lower, ymax = upper), width = 0) + 
+  scale_color_manual(values = wesanderson::wes_palette("Zissou1", 15, type = "continuous")) +
+  labs(x = "category", y = "mean liking rating") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+### summarize data
+```{r}
+mean.ratings = ratings %>%
+  group_by(image, category) %>%
+  summarize(meanRating = mean(rating, na.rm = T),
+            nChosen = n()) %>%
+  arrange(desc(meanRating))
+
+# higher than 2.5
+mean.ratings %>%
+  filter(meanRating > 2.5)
+
+# lower than 2.5
+mean.ratings %>%
+  filter(meanRating <= 2.5) 
+
+# good categories
+mean.ratings %>%
+  filter(meanRating > 2.5) %>%
+  group_by(category, nChosen) %>%
+  summarize(n = n()) %>%
+  arrange(desc(n))
+
+# problematic categories
+mean.ratings %>%
+  filter(meanRating <= 2.5) %>%
+  group_by(category, nChosen) %>%
+  summarize(n = n()) %>%
+  arrange(desc(n))
+```
+
