@@ -43,12 +43,12 @@ if (!require(scorequaltrics)) {
 
 # set color palettes
 ```{r}
-palette = wesanderson::wes_palette("Zissou1", n = 4, type = "continuous")
+palette = wesanderson::wes_palette("Darjeeling1", n = 2, type = "continuous")
 palette_grey = "#54565B"
 ```
 
-
-# get survey data
+# EDE-QS
+## get survey data
 ```{r, warning = FALSE}
 # define variables
 cred_file_location = '~/credentials.yaml.DEFAULT'
@@ -83,11 +83,59 @@ surveys1 %>%
   arrange(desc(n))
 
 # select relevant columns
-eating = surveys1 %>%
-  select(subjectID, SEX, starts_with("GENDER"), starts_with("EAT"), starts_with("EDE"))
+EDEQS = surveys1 %>%
+  select(subjectID, SEX, starts_with("GENDER"), starts_with("EDE")) %>%
+  # score EDE-QS
+  mutate_at(vars(starts_with("EDE")), as.numeric) # convert to integer
+
 ```
 
-# load task data
+## score
+```{r}
+# calculate mean across all items
+total = EDEQS %>%
+  gather(EDEQS, value, starts_with("EDE")) %>%
+  group_by(subjectID) %>%
+  summarize(total = mean(value, na.rm = TRUE))
+
+# calculate mean for restraint items
+restrained = EDEQS %>%
+  gather(EDEQS, value, starts_with("EDE")) %>%
+  filter(EDEQS %in% c("EDE_QS_1", "EDE_QS_2")) %>%
+  group_by(subjectID) %>%
+  summarize(restrained = mean(value, na.rm = TRUE))
+
+# calculate mean for binge items
+binge = EDEQS %>%
+  gather(EDEQS, value, starts_with("EDE")) %>%
+  filter(EDEQS %in% c("EDE_QS_3", "EDE_QS_9", "EDE_QS_10")) %>%
+  group_by(subjectID) %>%
+  summarize(binge = mean(value, na.rm = TRUE))
+
+EDEQS = left_join(EDEQS, total, by = "subjectID") %>%
+  left_join(., restrained, by = "subjectID") %>%
+  left_join(., binge, by = "subjectID")
+```
+
+## describe
+```{r}
+EDEQS %>%
+  gather(score, mean, total, restrained, binge) %>%
+  ggplot(aes(score, mean)) +
+    geom_boxplot() +
+    geom_jitter(width = .2, alpha = .5, color = palette[2]) + 
+    theme_minimal()
+
+EDEQS %>%
+  gather(score, mean, total, restrained, binge) %>%
+  ggplot(aes(score, mean)) +
+    geom_violin() +
+    geom_jitter(width = .1, alpha = .5, color = palette[2]) + 
+    theme_minimal()
+```
+
+# task
+## load data
 ```{r, warning = FALSE}
 # define variables and paths
 sub_dir = "~/Dropbox (PfeiBer Lab)/FreshmanProject/Tasks/ROC-C/output/FP/"
@@ -114,9 +162,9 @@ for (sub in subjects) {
 }
 ```
 
-# tidy task data
+## tidy data
 ```{r}
-data1 = data %>%
+task = data %>%
   # exclude FP001 and FP999
   filter(!subjectID %in% c("FP001", "FP999")) %>%
   # recode values
@@ -134,10 +182,7 @@ data1 = data %>%
          respRating = respRating - 5, # recode button box presses to 1-4 scale
          respRating = as.integer(respRating), # change to integer
          respEffort = respEffort - 5, # recode button box presses to 1-4 scale
-         respEffort = as.integer(respEffort), # change to integer
-         ratingDiff = respRating - likingRating) %>% # create difference score
-  # extract picture category and picture number
-  extract(col = foodPic, into = "category", regex = "(.*)[0-9]{2}", remove = FALSE) %>%
+         respEffort = as.integer(respEffort)) %>% # change to integer
   # add trial number
   group_by(subjectID) %>%
   mutate(trial = row_number()) %>%
@@ -146,46 +191,89 @@ data1 = data %>%
   ungroup()
 ```
 
-# craving ratings
-## by subject
+## calculate reg. success
 ```{r}
-plot.rating = data1 %>%
-  group_by(subjectID, action, choice) %>%
-  summarize(meanDiff = mean(ratingDiff, na.rm = TRUE)) %>%
-  filter(!is.na(action))
+reg.success = task %>%
+  # remove missing data
+  filter(!is.na(action)) %>%
+  # group by subject and calculate mean
+  group_by(subjectID, action) %>%
+  summarize(mean = mean(respRating, na.rm = TRUE)) %>%
+  # calculate regulation success
+  spread(action, mean) %>%
+  mutate(reg.success = look - regulate)
+```
 
-ggplot(plot.rating, aes(action, meanDiff)) +
-  geom_point(aes(group = subjectID), alpha = .05, size = 3) + 
-  geom_line(aes(group = subjectID), alpha = .05, size = 1) + 
-  stat_summary(aes(group = 1), color = palette_grey, fun.y = mean, geom = "line") +
-  stat_summary(color = palette_grey, fun.data = "mean_cl_boot", size = 1) +
-  facet_grid(~choice) +
-  labs(y = "mean difference in craving rating") + 
-  theme_minimal()
+## describe
+```{r}
+reg.success %>%
+  gather(score, mean, look, regulate, reg.success) %>%
+  ggplot(aes(score, mean)) +
+    geom_boxplot() +
+    geom_jitter(width = .2, alpha = .5, color = palette[2]) + 
+    theme_minimal()
 
-ggplot(plot.rating, aes(choice, meanDiff)) +
-  geom_point(aes(group = subjectID), alpha = .05, size = 3) + 
-  geom_line(aes(group = subjectID), alpha = .05, size = 1) + 
-  stat_summary(aes(group = 1), color = palette_grey, fun.y = mean, geom = "line") +
-  stat_summary(color = palette_grey, fun.data = "mean_cl_boot", size = 1) +
-  facet_grid(~action) +
-  labs(y = "mean difference in craving rating") + 
-  theme_minimal()
+reg.success %>%
+  gather(score, mean, look, regulate, reg.success) %>%
+  ggplot(aes(score, mean)) +
+    geom_violin() +
+    geom_jitter(width = .1, alpha = .5, color = palette[2]) + 
+    theme_minimal()
+```
+## plot
+```{r}
+reg.success %>%
+  gather(action, mean, look, regulate) %>%
+  ggplot(aes(action, mean)) +
+    geom_point(aes(group = subjectID), color = palette[2], alpha = .05, size = 3) + 
+    geom_line(aes(group = subjectID), color = palette[2], alpha = .05, size = 1) + 
+    stat_summary(aes(group = 1), color = palette[2], fun.y = mean, geom = "line") +
+    stat_summary(color = palette[2], fun.data = "mean_cl_boot", size = 1) +
+    labs(y = "mean craving rating") + 
+    theme_minimal()
 
-data1 %>%
-  group_by(action, choice) %>%
-  summarize(meanDiff = mean(ratingDiff, na.rm = TRUE),
+task %>%
+  filter(!is.na(action)) %>%
+  group_by(action) %>%
+  summarize(mean = mean(respRating, na.rm = TRUE),
+            sd = sd(respRating, na.rm = TRUE),
             n = n()) %>%
-  kable(digits = 2, format = "pandoc", caption = "mean difference in craving ratings")
+  kable(digits = 2, format = "pandoc", caption = "craving ratings")
 ```
 
-## individual differences 
-```{r, fig.width=10, fig.height=30}
-ggplot(plot.rating, aes(action, meanDiff, color = choice)) +
-  geom_point(aes(group =  interaction(subjectID, choice), color = choice)) +
-  geom_line(aes(group = interaction(subjectID, choice), color = choice)) + 
-  facet_wrap(~subjectID, ncol = 5) +
-  scale_color_manual(values = c(palette[1],palette[3])) +
-  labs(y = "mean craving rating") + 
-  theme_minimal()
+# correlations
+```{r}
+# merge data
+merged = left_join(reg.success, EDEQS, by = "subjectID")
+
+# total
+cor.test(merged$reg.success, merged$total)
+
+# restrained
+cor.test(merged$reg.success, merged$restrained)
+
+# binge
+cor.test(merged$reg.success, merged$binge)
 ```
+
+## plot
+```{r}
+merged %>%
+  gather(score, mean, total, restrained, binge) %>%
+  ggplot(aes(mean, reg.success)) + 
+    geom_point(color = palette[2], alpha = .5) +
+    geom_smooth(method = "lm", color = palette[2]) + 
+    facet_grid(~score) +
+    labs(x = "mean score", y = "regulation success (look- regulate)") +
+    theme_minimal()
+
+merged %>%
+  gather(score, mean, total, restrained, binge) %>%
+  ggplot(aes(mean, reg.success, color = score)) + 
+    geom_point(alpha = .5) +
+    geom_smooth(method = "lm") + 
+    scale_color_manual(values = wesanderson::wes_palette("Darjeeling1", n = 3, type = "continuous")) +
+    labs(x = "mean score", y = "regulation success (look- regulate)") +
+    theme_minimal()
+```
+
