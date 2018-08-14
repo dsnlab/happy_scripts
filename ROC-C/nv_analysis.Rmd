@@ -5,17 +5,19 @@ date: "`r Sys.Date()`"
 output:
   html_document:
     code_folding: hide
+    df_print: paged
     highlight: tango
     theme: united
-    toc: true
-    toc_float: 
-      collapsed: TRUE
-      smooth_scroll: TRUE
-    df_print: paged
+    toc: yes
+    toc_float:
+      collapsed: yes
+      smooth_scroll: yes
+  pdf_document:
+    toc: yes
 ---
 
 ```{r setup, include=FALSE, message=FALSE, warning=FALSE}
-knitr::opts_chunk$set(error = FALSE, message = FALSE)
+knitr::opts_chunk$set(error = FALSE, message = FALSE, fig.width = 6, fig.height = 4, fig.path = "Figs/", dpi = 300, dev = "jpeg")
 ```
 
 # load libraries
@@ -43,8 +45,8 @@ if (!require(scorequaltrics)) {
 
 # set color palettes
 ```{r}
-palette = wesanderson::wes_palette("Darjeeling1", n = 2, type = "continuous")
-palette_grey = "#54565B"
+palettegreen = "#93c47d"
+palette3 = c("#93C47D", "#2E6171", "#333333")
 ```
 
 # EDE-QS
@@ -118,19 +120,19 @@ EDEQS = left_join(EDEQS, total, by = "subjectID") %>%
 ```
 
 ## describe
-```{r}
+```{r, EDEQS_describe}
 EDEQS %>%
   gather(score, mean, total, restrained, binge) %>%
   ggplot(aes(score, mean)) +
     geom_boxplot() +
-    geom_jitter(width = .2, alpha = .5, color = palette[2]) + 
+    geom_jitter(width = .2, alpha = .5, color = palettegreen) + 
     theme_minimal()
 
 EDEQS %>%
   gather(score, mean, total, restrained, binge) %>%
   ggplot(aes(score, mean)) +
     geom_violin() +
-    geom_jitter(width = .1, alpha = .5, color = palette[2]) + 
+    geom_jitter(width = .1, alpha = .5, color = palettegreen) + 
     theme_minimal()
 ```
 
@@ -204,31 +206,41 @@ reg.success = task %>%
   mutate(reg.success = look - regulate)
 ```
 
-## describe
-```{r}
+## describe reg. success
+```{r, reg.success_describe}
 reg.success %>%
   gather(score, mean, look, regulate, reg.success) %>%
   ggplot(aes(score, mean)) +
     geom_boxplot() +
-    geom_jitter(width = .2, alpha = .5, color = palette[2]) + 
+    geom_jitter(width = .2, alpha = .5, color = palettegreen) + 
+    theme_minimal()
+
+reg.success %>%
+  gather(score, mean, look, regulate, reg.success) %>%
+  filter(score == "reg.success") %>%
+  mutate(score = ifelse(score == "reg.success", "reappraisal ability", score)) %>%
+  ggplot(aes(score, mean)) +
+    geom_boxplot() +
+    geom_jitter(width = .2, alpha = .5, color = palettegreen) + 
     theme_minimal()
 
 reg.success %>%
   gather(score, mean, look, regulate, reg.success) %>%
   ggplot(aes(score, mean)) +
     geom_violin() +
-    geom_jitter(width = .1, alpha = .5, color = palette[2]) + 
+    geom_jitter(width = .1, alpha = .5, color = palettegreen) + 
     theme_minimal()
 ```
-## plot
-```{r}
+
+## plot reg. success
+```{r, reg.success}
 reg.success %>%
   gather(action, mean, look, regulate) %>%
   ggplot(aes(action, mean)) +
-    geom_point(aes(group = subjectID), color = palette[2], alpha = .05, size = 3) + 
-    geom_line(aes(group = subjectID), color = palette[2], alpha = .05, size = 1) + 
-    stat_summary(aes(group = 1), color = palette[2], fun.y = mean, geom = "line") +
-    stat_summary(color = palette[2], fun.data = "mean_cl_boot", size = 1) +
+    geom_point(aes(group = subjectID), color = palettegreen, alpha = .1, size = 3) + 
+    geom_line(aes(group = subjectID), color = palettegreen, alpha = .1, size = 1) + 
+    stat_summary(aes(group = 1), color = palettegreen, fun.y = mean, geom = "line", size = 2) +
+    stat_summary(color = palettegreen, fun.data = "mean_cl_boot", size = 1.5) +
     labs(y = "mean craving rating") + 
     theme_minimal()
 
@@ -241,11 +253,45 @@ task %>%
   kable(digits = 2, format = "pandoc", caption = "craving ratings")
 ```
 
+## calculate mean effort
+```{r}
+effort = task %>%
+  filter(action == "regulate") %>%
+  group_by(subjectID) %>%
+  summarize(meanEffort = mean(respEffort, na.rm = TRUE))
+```
+
+## describe effort
+```{r, effort_describe}
+effort %>%
+  gather(score, mean, meanEffort) %>%
+  mutate(score = ifelse(score == "meanEffort", "effort", score)) %>%
+  ggplot(aes(score, mean)) +
+    geom_boxplot() +
+    geom_jitter(width = .2, alpha = .5, color = palettegreen) + 
+    theme_minimal()
+
+effort %>%
+  gather(score, mean, meanEffort) %>%
+  mutate(score = ifelse(score == "meanEffort", "effort", score)) %>%
+  ggplot(aes(score, mean)) +
+    geom_violin() +
+    geom_jitter(width = .1, alpha = .5, color = palettegreen) + 
+    theme_minimal()
+```
+
 # correlations
 ```{r}
 # merge data
-merged = left_join(reg.success, EDEQS, by = "subjectID")
+merged = left_join(reg.success, EDEQS, by = "subjectID") %>%
+  left_join(., effort, by = "subjectID")
+```
 
+## reg. success
+Example stats reporting format:
+_r_ = .19, 95% CI = [-.077, .44], _t_(51) = 1.44, _p_ = .156 
+
+```{r}
 # total
 cor.test(merged$reg.success, merged$total)
 
@@ -256,24 +302,57 @@ cor.test(merged$reg.success, merged$restrained)
 cor.test(merged$reg.success, merged$binge)
 ```
 
-## plot
+## effort
 ```{r}
+# total
+cor.test(merged$meanEffort, merged$total)
+
+# restrained
+cor.test(merged$meanEffort, merged$restrained)
+
+# binge
+cor.test(merged$meanEffort, merged$binge)
+```
+
+# plot correlations
+## reg. success
+```{r, reg.success_correlation}
 merged %>%
   gather(score, mean, total, restrained, binge) %>%
   ggplot(aes(mean, reg.success)) + 
-    geom_point(color = palette[2], alpha = .5) +
-    geom_smooth(method = "lm", color = palette[2]) + 
+    geom_point(color = palettegreen, alpha = .5) +
+    geom_smooth(method = "lm", color = palettegreen, size = 2) + 
     facet_grid(~score) +
-    labs(x = "mean score", y = "regulation success (look- regulate)") +
+    labs(x = "mean score", y = "reappraisal ability (look- regulate)") +
     theme_minimal()
 
 merged %>%
   gather(score, mean, total, restrained, binge) %>%
   ggplot(aes(mean, reg.success, color = score)) + 
     geom_point(alpha = .5) +
-    geom_smooth(method = "lm") + 
-    scale_color_manual(values = wesanderson::wes_palette("Darjeeling1", n = 3, type = "continuous")) +
-    labs(x = "mean score", y = "regulation success (look- regulate)") +
+    geom_smooth(method = "lm", alpha = .2, size = 1.5) + 
+    scale_color_manual(values = palette3) +
+    labs(x = "mean score", y = "reappraisal ability (look- regulate)") +
     theme_minimal()
 ```
 
+## effort
+```{r, effort_correlation}
+merged %>%
+  gather(score, mean, total, restrained, binge) %>%
+  ggplot(aes(mean, meanEffort)) + 
+    geom_point(color = palettegreen, alpha = .5) +
+    geom_smooth(method = "lm", color = palettegreen, size = 2) + 
+    facet_grid(~score) +
+    labs(x = "mean score", y = "mean effort rating") +
+    theme_minimal()
+
+merged %>%
+  gather(score, mean, total, restrained, binge) %>%
+  ggplot(aes(mean, meanEffort, color = score)) + 
+    geom_point(alpha = .5) +
+    geom_smooth(method = "lm", alpha = .2, size = 1.5) + 
+    scale_color_manual(values = palette3) +
+    labs(x = "mean score", y = "mean effort rating") +
+    theme_minimal()
+```
