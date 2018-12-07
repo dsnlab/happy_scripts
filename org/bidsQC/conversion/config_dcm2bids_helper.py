@@ -22,7 +22,7 @@ study = "FP"
 parentdir = os.path.join(os.sep, "projects", group, "shared", study) # folder that contains bidsdir and codedir
 dicomdir = os.path.join(os.sep, "projects", "lcni", "dcm", group, "Pfeifer", "FPR21")
 bidsdir = os.path.join(parentdir, "bids_data") # where the niftis will be put
-codedir = os.path.join(parentdir, "FP_scripts", "org", "bidsQC") # Contains subject_list.txt, config file, and dcm2bids_batch.py
+codedir = os.path.join(parentdir, "FP_scripts", "org", "bidsQC", "conversion") # Contains subject_list.txt, config file, and dcm2bids_batch.py
 logdir = os.path.join(codedir, "logs_helper")
 
 # Log files
