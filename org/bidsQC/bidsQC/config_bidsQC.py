@@ -8,8 +8,8 @@ from bidsQC_classes import TimePoint
 # Set study info (change these for your study)
 # These variables are used only in this file for path names.
 # They can be removed if desired.
-group = 'sanlab'
-study = 'REV'
+group = 'dsnlab'
+study = 'FP'
 
 # Set directories (Check these for your study)
 # These variables are used in the main script and need to be defined here. 
@@ -20,10 +20,10 @@ bidsdir = os.path.join(os.sep, 'projects', group, 'shared', study, 'bids_data') 
 
 # Create a dictionary (the thing below) for each timepoint in your study where the pairs are 'sequence_directory_name' : 'expected_number_runs'
 # Each unique version of a sequence gets its own entry, e.g. 'gng_acq-1' and 'gng_acq-2'
-sequence1 = Sequence('func', {'task1': 2, 'task2_acq-1':2, 'task2_acq-2':1, 'task3_acq-1':1, 'task3_acq-2':1})
-sequence3 = Sequence('anat', {'T1w':1})
-sequence4 = Sequence('fmap', {'dir-ap':1, 'dir-pa':1})
-timepoint1 = TimePoint('ses-wave1', [sequence1, sequence3, sequence4])
+sequence1 = Sequence('func', {'task-ROCC_run-01': 1, 'task-ROCC_run-02':1, 'task-ROCC_run-03':1, 'task-SVC_run-01':1, 'task-SVC_run-02':1, 'task-REST_run-01':1, 'task-REST_run-02':1, 'task-REST_run-03':1})
+sequence2 = Sequence('anat', {'T1w':1})
+sequence3 = Sequence('fmap', {'dir-ap':1, 'dir-pa':1})
+timepoint1 = TimePoint('ses-wave1', [sequence1, sequence2, sequence3])
 expected_timepoints = [timepoint1]
 
 
@@ -36,7 +36,7 @@ gzipped = True
 # Do we want runs based on sequence order? Yes = True
 # This is for tasks that use counterbalancing (of e.g. stimulus blocks) anf for which we want to identify the content
 # with the 'acq-' label and order administered with the 'task-' label.
-order_sequences = True
+order_sequences = False
 tasks_to_order = 'task1', 'task2'
 
 
