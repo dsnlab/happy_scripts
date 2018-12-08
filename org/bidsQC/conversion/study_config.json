@@ -26,7 +26,7 @@
         {
             "dataType": "func",
             "modalityLabel": "bold",
-            "customLabels": "task-ROCC_run-01",
+            "customLabels": "task-ROCC_acq-01",
             "criteria": {
                 "SeriesDescription": "ROCC1"
             }
@@ -34,7 +34,7 @@
         {
             "dataType": "func",
             "modalityLabel": "bold",
-            "customLabels": "task-ROCC_run-02",
+            "customLabels": "task-ROCC_acq-02",
             "criteria": {
                 "SeriesDescription": "ROCC2"
             }
@@ -42,7 +42,7 @@
         {
             "dataType": "func",
             "modalityLabel": "bold",
-            "customLabels": "task-ROCC_run-03",
+            "customLabels": "task-ROCC_acq-03",
             "criteria": {
                 "SeriesDescription": "ROCC3"
             }
@@ -50,7 +50,7 @@
         {
             "dataType": "func",
             "modalityLabel": "bold",
-            "customLabels": "task-SVC_run-01",
+            "customLabels": "task-SVC_acq-01",
             "criteria": {
                 "SeriesDescription": "SVC1"
             }
@@ -58,7 +58,7 @@
         {
             "dataType": "func",
             "modalityLabel": "bold",
-            "customLabels": "task-SVC_run-02",
+            "customLabels": "task-SVC_acq-02",
             "criteria": {
                 "SeriesDescription": "SVC2"
             }
@@ -66,7 +66,7 @@
         {
             "dataType": "func",
             "modalityLabel": "bold",
-            "customLabels": "task-REST_run-01",
+            "customLabels": "task-REST_acq-01",
             "criteria": {
                 "SeriesDescription": "REST1"
             }
@@ -74,7 +74,7 @@
         {
             "dataType": "func",
             "modalityLabel": "bold",
-            "customLabels": "task-REST_run-02",
+            "customLabels": "task-REST_acq-02",
             "criteria": {
                 "SeriesDescription": "REST2"
             }
@@ -82,7 +82,7 @@
         {
             "dataType": "func",
             "modalityLabel": "bold",
-            "customLabels": "task-REST_run-03",
+            "customLabels": "task-REST_acq-03",
             "criteria": {
                 "SeriesDescription": "REST3"
             }
