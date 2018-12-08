@@ -32,7 +32,7 @@ parentdir = "bidsQC"
 # They need to exist prior to running the script (with the exception of `image` 
 # which can be set equal to "NA" if you are running the script locally)
 dicomdir = os.path.join(os.sep, "projects", "lcni", "dcm", group, "Pfeifer", "FPR21")
-codedir = os.path.join(parentdir, "FP_scripts", "org", "bidsQC", "conversion") # Contains subject_list.txt, config file, and dcm2bids_batch.py
+codedir = os.path.join(os.sep, "projects", group, "shared", study, "FP_scripts", "org", parentdir)  # Contains subject_list.txt, config file, and dcm2bids_batch.py
 configfile = os.path.join(codedir, "study_config.json")  # path to and name of config file
 image = os.path.join(os.sep, "projects", group, "shared", "BIDS", "SingularityContainers", "Dcm2Bids-master.simg")
 
