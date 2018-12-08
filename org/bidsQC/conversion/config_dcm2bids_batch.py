@@ -24,7 +24,7 @@ from datetime import datetime
 # and can be commented out if not needed.
 group = "dsnlab"
 study = "FP"
-parent_dir = "bidsQC"
+parentdir = "bidsQC"
 
 
 # Set directories
