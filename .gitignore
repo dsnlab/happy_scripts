@@ -4,4 +4,5 @@
 .Ruserdata
 .DS_Store
 behavioral/*
-logs_dcm2bids/*
+/**/logs_dcm2bids/*
+/**/logs_bidsQC/*
