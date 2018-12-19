@@ -36,8 +36,8 @@ echo ---------------------------------------------------------------------------
 module load fsl
 script_dir=$(pwd)
 RUNS=$(ls residuals*.txt | wc -l)
-res_dir=/projects/dsnlab/shared/tag/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-TAG${SUB}
-cd ${res_dir}
+#res_dir=/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP${SUB}
+cd ${RES_DIR}
 
 for i in $(seq 1 $RUNS)
 	do echo "merging residuals for run${i}"

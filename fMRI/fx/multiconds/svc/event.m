@@ -6,7 +6,7 @@
 %% Load data and intialize variables
 inputDir = '~/Dropbox (PfeiBer Lab)/FreshmanProject/Tasks/SVC/output';
 runName = {'run1', 'run2'}; % add runs names here
-writeDir = '~/Documents/code/dsnlab/FP_scripts/fMRI/fx/multiconds/svc/event';
+writeDir = '~/Documents/code/dsnlab/FP_scripts/fMRI/fx/multiconds/svc/wave1/event';
 
 % list files in input directory
 files = dir(sprintf('%s/FP*/*svc*.mat',inputDir));

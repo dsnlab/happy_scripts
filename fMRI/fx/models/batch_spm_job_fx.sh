@@ -6,7 +6,7 @@
 #--------------------------------------------------------------
 
 # Set your study
-STUDY=/projects/dsnlab/shared/tag/TAG_scripts
+STUDY=/projects/dsnlab/shared/FP/FP_scripts
 
 # Set subject list
 SUBJLIST=`cat subject_list_test.txt`
@@ -23,11 +23,11 @@ SCRIPT=${STUDY}/fMRI/fx/models/svc/wave1/fx_event.m
 # Set shell script to execute
 SHELL_SCRIPT=spm_job.sh
 
-# Tag the results files
+# FP the results files
 RESULTS_INFIX=fx_event
 
 # Set output dir and make it if it doesn't exist
-OUTPUTDIR=${STUDY}/fMRI/fx/shell/schedule_spm_jobs/svc/wave1/event/output
+OUTPUTDIR=${STUDY}/fMRI/fx/models/svc/wave1/output
 
 if [ ! -d ${OUTPUTDIR} ]; then
 	mkdir -p ${OUTPUTDIR}

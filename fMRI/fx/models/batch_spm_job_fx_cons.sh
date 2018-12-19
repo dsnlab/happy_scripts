@@ -9,7 +9,7 @@
 
 
 # Set your study
-STUDY=/projects/dsnlab/shared/tag/TAG_scripts
+STUDY=FP
 
 # Set subject list
 SUBJLIST=`cat subject_list_test.txt`
@@ -20,17 +20,20 @@ REPLACESID='001'
 # SPM Path
 SPM_PATH=/projects/dsnlab/shared/SPM12
 
+# Set scripts directory path
+SCRIPTS_DIR=/projects/dsnlab/shared/${STUDY}/${STUDY}_scripts
+
 # Set MATLAB script path
-SCRIPT=${STUDY}/fMRI/fx/models/svc/wave1/fx_event_cons.m
+SCRIPT=${SCRIPTS_DIR}/fMRI/fx/models/svc/wave1/fx_event_cons.m
 
 # Set shell script to execute
 SHELL_SCRIPT=spm_job_residuals.sh
 
-# Tag the results files
+# FP the results files
 RESULTS_INFIX=fx_event_cons
 
 # Set output dir and make it if it doesn't exist
-OUTPUTDIR=${STUDY}/fMRI/fx/shell/schedule_spm_jobs/svc/wave1/event/output
+OUTPUTDIR=${SCRIPTS_DIR}/fMRI/fx/models/svc/wave1/output
 
 if [ ! -d ${OUTPUTDIR} ]; then
 	mkdir -p ${OUTPUTDIR}
@@ -39,9 +42,12 @@ fi
 # N runs for residual calculation
 RUNS=(1 2)
 
+# model output directory
+MODEL_DIR=/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event
+
 # Make text file with residual files for each run
-echo $(printf "Res_%04d.nii\n" {1..180}) > residuals_run1.txt
-echo $(printf "Res_%04d.nii\n" {181..357}) > residuals_run2.txt
+echo $(printf "Res_%04d.nii\n" {1..122}) > residuals_run1.txt
+echo $(printf "Res_%04d.nii\n" {123..244}) > residuals_run2.txt
 
 # Set job parameters
 cpuspertask=1
@@ -49,11 +55,14 @@ mempercpu=8G
 
 # Create and execute batch job
 for SUB in $SUBJLIST; do
-		sbatch --export ALL,REPLACESID=$REPLACESID,SCRIPT=$SCRIPT,SUB=$SUB,SPM_PATH=$SPM_PATH  \
-			--job-name=${RESULTS_INFIX} \
-		 	-o ${OUTPUTDIR}/${SUB}_${RESULTS_INFIX}.log \
-		 	--cpus-per-task=${cpuspertask} \
-		 	--mem-per-cpu=${mempercpu} \
-		 	${SHELL_SCRIPT}
-			sleep .25
+
+	RES_DIR=${MODEL_DIR}/sub-${STUDY}${SUB}
+
+	sbatch --export ALL,REPLACESID=$REPLACESID,SCRIPT=$SCRIPT,SUB=$SUB,SPM_PATH=$SPM_PATH,RES_DIR=$RES_DIR  \
+		--job-name=${RESULTS_INFIX} \
+	 	-o ${OUTPUTDIR}/${SUB}_${RESULTS_INFIX}.log \
+	 	--cpus-per-task=${cpuspertask} \
+	 	--mem-per-cpu=${mempercpu} \
+	 	${SHELL_SCRIPT}
+		sleep .25
 done
