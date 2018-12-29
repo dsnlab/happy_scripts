@@ -1,6 +1,6 @@
 %-----------------------------------------------------------------------
-% Job saved on 28-Dec-2018 15:35:55 by cfg_util (rev $Rev: 6942 $)
-% spm SPM - SPM12 (7219)
+% Job saved on 28-Dec-2018 17:07:03 by cfg_util (rev $Rev: 6460 $)
+% spm SPM - SPM12 (6906)
 % cfg_basicio BasicIO - Unknown
 %-----------------------------------------------------------------------
 matlabbatch{1}.spm.stats.factorial_design.dir = {'/projects/dsnlab/shared/FP/nonbids_data/fMRI/rx/svc/wave1/event'};
@@ -90,7 +90,6 @@ matlabbatch{1}.spm.stats.factorial_design.des.fblock.fsuball.specall.scans = {
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP077/con_0001.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP078/con_0001.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP079/con_0001.nii'
-                                                                              '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP080/con_0001.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP081/con_0001.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP084/con_0001.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP086/con_0001.nii'
@@ -117,7 +116,6 @@ matlabbatch{1}.spm.stats.factorial_design.des.fblock.fsuball.specall.scans = {
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP111/con_0001.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP112/con_0001.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP113/con_0001.nii'
-                                                                              '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP114/con_0001.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP115/con_0001.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP119/con_0001.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP120/con_0001.nii'
@@ -196,7 +194,6 @@ matlabbatch{1}.spm.stats.factorial_design.des.fblock.fsuball.specall.scans = {
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP077/con_0002.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP078/con_0002.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP079/con_0002.nii'
-                                                                              '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP080/con_0002.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP081/con_0002.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP084/con_0002.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP086/con_0002.nii'
@@ -223,7 +220,6 @@ matlabbatch{1}.spm.stats.factorial_design.des.fblock.fsuball.specall.scans = {
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP111/con_0002.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP112/con_0002.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP113/con_0002.nii'
-                                                                              '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP114/con_0002.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP115/con_0002.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP119/con_0002.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP120/con_0002.nii'
@@ -302,7 +298,6 @@ matlabbatch{1}.spm.stats.factorial_design.des.fblock.fsuball.specall.scans = {
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP077/con_0003.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP078/con_0003.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP079/con_0003.nii'
-                                                                              '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP080/con_0003.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP081/con_0003.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP084/con_0003.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP086/con_0003.nii'
@@ -329,7 +324,6 @@ matlabbatch{1}.spm.stats.factorial_design.des.fblock.fsuball.specall.scans = {
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP111/con_0003.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP112/con_0003.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP113/con_0003.nii'
-                                                                              '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP114/con_0003.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP115/con_0003.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP119/con_0003.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP120/con_0003.nii'
@@ -408,7 +402,6 @@ matlabbatch{1}.spm.stats.factorial_design.des.fblock.fsuball.specall.scans = {
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP077/con_0004.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP078/con_0004.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP079/con_0004.nii'
-                                                                              '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP080/con_0004.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP081/con_0004.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP084/con_0004.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP086/con_0004.nii'
@@ -435,7 +428,6 @@ matlabbatch{1}.spm.stats.factorial_design.des.fblock.fsuball.specall.scans = {
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP111/con_0004.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP112/con_0004.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP113/con_0004.nii'
-                                                                              '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP114/con_0004.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP115/con_0004.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP119/con_0004.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP120/con_0004.nii'
@@ -514,7 +506,6 @@ matlabbatch{1}.spm.stats.factorial_design.des.fblock.fsuball.specall.scans = {
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP077/con_0005.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP078/con_0005.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP079/con_0005.nii'
-                                                                              '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP080/con_0005.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP081/con_0005.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP084/con_0005.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP086/con_0005.nii'
@@ -541,7 +532,6 @@ matlabbatch{1}.spm.stats.factorial_design.des.fblock.fsuball.specall.scans = {
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP111/con_0005.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP112/con_0005.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP113/con_0005.nii'
-                                                                              '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP114/con_0005.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP115/con_0005.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP119/con_0005.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP120/con_0005.nii'
@@ -620,7 +610,6 @@ matlabbatch{1}.spm.stats.factorial_design.des.fblock.fsuball.specall.scans = {
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP077/con_0006.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP078/con_0006.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP079/con_0006.nii'
-                                                                              '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP080/con_0006.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP081/con_0006.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP084/con_0006.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP086/con_0006.nii'
@@ -647,7 +636,6 @@ matlabbatch{1}.spm.stats.factorial_design.des.fblock.fsuball.specall.scans = {
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP111/con_0006.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP112/con_0006.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP113/con_0006.nii'
-                                                                              '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP114/con_0006.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP115/con_0006.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP119/con_0006.nii'
                                                                               '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP120/con_0006.nii'
@@ -759,8 +747,6 @@ matlabbatch{1}.spm.stats.factorial_design.des.fblock.fsuball.specall.imatrix = [
                                                                                 102 1 1 1
                                                                                 103 1 1 1
                                                                                 104 1 1 1
-                                                                                105 1 1 1
-                                                                                106 1 1 1
                                                                                 1 1 2 1
                                                                                 2 1 2 1
                                                                                 3 1 2 1
@@ -865,8 +851,6 @@ matlabbatch{1}.spm.stats.factorial_design.des.fblock.fsuball.specall.imatrix = [
                                                                                 102 1 2 1
                                                                                 103 1 2 1
                                                                                 104 1 2 1
-                                                                                105 1 2 1
-                                                                                106 1 2 1
                                                                                 1 1 3 1
                                                                                 2 1 3 1
                                                                                 3 1 3 1
@@ -971,8 +955,6 @@ matlabbatch{1}.spm.stats.factorial_design.des.fblock.fsuball.specall.imatrix = [
                                                                                 102 1 3 1
                                                                                 103 1 3 1
                                                                                 104 1 3 1
-                                                                                105 1 3 1
-                                                                                106 1 3 1
                                                                                 1 2 1 1
                                                                                 2 2 1 1
                                                                                 3 2 1 1
@@ -1077,8 +1059,6 @@ matlabbatch{1}.spm.stats.factorial_design.des.fblock.fsuball.specall.imatrix = [
                                                                                 102 2 1 1
                                                                                 103 2 1 1
                                                                                 104 2 1 1
-                                                                                105 2 1 1
-                                                                                106 2 1 1
                                                                                 1 2 2 1
                                                                                 2 2 2 1
                                                                                 3 2 2 1
@@ -1183,8 +1163,6 @@ matlabbatch{1}.spm.stats.factorial_design.des.fblock.fsuball.specall.imatrix = [
                                                                                 102 2 2 1
                                                                                 103 2 2 1
                                                                                 104 2 2 1
-                                                                                105 2 2 1
-                                                                                106 2 2 1
                                                                                 1 2 3 1
                                                                                 2 2 3 1
                                                                                 3 2 3 1
@@ -1288,9 +1266,7 @@ matlabbatch{1}.spm.stats.factorial_design.des.fblock.fsuball.specall.imatrix = [
                                                                                 101 2 3 1
                                                                                 102 2 3 1
                                                                                 103 2 3 1
-                                                                                104 2 3 1
-                                                                                105 2 3 1
-                                                                                106 2 3 1];
+                                                                                104 2 3 1];
 %%
 matlabbatch{1}.spm.stats.factorial_design.des.fblock.maininters{1}.fmain.fnum = 1;
 matlabbatch{1}.spm.stats.factorial_design.des.fblock.maininters{2}.fmain.fnum = 2;
@@ -1309,10 +1285,10 @@ matlabbatch{2}.spm.stats.fmri_est.write_residuals = 1;
 matlabbatch{2}.spm.stats.fmri_est.method.Classical = 1;
 matlabbatch{3}.spm.stats.con.spmmat = {'/projects/dsnlab/shared/FP/nonbids_data/fMRI/rx/svc/wave1/event/SPM.mat'};
 matlabbatch{3}.spm.stats.con.consess{1}.tcon.name = 'self > change';
-matlabbatch{3}.spm.stats.con.consess{1}.tcon.weights = [1 -1 0 0 0 0.5 0.5 0.5 -0.5 -0.5 -0.5];
+matlabbatch{3}.spm.stats.con.consess{1}.tcon.weights = [1 -1 0 0 0 0.333333333333333 0.333333333333333 0.333333333333333 -0.333333333333333 -0.333333333333333 -0.333333333333333];
 matlabbatch{3}.spm.stats.con.consess{1}.tcon.sessrep = 'none';
 matlabbatch{3}.spm.stats.con.consess{2}.tcon.name = 'change > self';
-matlabbatch{3}.spm.stats.con.consess{2}.tcon.weights = [-1 1 0 0 0 -0.5 -0.5 -0.5 0.5 0.5 0.5];
+matlabbatch{3}.spm.stats.con.consess{2}.tcon.weights = [-1 1 0 0 0 -0.33333 -0.33333 -0.33333 0.33333 0.33333 0.33333];
 matlabbatch{3}.spm.stats.con.consess{2}.tcon.sessrep = 'none';
 matlabbatch{3}.spm.stats.con.consess{3}.tcon.name = 'well-being > ill-being + social';
 matlabbatch{3}.spm.stats.con.consess{3}.tcon.weights = [0 0 1 -0.5 -0.5 0.5 -0.25 -0.25 0.5 -0.25 -0.25];
