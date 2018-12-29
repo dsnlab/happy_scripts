@@ -44,8 +44,9 @@ for i = 1:numel(subjectID)
                 durations{b} = task.output.raw(b,4);
             end
 
-            %% Pull onsets and durations for instructions
+            %% Pull names, onsets and durations for instructions
             % Every fifth trial - 4.7s
+            names{length(task.output.raw)+1} = 'instructions';
             onsets{length(task.output.raw)+1} = (task.output.raw(1:6:36,3)-4.7);
             durations{length(task.output.raw)+1} = (repelem(4.7, length(1:6:36))');
             
