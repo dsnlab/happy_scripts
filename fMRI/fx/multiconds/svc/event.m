@@ -47,7 +47,7 @@ for i = 1:numel(subjectID)
             %% Pull onsets and durations for instructions
             % Every fifth trial - 4.7s
             onsets(7)={task.output.raw(1:6:36,3)-4.7};
-            durations(7) = {repelem(4.7, length(1:6:36))};
+            durations(7) = {repelem(4.7, length(1:6:36))'};
             
             %% Pull onsets and durations for missed responses (if any)
             colNum = length(names) + 1;
