@@ -1,5 +1,5 @@
 %-----------------------------------------------------------------------
-% Job saved on 29-Dec-2018 12:41:12 by cfg_util (rev $Rev: 6942 $)
+% Job saved on 29-Dec-2018 13:58:39 by cfg_util (rev $Rev: 6942 $)
 % spm SPM - SPM12 (7219)
 % cfg_basicio BasicIO - Unknown
 %-----------------------------------------------------------------------
@@ -31,3 +31,6 @@ matlabbatch{3}.spm.stats.fmri_spec.global = 'None';
 matlabbatch{3}.spm.stats.fmri_spec.mthresh = -Inf;
 matlabbatch{3}.spm.stats.fmri_spec.mask = {'/projects/dsnlab/shared/SPM12/canonical/MNI152lin_T1_2mm_brain_mask.nii,1'};
 matlabbatch{3}.spm.stats.fmri_spec.cvi = 'FAST';
+matlabbatch{4}.spm.stats.fmri_est.spmmat(1) = cfg_dep('fMRI model specification: SPM.mat File', substruct('.','val', '{}',{3}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','spmmat'));
+matlabbatch{4}.spm.stats.fmri_est.write_residuals = 0;
+matlabbatch{4}.spm.stats.fmri_est.method.Classical = 1;
