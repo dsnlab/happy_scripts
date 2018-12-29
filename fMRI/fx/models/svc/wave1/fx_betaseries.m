@@ -1,5 +1,5 @@
 %-----------------------------------------------------------------------
-% Job saved on 29-Dec-2018 13:58:39 by cfg_util (rev $Rev: 6942 $)
+% Job saved on 29-Dec-2018 14:33:22 by cfg_util (rev $Rev: 6942 $)
 % spm SPM - SPM12 (7219)
 % cfg_basicio BasicIO - Unknown
 %-----------------------------------------------------------------------
@@ -25,7 +25,7 @@ matlabbatch{3}.spm.stats.fmri_spec.sess(2).regress = struct('name', {}, 'val', {
 matlabbatch{3}.spm.stats.fmri_spec.sess(2).multi_reg = {'/projects/dsnlab/shared/FP/FP_scripts/fMRI/fx/motion/auto-motion-fmriprep/rp_txt/rp_FP001_1_SVC_2.txt'};
 matlabbatch{3}.spm.stats.fmri_spec.sess(2).hpf = 100;
 matlabbatch{3}.spm.stats.fmri_spec.fact = struct('name', {}, 'levels', {});
-matlabbatch{3}.spm.stats.fmri_spec.bases.hrf.derivs = [1 1];
+matlabbatch{3}.spm.stats.fmri_spec.bases.hrf.derivs = [0 0];
 matlabbatch{3}.spm.stats.fmri_spec.volt = 1;
 matlabbatch{3}.spm.stats.fmri_spec.global = 'None';
 matlabbatch{3}.spm.stats.fmri_spec.mthresh = -Inf;
