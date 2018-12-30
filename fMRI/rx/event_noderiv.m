@@ -1,5 +1,5 @@
 %-----------------------------------------------------------------------
-% Job saved on 28-Dec-2018 17:07:03 by cfg_util (rev $Rev: 6460 $)
+% Job saved on 29-Dec-2018 19:10:51 by cfg_util (rev $Rev: 6460 $)
 % spm SPM - SPM12 (6906)
 % cfg_basicio BasicIO - Unknown
 %-----------------------------------------------------------------------
@@ -1281,14 +1281,14 @@ matlabbatch{1}.spm.stats.factorial_design.globalc.g_omit = 1;
 matlabbatch{1}.spm.stats.factorial_design.globalm.gmsca.gmsca_no = 1;
 matlabbatch{1}.spm.stats.factorial_design.globalm.glonorm = 1;
 matlabbatch{2}.spm.stats.fmri_est.spmmat(1) = cfg_dep('Factorial design specification: SPM.mat File', substruct('.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','spmmat'));
-matlabbatch{2}.spm.stats.fmri_est.write_residuals = 1;
+matlabbatch{2}.spm.stats.fmri_est.write_residuals = 0;
 matlabbatch{2}.spm.stats.fmri_est.method.Classical = 1;
-matlabbatch{3}.spm.stats.con.spmmat = {'/projects/dsnlab/shared/FP/nonbids_data/fMRI/rx/svc/wave1/event/SPM.mat'};
+matlabbatch{3}.spm.stats.con.spmmat = {'/projects/dsnlab/shared/FP/nonbids_data/fMRI/rx/svc/wave1/event_noderiv/SPM.mat'};
 matlabbatch{3}.spm.stats.con.consess{1}.tcon.name = 'self > change';
 matlabbatch{3}.spm.stats.con.consess{1}.tcon.weights = [1 -1 0 0 0 0.333333333333333 0.333333333333333 0.333333333333333 -0.333333333333333 -0.333333333333333 -0.333333333333333];
 matlabbatch{3}.spm.stats.con.consess{1}.tcon.sessrep = 'none';
 matlabbatch{3}.spm.stats.con.consess{2}.tcon.name = 'change > self';
-matlabbatch{3}.spm.stats.con.consess{2}.tcon.weights = [-1 1 0 0 0 -0.33333 -0.33333 -0.33333 0.33333 0.33333 0.33333];
+matlabbatch{3}.spm.stats.con.consess{2}.tcon.weights = [-1 1 0 0 0 -0.333333333333333 -0.333333333333333 -0.333333333333333 0.333333333333333 0.333333333333333 0.333333333333333];
 matlabbatch{3}.spm.stats.con.consess{2}.tcon.sessrep = 'none';
 matlabbatch{3}.spm.stats.con.consess{3}.tcon.name = 'well-being > social + ill-being';
 matlabbatch{3}.spm.stats.con.consess{3}.tcon.weights = [0 0 1 -0.5 -0.5 0.5 -0.25 -0.25 0.5 -0.25 -0.25];
