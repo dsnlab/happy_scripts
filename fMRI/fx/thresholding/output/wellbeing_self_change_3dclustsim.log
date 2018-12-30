@@ -7,4 +7,5 @@ running wellbeing_self_change
  + Kernel image dimensions 63 x 79 x 63
 ++ Startup clock time = 0.5 s
 ++ Using 1 OpenMP threads
-Simulating:0123456789.0123456789.0
+Simulating:0123456789.0123456789.0123456789.0123456789.0123456789.!
+++ Clock time now = 1942.0 s
