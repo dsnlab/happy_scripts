@@ -30,4 +30,5 @@ task %>%
   group_by(key) %>%
   summarize(mean = mean(value, na.rm = TRUE)) %>%
   spread(key, mean) %>%
+  select(-4) %>%
   write.table(sprintf("%sACFparameters_group_average.txt", output_dir), sep = " ", col.names = FALSE, row.names = FALSE)

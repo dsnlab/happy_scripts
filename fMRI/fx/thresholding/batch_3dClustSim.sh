@@ -31,8 +31,8 @@ cpuspertask=1
 mempercpu=8G
 
 # Create and execute batch job
-for MODEL in $MODELS; do
-	 	sbatch --export ALL,MODEL=$MODEL, MODELDIR=$MODELDIR, OUTPUTDIR=$OUTPUTDIR \
+for MODEL in ${MODELS[@]}; do
+	 	sbatch --export ALL,MODEL=$MODEL,MODELDIR=$MODELDIR,OUTPUTDIR=$OUTPUTDIR \
 		 	--job-name=${RESULTS_INFIX} \
 		 	-o ${OUTPUTDIR}/${MODEL}_${RESULTS_INFIX}.log \
 		 	--cpus-per-task=${cpuspertask} \
