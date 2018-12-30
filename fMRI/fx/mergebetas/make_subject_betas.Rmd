@@ -1,0 +1,111 @@
+---
+title: "make subject betas"
+author: "Dani Cosme"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    code_folding: show
+    df_print: paged
+    highlight: tango
+    theme: united
+    toc: yes
+    toc_float:
+      collapsed: yes
+      smooth_scroll: yes
+  pdf_document:
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# load packages
+```{r}
+library(tidyverse)
+```
+
+# load task files
+```{r}
+file_dir = "~/Dropbox (PfeiBer Lab)/FreshmanProject/Tasks/SVC/output/"
+file_pattern = "FP[0-9]{3}_wave_1_svc_run[1-2]{1}_output.txt"
+file_list = list.files(file_dir, pattern = file_pattern, recursive = TRUE)
+
+for (file in file_list){
+  # if the merged dataset doesn't exist, create it
+  if (!exists("task")){
+    temp = read.csv(paste0(file_dir,file), header = FALSE)
+    task = data.frame(temp, file = rep(file,count(temp))) %>%
+      extract(file, c("subjectID", "run"), "(FP[0-9]{3}).*(run[1-2]{1}).*") %>%
+      rename("trial" = V1,
+             "condition" = V2,
+             "onset" = V3,
+             "RT" = V4,
+             "response" = V5,
+             "reversed" = V6,
+             "syllables" = V7,
+             "item" = V8) %>%
+      mutate(instruction = ifelse(condition %in% 1:3, "self", "change"),
+             domain = ifelse(condition %in% c(1,4), "well-being",
+                      ifelse(condition %in% c(2,5), "social", "ill-being")))
+    rm(temp)
+  }
+  
+  # if the merged dataset does exist, append to it
+  else {
+    temp = read.csv(paste0(file_dir,file), header = FALSE)
+    temp = data.frame(temp, file = rep(file,count(temp))) %>%
+      extract(file, c("subjectID", "run"), "(FP[0-9]{3}).*(run[1-2]{1}).*") %>%
+      rename("trial" = V1,
+             "condition" = V2,
+             "onset" = V3,
+             "RT" = V4,
+             "response" = V5,
+             "reversed" = V6,
+             "syllables" = V7,
+             "item" = V8) %>%
+      mutate(instruction = ifelse(condition %in% 1:3, "self", "change"),
+             domain = ifelse(condition %in% c(1,4), "well-being",
+                      ifelse(condition %in% c(2,5), "social", "ill-being")))
+    task = rbind(task, temp)
+    rm(temp)
+  }
+}
+
+```
+
+# add beta information
+```{r}
+task %>%
+  group_by(subjectID, run) %>%
+  summarize(n = n()) %>%
+  arrange(n)
+
+task1 = task %>%
+  mutate(beta = ifelse(run == "run1", sprintf("beta_%04d.nii", trial), sprintf("beta_%04d.nii", trial + 42)))
+```
+
+# group by subject and export .csv file with betas for healthy and unhealthy trials
+```{r}
+outputDir = '~/Documents/code/dsnlab/FP_scripts/fMRI/fx/mergebetas/subject_beta_info/'
+
+self = task1 %>% 
+  arrange(subjectID, trial) %>% 
+  filter(instruction == "self") %>%
+  group_by(subjectID) %>% 
+  do({
+    fname = paste(
+      outputDir,
+      'self_',.$subjectID[[1]],'.txt',
+      sep = '')
+    write.table(
+      .[,13],
+      fname,
+      quote = F,
+      sep = '   ',
+      row.names = F,
+      col.names = F)
+    data.frame(file_name = fname)
+  })
+```
+
