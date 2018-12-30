@@ -17,6 +17,6 @@ SUBJLIST=`cat subject_list_test.txt`
 # 
 for SUBJ in $SUBJLIST
 do
-sbatch --export SUBID=${SUBJ} --job-name aseg_masks --partition=short --mem-per-cpu=1G --cpus-per-task=1 -o "${STUDY}"/FP_scripts/sMRI/output/"${SUBJ}"_aseg_masks_output.txt -e "${STUDY}"/FP_scripts/sMRI/output/"${SUBJ}"_aseg_masks_error.txt job_aseg_masks.sh
+sbatch --export ALL,SUBID=${SUBJ} --job-name aseg_masks --partition=short --mem-per-cpu=1G --cpus-per-task=1 -o "${STUDY}"/FP_scripts/sMRI/output/"${SUBJ}"_aseg_masks_output.txt -e "${STUDY}"/FP_scripts/sMRI/output/"${SUBJ}"_aseg_masks_error.txt job_aseg_masks.sh
 done
 

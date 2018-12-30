@@ -8,14 +8,14 @@
 # directories.
 #
 # Set your study
-STUDY=/projects/dsnlab/FP
+STUDY=/projects/dsnlab/shared/FP
 
 # Set subject list
-SUBJLIST=`cat subject_list.txt`
+SUBJLIST=`cat subject_list_test.txt`
 #SUBJLIST=`cat test.txt`
 
 # 
 for SUBJ in $SUBJLIST
 do
- sbatch --export SUBID=${SUBJ} --job-name reconall --partition=long --mem-per-cpu=8G --time=20:00:00 --cpus-per-task=1 -o "${STUDY}"/FP_scripts/sMRI/output/"${SUBJ}"_reconall_output.txt -e "${STUDY}"/FP_scripts/sMRI/output/"${SUBJ}"_reconall_error.txt job_reconall.sh
+ sbatch --export ALL,SUBID=${SUBJ} --job-name reconall --partition=long --mem-per-cpu=8G --time=20:00:00 --cpus-per-task=1 -o "${STUDY}"/FP_scripts/sMRI/output/"${SUBJ}"_reconall_output.txt -e "${STUDY}"/FP_scripts/sMRI/output/"${SUBJ}"_reconall_error.txt job_reconall.sh
 done

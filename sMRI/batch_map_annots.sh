@@ -8,7 +8,7 @@
 # directories.
 #
 # Set your study
-STUDY=/projects/dsnlab/FP
+STUDY=/projects/dsnlab/shared/FP
 
 # Set subject list
 #SUBJLIST=`cat subject_list.txt`
@@ -17,6 +17,6 @@ SUBJLIST=`cat subject_list_test.txt`
 # 
 for SUBJ in $SUBJLIST
 do
-sbatch --export SUBID=${SUBJ} --job-name mapANNOTs --partition=short --mem-per-cpu=1G --cpus-per-task=1 -o "${STUDY}"/FP_scripts/sMRI/output/"${SUBJ}"_mapANNOTs_output.txt -e "${STUDY}"/FP_scripts/sMRI/output/"${SUBJ}"_mapANNOTs_error.txt job_map_annots.sh
+sbatch --export ALL,SUBID=${SUBJ} --job-name mapANNOTs --partition=short --mem-per-cpu=1G --cpus-per-task=1 -o "${STUDY}"/FP_scripts/sMRI/output/"${SUBJ}"_mapANNOTs_output.txt -e "${STUDY}"/FP_scripts/sMRI/output/"${SUBJ}"_mapANNOTs_error.txt job_map_annots.sh
 done
 

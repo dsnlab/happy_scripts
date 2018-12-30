@@ -8,14 +8,14 @@
 # directories.
 #
 # Set your study
-STUDY=/projects/dsnlab/FP
+STUDY=/projects/dsnlab/shared/FP
 
 # Set subject list
-SUBJLIST=`cat subject_list.txt`
+SUBJLIST=`cat subject_list_test.txt`
 
 # 
 for SUBJ in $SUBJLIST
 do
- sbatch --export SUBID=${SUBJ} --job-name SUMAprep --partition=long --mem-per-cpu=2G --cpus-per-task=1 -o "${STUDY}"/FP_scripts/sMRI/output/"${SUBJ}"_SUMAprep_output.txt -e "${STUDY}"/FP_scripts/sMRI/output/"${SUBJ}"_SUMAprep_error.txt job_SUMA.sh
+ sbatch --export ALL,SUBID=${SUBJ} --job-name SUMAprep --partition=long --mem-per-cpu=2G --cpus-per-task=1 -o "${STUDY}"/FP_scripts/sMRI/output/"${SUBJ}"_SUMAprep_output.txt -e "${STUDY}"/FP_scripts/sMRI/output/"${SUBJ}"_SUMAprep_error.txt job_SUMA.sh
 done
 
