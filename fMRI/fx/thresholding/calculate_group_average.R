@@ -9,7 +9,6 @@ output_dir = "/projects/dsnlab/shared/FP/FP_scripts/fMRI/fx/thresholding/"
 library(tidyverse)
 
 # load ACF param files
-model_dir = "~/Desktop/acfparams/"
 file_pattern = "ACFparameters_average.1D"
 file_list = list.files(model_dir, pattern = file_pattern, recursive = TRUE)
 
