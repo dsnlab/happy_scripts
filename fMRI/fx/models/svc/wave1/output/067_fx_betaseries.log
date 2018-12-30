@@ -44,6 +44,7 @@ The following modules did not run:
 Failed: Expand image frames
 Failed: Expand image frames
 Skipped: fMRI model specification
+Skipped: Model estimation
 
 {Error using MATLABbatch system
 Job execution failed. The full log of this run can be found in MATLAB command
