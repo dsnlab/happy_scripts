@@ -1,0 +1,8 @@
+
+Setting Up Freesurfer6.0
+
+Freesurfer Home is /packages/freesurfer/6.0.0/freesurfer
+
+The Subject Directory is /projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer
+\Running recon-all on sub-FP108
+ERROR: cannot find /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP108
