@@ -17,6 +17,6 @@ cd $SUBDIR
 echo "Merging betas"
 BETAS=`cat /projects/dsnlab/shared/FP/FP_scripts/fMRI/fx/mergebetas/subject_beta_info/self_${SUB}.txt`
 
-fslmerge -t betas.nii.gz ${BETAS[@]}
+fslmerge -t self_betas.nii.gz ${BETAS[@]}
 echo "Gunzipping betas"
 gunzip self_betas.nii.gz
