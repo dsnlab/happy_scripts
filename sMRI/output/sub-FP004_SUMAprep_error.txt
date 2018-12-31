@@ -1,0 +1,13 @@
+echo: No match.
+++ 3drefit: AFNI version=AFNI_18.2.04 (Jul  6 2018) [64-bit]
+++ Authored by: RW Cox
+** AFNI converts NIFTI_datatype=8 (INT32) in file aparc+aseg.nii to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+++ Processing AFNI dataset aparc+aseg.nii
+ + setting labeltable
+ + loading and re-writing dataset aparc+aseg.nii (./aparc+aseg.nii in NIFTI storage)
+++ 3drefit processed 1 datasets
+++ 3dmerge: AFNI version=AFNI_18.2.04 (Jul  6 2018) [64-bit]
+++ default -1dindex = 0
+++ default -1tindex = 1

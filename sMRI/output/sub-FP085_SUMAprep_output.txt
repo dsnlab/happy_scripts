@@ -1,0 +1,53 @@
+job_SUMA.sh ran on Sun Dec 30 17:14:12 PST 2018 
+
+Setting Up Freesurfer6.0
+
+Setting up AFNI
+
+Freesurfer Home is /packages/freesurfer/6.0.0/freesurfer
+
+The Subject Directory is /projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer
+
+Running SUMA Make Spec on sub-FP085
+++ creating directory './SUMA' for results...
+-- found 6 LH surfaces
+-- found 6 RH surfaces
+No COR files, converting mri/orig.mgz ...
+mri_convert.bin -ot cor mri/orig.mgz mri/orig 
+$Id: mri_convert.c,v 1.226 2016/02/26 16:15:24 mreuter Exp $
+reading from mri/orig.mgz...
+TR=2500.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, 0, 0)
+j_ras = (0, 0, -1)
+k_ras = (0, 1, 0)
+writing to mri/orig...
+mri_convert.bin -ot nii /projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP085/mri/orig.mgz /projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP085/./SUMA/orig.nii 
+$Id: mri_convert.c,v 1.226 2016/02/26 16:15:24 mreuter Exp $
+reading from /projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP085/mri/orig.mgz...
+TR=2500.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, 0, 0)
+j_ras = (0, 0, -1)
+k_ras = (0, 1, 0)
+writing to /projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP085/./SUMA/orig.nii...
+++ created AFNI file './SUMA/sub-FP085_SurfVol.nii'
+Made roi label table for AFNI - fs_table.niml.lt
+mri_convert.bin -ot nii mri/T1.mgz /projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP085/./SUMA/T1.nii 
+$Id: mri_convert.c,v 1.226 2016/02/26 16:15:24 mreuter Exp $
+reading from mri/T1.mgz...
+TR=2500.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, 0, 0)
+j_ras = (0, 0, -1)
+k_ras = (0, 1, 0)
+writing to /projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP085/./SUMA/T1.nii...
+mri_convert.bin -ot nii mri/aparc+aseg.mgz /projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP085/./SUMA/aparc+aseg.nii 
+$Id: mri_convert.c,v 1.226 2016/02/26 16:15:24 mreuter Exp $
+reading from mri/aparc+aseg.mgz...
+TR=2500.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, 0, 0)
+j_ras = (0, 0, -1)
+k_ras = (0, 1, 0)
+writing to /projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP085/./SUMA/aparc+aseg.nii...
+Program 3dmerge 
+3dmerge: edit and combine 3D datasets, by RW Cox
+++ editing input dataset in memory (64.0 MB)
+.

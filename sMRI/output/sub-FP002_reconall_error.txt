@@ -1,0 +1,1 @@
+slurmstepd: error: *** JOB 2973897 ON n079 CANCELLED AT 2018-12-30T17:12:02 ***

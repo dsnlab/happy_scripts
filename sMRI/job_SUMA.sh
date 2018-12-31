@@ -16,7 +16,7 @@ source /projects/dsnlab/shared/FP/FP_scripts/sMRI/SetUpFreeSurfer.sh
 
 echo -e "\nSetting up AFNI"
 
-module use /projects/tau/packages/Modules/modulefiles/
+#module use /projects/tau/packages/Modules/modulefiles/
 module load afni
 
 echo -e "\nFreesurfer Home is $FREESURFER_HOME"
@@ -35,5 +35,4 @@ echo -e "\nCreating ventricle and white matter masks"
 
 3dcalc -a aparc+aseg.nii -datum byte -prefix "${SUBID}"_vent.nii -expr 'amongst(a,4,43)'
 3dcalc -a aparc+aseg.nii -datum byte -prefix "${SUBID}"_WM.nii -expr 'amongst(a,2,7,16,41,46,251,252,253,254,255)'
-
 

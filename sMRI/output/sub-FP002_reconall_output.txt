@@ -2197,3 +2197,2069 @@ Left_Pallidum too bright - rescaling by 0.974 (from 1.015) to 101.8 (was 104.5)
 Right_Pallidum too bright - rescaling by 1.008 (from 1.000) to 101.8 (was 101.0)
 saving intensity scales to aseg.auto_noCCseg.label_intensities.txt
 saving sequentially combined intensity scales to aseg.auto_noCCseg.label_intensities.txt
+54483 voxels changed in iteration 0 of unlikely voxel relabeling
+148 voxels changed in iteration 1 of unlikely voxel relabeling
+6 voxels changed in iteration 2 of unlikely voxel relabeling
+0 voxels changed in iteration 3 of unlikely voxel relabeling
+34872 gm and wm labels changed (%27 to gray, %73 to white out of all changed labels)
+338 hippocampal voxels changed.
+0 amygdala voxels changed.
+pass 1: 58485 changed. image ll: -2.086, PF=0.500
+pass 2: 15848 changed. image ll: -2.086, PF=0.500
+pass 3: 4776 changed.
+35877 voxels changed in iteration 0 of unlikely voxel relabeling
+181 voxels changed in iteration 1 of unlikely voxel relabeling
+2 voxels changed in iteration 2 of unlikely voxel relabeling
+0 voxels changed in iteration 3 of unlikely voxel relabeling
+5734 voxels changed in iteration 0 of unlikely voxel relabeling
+81 voxels changed in iteration 1 of unlikely voxel relabeling
+5 voxels changed in iteration 2 of unlikely voxel relabeling
+0 voxels changed in iteration 3 of unlikely voxel relabeling
+5037 voxels changed in iteration 0 of unlikely voxel relabeling
+62 voxels changed in iteration 1 of unlikely voxel relabeling
+5 voxels changed in iteration 2 of unlikely voxel relabeling
+3 voxels changed in iteration 3 of unlikely voxel relabeling
+4 voxels changed in iteration 4 of unlikely voxel relabeling
+4338 voxels changed in iteration 0 of unlikely voxel relabeling
+34 voxels changed in iteration 1 of unlikely voxel relabeling
+9 voxels changed in iteration 2 of unlikely voxel relabeling
+0 voxels changed in iteration 3 of unlikely voxel relabeling
+MRItoUCHAR: min=0, max=85
+MRItoUCHAR: converting to UCHAR
+writing labeled volume to aseg.auto_noCCseg.mgz
+mri_ca_label utimesec    2247.312981
+mri_ca_label stimesec    5.084348
+mri_ca_label ru_maxrss   2117920
+mri_ca_label ru_ixrss    0
+mri_ca_label ru_idrss    0
+mri_ca_label ru_isrss    0
+mri_ca_label ru_minflt   5864748
+mri_ca_label ru_majflt   0
+mri_ca_label ru_nswap    0
+mri_ca_label ru_inblock  0
+mri_ca_label ru_oublock  0
+mri_ca_label ru_msgsnd   0
+mri_ca_label ru_msgrcv   0
+mri_ca_label ru_nsignals 0
+mri_ca_label ru_nvcsw    24
+mri_ca_label ru_nivcsw   8077
+auto-labeling took 37 minutes and 33 seconds.
+
+ mri_cc -aseg aseg.auto_noCCseg.mgz -o aseg.auto.mgz -lta /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/mri/transforms/cc_up.lta sub-FP002 
+
+will read input aseg from aseg.auto_noCCseg.mgz
+writing aseg with cc labels to aseg.auto.mgz
+will write lta as /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/mri/transforms/cc_up.lta
+reading aseg from /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/mri/aseg.auto_noCCseg.mgz
+reading norm from /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/mri/norm.mgz
+46600 voxels in left wm, 60029 in right wm, xrange [125, 137]
+searching rotation angles z=[-12  2], y=[-4 10]
+searching scale 1 Z rot -12.0  searching scale 1 Z rot -11.8  searching scale 1 Z rot -11.5  searching scale 1 Z rot -11.3  searching scale 1 Z rot -11.0  searching scale 1 Z rot -10.8  searching scale 1 Z rot -10.5  searching scale 1 Z rot -10.3  searching scale 1 Z rot -10.0  searching scale 1 Z rot -9.8  searching scale 1 Z rot -9.5  searching scale 1 Z rot -9.3  searching scale 1 Z rot -9.0  searching scale 1 Z rot -8.8  searching scale 1 Z rot -8.5  searching scale 1 Z rot -8.3  searching scale 1 Z rot -8.0  searching scale 1 Z rot -7.8  searching scale 1 Z rot -7.5  searching scale 1 Z rot -7.3  searching scale 1 Z rot -7.0  searching scale 1 Z rot -6.8  searching scale 1 Z rot -6.5  searching scale 1 Z rot -6.3  searching scale 1 Z rot -6.0  searching scale 1 Z rot -5.8  searching scale 1 Z rot -5.5  searching scale 1 Z rot -5.3  searching scale 1 Z rot -5.0  searching scale 1 Z rot -4.8  searching scale 1 Z rot -4.5  searching scale 1 Z rot -4.3  searching scale 1 Z rot -4.0  searching scale 1 Z rot -3.8  searching scale 1 Z rot -3.5  searching scale 1 Z rot -3.3  searching scale 1 Z rot -3.0  searching scale 1 Z rot -2.8  searching scale 1 Z rot -2.5  searching scale 1 Z rot -2.3  searching scale 1 Z rot -2.0  searching scale 1 Z rot -1.8  searching scale 1 Z rot -1.5  searching scale 1 Z rot -1.3  searching scale 1 Z rot -1.0  searching scale 1 Z rot -0.8  searching scale 1 Z rot -0.5  searching scale 1 Z rot -0.3  searching scale 1 Z rot -0.0  searching scale 1 Z rot 0.2  searching scale 1 Z rot 0.5  searching scale 1 Z rot 0.7  searching scale 1 Z rot 1.0  searching scale 1 Z rot 1.2  searching scale 1 Z rot 1.5  searching scale 1 Z rot 1.7  global minimum found at slice 131.3, rotations (2.53, -5.02)
+final transformation (x=131.3, yr=2.534, zr=-5.024):
+ 0.99518   0.08757   0.04405  -14.68071;
+-0.08748   0.99616  -0.00387   62.24199;
+-0.04422   0.00000   0.99902   16.92146;
+ 0.00000   0.00000   0.00000   1.00000;
+updating x range to be [126, 131] in xformed coordinates
+best xformed slice 128
+cc center is found at 128 78 117
+eigenvectors:
+ 0.00014  -0.01903   0.99982;
+ 0.01983  -0.99962  -0.01903;
+ 0.99980   0.01983   0.00024;
+writing aseg with callosum to /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/mri/aseg.auto.mgz...
+corpus callosum segmentation took 0.7 minutes
+#--------------------------------------
+#@# Merge ASeg Sun Dec 30 15:18:25 PST 2018
+
+ cp aseg.auto.mgz aseg.presurf.mgz 
+
+#--------------------------------------------
+#@# Intensity Normalization2 Sun Dec 30 15:18:25 PST 2018
+/gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/mri
+
+ mri_normalize -mprage -aseg aseg.presurf.mgz -mask brainmask.mgz norm.mgz brain.mgz 
+
+assuming input volume is MGH (Van der Kouwe) MP-RAGE
+using segmentation for initial intensity normalization
+using MR volume brainmask.mgz to mask input volume...
+reading from norm.mgz...
+Reading aseg aseg.presurf.mgz
+normalizing image...
+processing with aseg
+removing outliers in the aseg WM...
+684 control points removed
+Building bias image
+building Voronoi diagram...
+performing soap bubble smoothing, sigma = 0...
+Smoothing with sigma 8
+Applying bias correction
+building Voronoi diagram...
+performing soap bubble smoothing, sigma = 8...
+
+Iterating 2 times
+---------------------------------
+3d normalization pass 1 of 2
+white matter peak found at 110
+white matter peak found at 110
+gm peak at 69 (69), valley at 24 (24)
+csf peak at 35, setting threshold to 57
+building Voronoi diagram...
+performing soap bubble smoothing, sigma = 8...
+---------------------------------
+3d normalization pass 2 of 2
+white matter peak found at 110
+white matter peak found at 110
+gm peak at 69 (69), valley at 24 (24)
+csf peak at 35, setting threshold to 57
+building Voronoi diagram...
+performing soap bubble smoothing, sigma = 8...
+Done iterating ---------------------------------
+writing output to brain.mgz
+3D bias adjustment took 2 minutes and 30 seconds.
+#--------------------------------------------
+#@# Mask BFS Sun Dec 30 15:20:57 PST 2018
+/gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/mri
+
+ mri_mask -T 5 brain.mgz brainmask.mgz brain.finalsurfs.mgz 
+
+threshold mask volume at 5
+DoAbs = 0
+Found 1502340 voxels in mask (pct=  8.95)
+Writing masked volume to brain.finalsurfs.mgz...done.
+#--------------------------------------------
+#@# WM Segmentation Sun Dec 30 15:20:58 PST 2018
+
+ mri_segment -mprage brain.mgz wm.seg.mgz 
+
+doing initial intensity segmentation...
+using local statistics to label ambiguous voxels...
+computing class statistics for intensity windows...
+WM (104.0): 104.3 +- 6.2 [79.0 --> 125.0]
+GM (72.0) : 71.2 +- 9.2 [30.0 --> 95.0]
+setting bottom of white matter range to 80.4
+setting top of gray matter range to 89.6
+doing initial intensity segmentation...
+using local statistics to label ambiguous voxels...
+using local geometry to label remaining ambiguous voxels...
+
+reclassifying voxels using Gaussian border classifier...
+
+removing voxels with positive offset direction...
+smoothing T1 volume with sigma = 0.250
+removing 1-dimensional structures...
+5889 sparsely connected voxels removed...
+thickening thin strands....
+20 segments, 5166 filled
+1627 bright non-wm voxels segmented.
+2971 diagonally connected voxels added...
+white matter segmentation took 1.1 minutes
+writing output to wm.seg.mgz...
+assuming input volume is MGH (Van der Kouwe) MP-RAGE
+
+ mri_edit_wm_with_aseg -keep-in wm.seg.mgz brain.mgz aseg.presurf.mgz wm.asegedit.mgz 
+
+preserving editing changes in input volume...
+auto filling took 0.37 minutes
+reading wm segmentation from wm.seg.mgz...
+303 voxels added to wm to prevent paths from MTL structures to cortex
+2634 additional wm voxels added
+0 additional wm voxels added
+SEG EDIT: 27581 voxels turned on, 51177 voxels turned off.
+propagating editing to output volume from wm.seg.mgz
+115,126,128 old 0   new 0
+115,126,128 old 0   new 0
+writing edited volume to wm.asegedit.mgz....
+
+ mri_pretess wm.asegedit.mgz wm norm.mgz wm.mgz 
+
+
+Iteration Number : 1
+pass   1 (xy+):  15 found -  15 modified     |    TOTAL:  15
+pass   2 (xy+):   0 found -  15 modified     |    TOTAL:  15
+pass   1 (xy-):  26 found -  26 modified     |    TOTAL:  41
+pass   2 (xy-):   0 found -  26 modified     |    TOTAL:  41
+pass   1 (yz+):  13 found -  13 modified     |    TOTAL:  54
+pass   2 (yz+):   0 found -  13 modified     |    TOTAL:  54
+pass   1 (yz-):  16 found -  16 modified     |    TOTAL:  70
+pass   2 (yz-):   0 found -  16 modified     |    TOTAL:  70
+pass   1 (xz+):  18 found -  18 modified     |    TOTAL:  88
+pass   2 (xz+):   0 found -  18 modified     |    TOTAL:  88
+pass   1 (xz-):  16 found -  16 modified     |    TOTAL: 104
+pass   2 (xz-):   0 found -  16 modified     |    TOTAL: 104
+Iteration Number : 1
+pass   1 (+++):   8 found -   8 modified     |    TOTAL:   8
+pass   2 (+++):   0 found -   8 modified     |    TOTAL:   8
+pass   1 (+++):  21 found -  21 modified     |    TOTAL:  29
+pass   2 (+++):   0 found -  21 modified     |    TOTAL:  29
+pass   1 (+++):   1 found -   1 modified     |    TOTAL:  30
+pass   2 (+++):   0 found -   1 modified     |    TOTAL:  30
+pass   1 (+++):  19 found -  19 modified     |    TOTAL:  49
+pass   2 (+++):   0 found -  19 modified     |    TOTAL:  49
+Iteration Number : 1
+pass   1 (++): 131 found - 131 modified     |    TOTAL: 131
+pass   2 (++):   0 found - 131 modified     |    TOTAL: 131
+pass   1 (+-): 102 found - 102 modified     |    TOTAL: 233
+pass   2 (+-):   0 found - 102 modified     |    TOTAL: 233
+pass   1 (--): 136 found - 136 modified     |    TOTAL: 369
+pass   2 (--):   0 found - 136 modified     |    TOTAL: 369
+pass   1 (-+): 137 found - 137 modified     |    TOTAL: 506
+pass   2 (-+):   0 found - 137 modified     |    TOTAL: 506
+Iteration Number : 2
+pass   1 (xy+):   2 found -   2 modified     |    TOTAL:   2
+pass   2 (xy+):   0 found -   2 modified     |    TOTAL:   2
+pass   1 (xy-):   3 found -   3 modified     |    TOTAL:   5
+pass   2 (xy-):   0 found -   3 modified     |    TOTAL:   5
+pass   1 (yz+):   4 found -   4 modified     |    TOTAL:   9
+pass   2 (yz+):   0 found -   4 modified     |    TOTAL:   9
+pass   1 (yz-):   8 found -   8 modified     |    TOTAL:  17
+pass   2 (yz-):   0 found -   8 modified     |    TOTAL:  17
+pass   1 (xz+):   2 found -   2 modified     |    TOTAL:  19
+pass   2 (xz+):   0 found -   2 modified     |    TOTAL:  19
+pass   1 (xz-):   2 found -   2 modified     |    TOTAL:  21
+pass   2 (xz-):   0 found -   2 modified     |    TOTAL:  21
+Iteration Number : 2
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 2
+pass   1 (++):   2 found -   2 modified     |    TOTAL:   2
+pass   2 (++):   0 found -   2 modified     |    TOTAL:   2
+pass   1 (+-):   1 found -   1 modified     |    TOTAL:   3
+pass   2 (+-):   0 found -   1 modified     |    TOTAL:   3
+pass   1 (--):   1 found -   1 modified     |    TOTAL:   4
+pass   2 (--):   0 found -   1 modified     |    TOTAL:   4
+pass   1 (-+):   3 found -   3 modified     |    TOTAL:   7
+pass   2 (-+):   0 found -   3 modified     |    TOTAL:   7
+Iteration Number : 3
+pass   1 (xy+):   1 found -   1 modified     |    TOTAL:   1
+pass   2 (xy+):   0 found -   1 modified     |    TOTAL:   1
+pass   1 (xy-):   0 found -   0 modified     |    TOTAL:   1
+pass   1 (yz+):   0 found -   0 modified     |    TOTAL:   1
+pass   1 (yz-):   0 found -   0 modified     |    TOTAL:   1
+pass   1 (xz+):   0 found -   0 modified     |    TOTAL:   1
+pass   1 (xz-):   0 found -   0 modified     |    TOTAL:   1
+Iteration Number : 3
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 3
+pass   1 (++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (--):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (-+):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 4
+pass   1 (xy+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xy-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (yz+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (yz-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xz+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xz-):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 4
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 4
+pass   1 (++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (--):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (-+):   0 found -   0 modified     |    TOTAL:   0
+
+Total Number of Modified Voxels = 688 (out of 505944: 0.135983)
+binarizing input wm segmentation...
+Ambiguous edge configurations... 
+
+mri_pretess done
+
+#--------------------------------------------
+#@# Fill Sun Dec 30 15:22:31 PST 2018
+/gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/mri
+
+ mri_fill -a ../scripts/ponscc.cut.log -xform transforms/talairach.lta -segmentation aseg.auto_noCCseg.mgz wm.mgz filled.mgz 
+
+logging cutting plane coordinates to ../scripts/ponscc.cut.log...
+INFO: Using transforms/talairach.lta and its offset for Talairach volume ...
+using segmentation aseg.auto_noCCseg.mgz...
+reading input volume...done.
+searching for cutting planes...voxel to talairach voxel transform
+ 0.99483   0.11116   0.06117  -21.91188;
+-0.09580   1.11821   0.09142   15.12175;
+-0.04651  -0.13774   1.08608  -0.01416;
+ 0.00000   0.00000   0.00000   1.00000;
+voxel to talairach voxel transform
+ 0.99483   0.11116   0.06117  -21.91188;
+-0.09580   1.11821   0.09142   15.12175;
+-0.04651  -0.13774   1.08608  -0.01416;
+ 0.00000   0.00000   0.00000   1.00000;
+reading segmented volume aseg.auto_noCCseg.mgz...
+Looking for area (min, max) = (350, 1400)
+area[0] = 970 (min = 350, max = 1400), aspect = 0.44 (min = 0.10, max = 0.75)
+no need to search
+using seed (126, 121, 150), TAL = (2.0, 22.0, 7.0)
+talairach voxel to voxel transform
+ 0.99292  -0.10451  -0.04713   23.33660;
+ 0.08076   0.87661  -0.07834  -11.48743;
+ 0.05276   0.10670   0.90879  -0.44455;
+ 0.00000   0.00000   0.00000   1.00000;
+segmentation indicates cc at (126,  121,  150) --> (2.0, 22.0, 7.0)
+done.
+writing output to filled.mgz...
+filling took 0.5 minutes
+talairach cc position changed to (2.00, 22.00, 7.00)
+Erasing brainstem...done.
+seed_search_size = 9, min_neighbors = 5
+search rh wm seed point around talairach space:(20.00, 22.00, 7.00) SRC: (110.86, 91.55, 154.48)
+search lh wm seed point around talairach space (-16.00, 22.00, 7.00), SRC: (146.60, 94.46, 156.38)
+compute mri_fill using aseg
+Erasing Brain Stem and Cerebellum ...
+Define left and right masks using aseg:
+Building Voronoi diagram ...
+Using the Voronoi diagram to separate WM into two hemispheres ...
+Find the largest connected component for each hemisphere ...
+#--------------------------------------------
+#@# Tessellate lh Sun Dec 30 15:23:00 PST 2018
+/gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/scripts
+
+ mri_pretess ../mri/filled.mgz 255 ../mri/norm.mgz ../mri/filled-pretess255.mgz 
+
+
+Iteration Number : 1
+pass   1 (xy+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xy-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (yz+):   1 found -   1 modified     |    TOTAL:   1
+pass   2 (yz+):   0 found -   1 modified     |    TOTAL:   1
+pass   1 (yz-):   3 found -   3 modified     |    TOTAL:   4
+pass   2 (yz-):   0 found -   3 modified     |    TOTAL:   4
+pass   1 (xz+):   2 found -   2 modified     |    TOTAL:   6
+pass   2 (xz+):   0 found -   2 modified     |    TOTAL:   6
+pass   1 (xz-):   0 found -   0 modified     |    TOTAL:   6
+Iteration Number : 1
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 1
+pass   1 (++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (--):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (-+):   2 found -   2 modified     |    TOTAL:   2
+pass   2 (-+):   0 found -   2 modified     |    TOTAL:   2
+Iteration Number : 2
+pass   1 (xy+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xy-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (yz+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (yz-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xz+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xz-):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 2
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 2
+pass   1 (++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (--):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (-+):   0 found -   0 modified     |    TOTAL:   0
+
+Total Number of Modified Voxels = 8 (out of 243072: 0.003291)
+Ambiguous edge configurations... 
+
+mri_pretess done
+
+
+ mri_tessellate ../mri/filled-pretess255.mgz 255 ../surf/lh.orig.nofix 
+
+$Id: mri_tessellate.c,v 1.38.2.1 2016/07/26 18:46:38 zkaufman Exp $
+  $Id: mrisurf.c,v 1.781.2.6 2016/12/27 16:47:14 zkaufman Exp $
+slice 50: 2787 vertices, 2959 faces
+slice 60: 10188 vertices, 10511 faces
+slice 70: 20353 vertices, 20703 faces
+slice 80: 31139 vertices, 31485 faces
+slice 90: 42507 vertices, 42894 faces
+slice 100: 54064 vertices, 54440 faces
+slice 110: 66049 vertices, 66447 faces
+slice 120: 77943 vertices, 78371 faces
+slice 130: 89737 vertices, 90172 faces
+slice 140: 101366 vertices, 101758 faces
+slice 150: 111347 vertices, 111682 faces
+slice 160: 120458 vertices, 120747 faces
+slice 170: 128143 vertices, 128402 faces
+slice 180: 135010 vertices, 135247 faces
+slice 190: 139994 vertices, 140168 faces
+slice 200: 141540 vertices, 141562 faces
+slice 210: 141540 vertices, 141562 faces
+slice 220: 141540 vertices, 141562 faces
+slice 230: 141540 vertices, 141562 faces
+slice 240: 141540 vertices, 141562 faces
+slice 250: 141540 vertices, 141562 faces
+using the conformed surface RAS to save vertex points...
+writing ../surf/lh.orig.nofix
+using vox2ras matrix:
+-1.00000   0.00000   0.00000   128.00000;
+ 0.00000   0.00000   1.00000  -128.00000;
+ 0.00000  -1.00000   0.00000   128.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+
+ rm -f ../mri/filled-pretess255.mgz 
+
+
+ mris_extract_main_component ../surf/lh.orig.nofix ../surf/lh.orig.nofix 
+
+
+counting number of connected components...
+   141540 voxel in cpt #1: X=-22 [v=141540,e=424686,f=283124] located at (-30.970333, -13.889155, 35.171429)
+For the whole surface: X=-22 [v=141540,e=424686,f=283124]
+One single component has been found
+nothing to do
+done
+
+#--------------------------------------------
+#@# Tessellate rh Sun Dec 30 15:23:04 PST 2018
+/gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/scripts
+
+ mri_pretess ../mri/filled.mgz 127 ../mri/norm.mgz ../mri/filled-pretess127.mgz 
+
+
+Iteration Number : 1
+pass   1 (xy+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xy-):   2 found -   2 modified     |    TOTAL:   2
+pass   2 (xy-):   0 found -   2 modified     |    TOTAL:   2
+pass   1 (yz+):   2 found -   2 modified     |    TOTAL:   4
+pass   2 (yz+):   0 found -   2 modified     |    TOTAL:   4
+pass   1 (yz-):   0 found -   0 modified     |    TOTAL:   4
+pass   1 (xz+):   2 found -   2 modified     |    TOTAL:   6
+pass   2 (xz+):   0 found -   2 modified     |    TOTAL:   6
+pass   1 (xz-):   1 found -   1 modified     |    TOTAL:   7
+pass   2 (xz-):   0 found -   1 modified     |    TOTAL:   7
+Iteration Number : 1
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 1
+pass   1 (++):   1 found -   1 modified     |    TOTAL:   1
+pass   2 (++):   0 found -   1 modified     |    TOTAL:   1
+pass   1 (+-):   2 found -   2 modified     |    TOTAL:   3
+pass   2 (+-):   0 found -   2 modified     |    TOTAL:   3
+pass   1 (--):   0 found -   0 modified     |    TOTAL:   3
+pass   1 (-+):   0 found -   0 modified     |    TOTAL:   3
+Iteration Number : 2
+pass   1 (xy+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xy-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (yz+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (yz-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xz+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xz-):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 2
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 2
+pass   1 (++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (--):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (-+):   0 found -   0 modified     |    TOTAL:   0
+
+Total Number of Modified Voxels = 10 (out of 242244: 0.004128)
+Ambiguous edge configurations... 
+
+mri_pretess done
+
+
+ mri_tessellate ../mri/filled-pretess127.mgz 127 ../surf/rh.orig.nofix 
+
+$Id: mri_tessellate.c,v 1.38.2.1 2016/07/26 18:46:38 zkaufman Exp $
+  $Id: mrisurf.c,v 1.781.2.6 2016/12/27 16:47:14 zkaufman Exp $
+slice 50: 1553 vertices, 1647 faces
+slice 60: 7341 vertices, 7658 faces
+slice 70: 16718 vertices, 17061 faces
+slice 80: 27775 vertices, 28166 faces
+slice 90: 39830 vertices, 40232 faces
+slice 100: 51884 vertices, 52280 faces
+slice 110: 65262 vertices, 65687 faces
+slice 120: 77712 vertices, 78144 faces
+slice 130: 89900 vertices, 90282 faces
+slice 140: 101866 vertices, 102274 faces
+slice 150: 111643 vertices, 111970 faces
+slice 160: 120079 vertices, 120391 faces
+slice 170: 127825 vertices, 128122 faces
+slice 180: 134794 vertices, 135072 faces
+slice 190: 140565 vertices, 140753 faces
+slice 200: 142426 vertices, 142452 faces
+slice 210: 142426 vertices, 142452 faces
+slice 220: 142426 vertices, 142452 faces
+slice 230: 142426 vertices, 142452 faces
+slice 240: 142426 vertices, 142452 faces
+slice 250: 142426 vertices, 142452 faces
+using the conformed surface RAS to save vertex points...
+writing ../surf/rh.orig.nofix
+using vox2ras matrix:
+-1.00000   0.00000   0.00000   128.00000;
+ 0.00000   0.00000   1.00000  -128.00000;
+ 0.00000  -1.00000   0.00000   128.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+
+ rm -f ../mri/filled-pretess127.mgz 
+
+
+ mris_extract_main_component ../surf/rh.orig.nofix ../surf/rh.orig.nofix 
+
+
+counting number of connected components...
+   142426 voxel in cpt #1: X=-26 [v=142426,e=427356,f=284904] located at (24.745874, -12.271650, 42.209183)
+For the whole surface: X=-26 [v=142426,e=427356,f=284904]
+One single component has been found
+nothing to do
+done
+
+#--------------------------------------------
+#@# Smooth1 lh Sun Dec 30 15:23:08 PST 2018
+/gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/scripts
+
+ mris_smooth -nw -seed 1234 ../surf/lh.orig.nofix ../surf/lh.smoothwm.nofix 
+
+setting seed for random number generator to 1234
+smoothing surface tessellation for 10 iterations...
+smoothing complete - recomputing first and second fundamental forms...
+#--------------------------------------------
+#@# Smooth1 rh Sun Dec 30 15:23:12 PST 2018
+/gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/scripts
+
+ mris_smooth -nw -seed 1234 ../surf/rh.orig.nofix ../surf/rh.smoothwm.nofix 
+
+setting seed for random number generator to 1234
+smoothing surface tessellation for 10 iterations...
+smoothing complete - recomputing first and second fundamental forms...
+#--------------------------------------------
+#@# Inflation1 lh Sun Dec 30 15:23:16 PST 2018
+/gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/scripts
+
+ mris_inflate -no-save-sulc ../surf/lh.smoothwm.nofix ../surf/lh.inflated.nofix 
+
+Not saving sulc
+Reading ../surf/lh.smoothwm.nofix
+avg radius = 45.1 mm, total surface area = 73973 mm^2
+writing inflated surface to ../surf/lh.inflated.nofix
+inflation took 0.4 minutes
+step 000: RMS=0.155 (target=0.015)   step 005: RMS=0.115 (target=0.015)   step 010: RMS=0.084 (target=0.015)   step 015: RMS=0.070 (target=0.015)   step 020: RMS=0.060 (target=0.015)   step 025: RMS=0.052 (target=0.015)   step 030: RMS=0.048 (target=0.015)   step 035: RMS=0.042 (target=0.015)   step 040: RMS=0.039 (target=0.015)   step 045: RMS=0.038 (target=0.015)   step 050: RMS=0.036 (target=0.015)   step 055: RMS=0.036 (target=0.015)   step 060: RMS=0.036 (target=0.015)   
+inflation complete.
+Not saving sulc
+mris_inflate utimesec    26.356653
+mris_inflate stimesec    0.137982
+mris_inflate ru_maxrss   181408
+mris_inflate ru_ixrss    0
+mris_inflate ru_idrss    0
+mris_inflate ru_isrss    0
+mris_inflate ru_minflt   113000
+mris_inflate ru_majflt   0
+mris_inflate ru_nswap    0
+mris_inflate ru_inblock  0
+mris_inflate ru_oublock  0
+mris_inflate ru_msgsnd   0
+mris_inflate ru_msgrcv   0
+mris_inflate ru_nsignals 0
+mris_inflate ru_nvcsw    16
+mris_inflate ru_nivcsw   76
+#--------------------------------------------
+#@# Inflation1 rh Sun Dec 30 15:23:42 PST 2018
+/gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/scripts
+
+ mris_inflate -no-save-sulc ../surf/rh.smoothwm.nofix ../surf/rh.inflated.nofix 
+
+Not saving sulc
+Reading ../surf/rh.smoothwm.nofix
+avg radius = 44.8 mm, total surface area = 74222 mm^2
+writing inflated surface to ../surf/rh.inflated.nofix
+inflation took 0.4 minutes
+step 000: RMS=0.157 (target=0.015)   step 005: RMS=0.117 (target=0.015)   step 010: RMS=0.088 (target=0.015)   step 015: RMS=0.074 (target=0.015)   step 020: RMS=0.064 (target=0.015)   step 025: RMS=0.056 (target=0.015)   step 030: RMS=0.051 (target=0.015)   step 035: RMS=0.047 (target=0.015)   step 040: RMS=0.044 (target=0.015)   step 045: RMS=0.042 (target=0.015)   step 050: RMS=0.041 (target=0.015)   step 055: RMS=0.040 (target=0.015)   step 060: RMS=0.040 (target=0.015)   
+inflation complete.
+Not saving sulc
+mris_inflate utimesec    26.612005
+mris_inflate stimesec    0.142978
+mris_inflate ru_maxrss   182604
+mris_inflate ru_ixrss    0
+mris_inflate ru_idrss    0
+mris_inflate ru_isrss    0
+mris_inflate ru_minflt   114517
+mris_inflate ru_majflt   0
+mris_inflate ru_nswap    0
+mris_inflate ru_inblock  0
+mris_inflate ru_oublock  0
+mris_inflate ru_msgsnd   0
+mris_inflate ru_msgrcv   0
+mris_inflate ru_nsignals 0
+mris_inflate ru_nvcsw    15
+mris_inflate ru_nivcsw   69
+#--------------------------------------------
+#@# QSphere lh Sun Dec 30 15:24:09 PST 2018
+/gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/scripts
+
+ mris_sphere -q -seed 1234 ../surf/lh.inflated.nofix ../surf/lh.qsphere.nofix 
+
+doing quick spherical unfolding.
+setting seed for random number genererator to 1234
+$Id: mris_sphere.c,v 1.61 2016/01/20 23:42:15 greve Exp $
+  $Id: mrisurf.c,v 1.781.2.6 2016/12/27 16:47:14 zkaufman Exp $
+reading original vertex positions...
+unfolding cortex into spherical form...
+surface projected - minimizing metric distortion...
+vertex spacing 0.98 +- 0.55 (0.00-->6.82) (max @ vno 47763 --> 48982)
+face area 0.03 +- 0.03 (-0.16-->0.81)
+
+== Number of threads available to mris_sphere for OpenMP = 1 == 
+scaling brain by 0.314...
+inflating to sphere (rms error < 2.00)
+000: dt: 0.0000, rms radial error=176.411, avgs=0
+005/300: dt: 0.9000, rms radial error=176.151, avgs=0
+010/300: dt: 0.9000, rms radial error=175.593, avgs=0
+015/300: dt: 0.9000, rms radial error=174.868, avgs=0
+020/300: dt: 0.9000, rms radial error=174.043, avgs=0
+025/300: dt: 0.9000, rms radial error=173.161, avgs=0
+030/300: dt: 0.9000, rms radial error=172.247, avgs=0
+035/300: dt: 0.9000, rms radial error=171.316, avgs=0
+040/300: dt: 0.9000, rms radial error=170.376, avgs=0
+045/300: dt: 0.9000, rms radial error=169.433, avgs=0
+050/300: dt: 0.9000, rms radial error=168.491, avgs=0
+055/300: dt: 0.9000, rms radial error=167.550, avgs=0
+060/300: dt: 0.9000, rms radial error=166.614, avgs=0
+065/300: dt: 0.9000, rms radial error=165.681, avgs=0
+070/300: dt: 0.9000, rms radial error=164.753, avgs=0
+075/300: dt: 0.9000, rms radial error=163.830, avgs=0
+080/300: dt: 0.9000, rms radial error=162.911, avgs=0
+085/300: dt: 0.9000, rms radial error=161.997, avgs=0
+090/300: dt: 0.9000, rms radial error=161.088, avgs=0
+095/300: dt: 0.9000, rms radial error=160.184, avgs=0
+100/300: dt: 0.9000, rms radial error=159.285, avgs=0
+105/300: dt: 0.9000, rms radial error=158.390, avgs=0
+110/300: dt: 0.9000, rms radial error=157.501, avgs=0
+115/300: dt: 0.9000, rms radial error=156.616, avgs=0
+120/300: dt: 0.9000, rms radial error=155.735, avgs=0
+125/300: dt: 0.9000, rms radial error=154.860, avgs=0
+130/300: dt: 0.9000, rms radial error=153.989, avgs=0
+135/300: dt: 0.9000, rms radial error=153.123, avgs=0
+140/300: dt: 0.9000, rms radial error=152.262, avgs=0
+145/300: dt: 0.9000, rms radial error=151.405, avgs=0
+150/300: dt: 0.9000, rms radial error=150.553, avgs=0
+155/300: dt: 0.9000, rms radial error=149.706, avgs=0
+160/300: dt: 0.9000, rms radial error=148.864, avgs=0
+165/300: dt: 0.9000, rms radial error=148.026, avgs=0
+170/300: dt: 0.9000, rms radial error=147.192, avgs=0
+175/300: dt: 0.9000, rms radial error=146.364, avgs=0
+180/300: dt: 0.9000, rms radial error=145.539, avgs=0
+185/300: dt: 0.9000, rms radial error=144.720, avgs=0
+190/300: dt: 0.9000, rms radial error=143.905, avgs=0
+195/300: dt: 0.9000, rms radial error=143.094, avgs=0
+200/300: dt: 0.9000, rms radial error=142.288, avgs=0
+205/300: dt: 0.9000, rms radial error=141.487, avgs=0
+210/300: dt: 0.9000, rms radial error=140.690, avgs=0
+215/300: dt: 0.9000, rms radial error=139.897, avgs=0
+220/300: dt: 0.9000, rms radial error=139.109, avgs=0
+225/300: dt: 0.9000, rms radial error=138.325, avgs=0
+230/300: dt: 0.9000, rms radial error=137.546, avgs=0
+235/300: dt: 0.9000, rms radial error=136.771, avgs=0
+240/300: dt: 0.9000, rms radial error=136.001, avgs=0
+245/300: dt: 0.9000, rms radial error=135.234, avgs=0
+250/300: dt: 0.9000, rms radial error=134.472, avgs=0
+255/300: dt: 0.9000, rms radial error=133.715, avgs=0
+260/300: dt: 0.9000, rms radial error=132.962, avgs=0
+265/300: dt: 0.9000, rms radial error=132.212, avgs=0
+270/300: dt: 0.9000, rms radial error=131.468, avgs=0
+275/300: dt: 0.9000, rms radial error=130.727, avgs=0
+280/300: dt: 0.9000, rms radial error=129.990, avgs=0
+285/300: dt: 0.9000, rms radial error=129.258, avgs=0
+290/300: dt: 0.9000, rms radial error=128.529, avgs=0
+295/300: dt: 0.9000, rms radial error=127.805, avgs=0
+300/300: dt: 0.9000, rms radial error=127.085, avgs=0
+
+spherical inflation complete.
+epoch 1 (K=10.0), pass 1, starting sse = 16515.70
+taking momentum steps...
+taking momentum steps...
+taking momentum steps...
+pass 1 complete, delta sse/iter = 0.00/10 = 0.00013
+epoch 2 (K=40.0), pass 1, starting sse = 2729.54
+taking momentum steps...
+taking momentum steps...
+taking momentum steps...
+pass 1 complete, delta sse/iter = 0.00/10 = 0.00008
+epoch 3 (K=160.0), pass 1, starting sse = 267.56
+taking momentum steps...
+taking momentum steps...
+taking momentum steps...
+pass 1 complete, delta sse/iter = 0.12/13 = 0.00906
+epoch 4 (K=640.0), pass 1, starting sse = 13.06
+taking momentum steps...
+taking momentum steps...
+taking momentum steps...
+pass 1 complete, delta sse/iter = 0.13/15 = 0.00872
+final distance error %25.60
+writing spherical brain to ../surf/lh.qsphere.nofix
+spherical transformation took 0.05 hours
+mris_sphere utimesec    174.435538
+mris_sphere stimesec    0.197976
+mris_sphere ru_maxrss   181604
+mris_sphere ru_ixrss    0
+mris_sphere ru_idrss    0
+mris_sphere ru_isrss    0
+mris_sphere ru_minflt   187324
+mris_sphere ru_majflt   0
+mris_sphere ru_nswap    0
+mris_sphere ru_inblock  0
+mris_sphere ru_oublock  0
+mris_sphere ru_msgsnd   0
+mris_sphere ru_msgrcv   0
+mris_sphere ru_nsignals 0
+mris_sphere ru_nvcsw    16
+mris_sphere ru_nivcsw   646
+FSRUNTIME@ mris_sphere  0.0485 hours 1 threads
+#--------------------------------------------
+#@# QSphere rh Sun Dec 30 15:27:04 PST 2018
+/gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/scripts
+
+ mris_sphere -q -seed 1234 ../surf/rh.inflated.nofix ../surf/rh.qsphere.nofix 
+
+doing quick spherical unfolding.
+setting seed for random number genererator to 1234
+$Id: mris_sphere.c,v 1.61 2016/01/20 23:42:15 greve Exp $
+  $Id: mrisurf.c,v 1.781.2.6 2016/12/27 16:47:14 zkaufman Exp $
+reading original vertex positions...
+unfolding cortex into spherical form...
+surface projected - minimizing metric distortion...
+vertex spacing 0.98 +- 0.57 (0.00-->6.92) (max @ vno 103735 --> 103760)
+face area 0.03 +- 0.03 (-0.25-->0.80)
+
+== Number of threads available to mris_sphere for OpenMP = 1 == 
+scaling brain by 0.312...
+inflating to sphere (rms error < 2.00)
+000: dt: 0.0000, rms radial error=176.438, avgs=0
+005/300: dt: 0.9000, rms radial error=176.180, avgs=0
+010/300: dt: 0.9000, rms radial error=175.626, avgs=0
+015/300: dt: 0.9000, rms radial error=174.899, avgs=0
+020/300: dt: 0.9000, rms radial error=174.071, avgs=0
+025/300: dt: 0.9000, rms radial error=173.186, avgs=0
+030/300: dt: 0.9000, rms radial error=172.269, avgs=0
+035/300: dt: 0.9000, rms radial error=171.335, avgs=0
+040/300: dt: 0.9000, rms radial error=170.395, avgs=0
+045/300: dt: 0.9000, rms radial error=169.452, avgs=0
+050/300: dt: 0.9000, rms radial error=168.510, avgs=0
+055/300: dt: 0.9000, rms radial error=167.571, avgs=0
+060/300: dt: 0.9000, rms radial error=166.636, avgs=0
+065/300: dt: 0.9000, rms radial error=165.706, avgs=0
+070/300: dt: 0.9000, rms radial error=164.780, avgs=0
+075/300: dt: 0.9000, rms radial error=163.859, avgs=0
+080/300: dt: 0.9000, rms radial error=162.943, avgs=0
+085/300: dt: 0.9000, rms radial error=162.032, avgs=0
+090/300: dt: 0.9000, rms radial error=161.125, avgs=0
+095/300: dt: 0.9000, rms radial error=160.224, avgs=0
+100/300: dt: 0.9000, rms radial error=159.329, avgs=0
+105/300: dt: 0.9000, rms radial error=158.438, avgs=0
+110/300: dt: 0.9000, rms radial error=157.552, avgs=0
+115/300: dt: 0.9000, rms radial error=156.671, avgs=0
+120/300: dt: 0.9000, rms radial error=155.794, avgs=0
+125/300: dt: 0.9000, rms radial error=154.923, avgs=0
+130/300: dt: 0.9000, rms radial error=154.056, avgs=0
+135/300: dt: 0.9000, rms radial error=153.194, avgs=0
+140/300: dt: 0.9000, rms radial error=152.336, avgs=0
+145/300: dt: 0.9000, rms radial error=151.483, avgs=0
+150/300: dt: 0.9000, rms radial error=150.635, avgs=0
+155/300: dt: 0.9000, rms radial error=149.791, avgs=0
+160/300: dt: 0.9000, rms radial error=148.952, avgs=0
+165/300: dt: 0.9000, rms radial error=148.117, avgs=0
+170/300: dt: 0.9000, rms radial error=147.287, avgs=0
+175/300: dt: 0.9000, rms radial error=146.461, avgs=0
+180/300: dt: 0.9000, rms radial error=145.640, avgs=0
+185/300: dt: 0.9000, rms radial error=144.823, avgs=0
+190/300: dt: 0.9000, rms radial error=144.011, avgs=0
+195/300: dt: 0.9000, rms radial error=143.203, avgs=0
+200/300: dt: 0.9000, rms radial error=142.400, avgs=0
+205/300: dt: 0.9000, rms radial error=141.601, avgs=0
+210/300: dt: 0.9000, rms radial error=140.806, avgs=0
+215/300: dt: 0.9000, rms radial error=140.015, avgs=0
+220/300: dt: 0.9000, rms radial error=139.229, avgs=0
+225/300: dt: 0.9000, rms radial error=138.448, avgs=0
+230/300: dt: 0.9000, rms radial error=137.670, avgs=0
+235/300: dt: 0.9000, rms radial error=136.897, avgs=0
+240/300: dt: 0.9000, rms radial error=136.128, avgs=0
+245/300: dt: 0.9000, rms radial error=135.364, avgs=0
+250/300: dt: 0.9000, rms radial error=134.603, avgs=0
+255/300: dt: 0.9000, rms radial error=133.847, avgs=0
+260/300: dt: 0.9000, rms radial error=133.095, avgs=0
+265/300: dt: 0.9000, rms radial error=132.348, avgs=0
+270/300: dt: 0.9000, rms radial error=131.604, avgs=0
+275/300: dt: 0.9000, rms radial error=130.865, avgs=0
+280/300: dt: 0.9000, rms radial error=130.130, avgs=0
+285/300: dt: 0.9000, rms radial error=129.399, avgs=0
+290/300: dt: 0.9000, rms radial error=128.672, avgs=0
+295/300: dt: 0.9000, rms radial error=127.949, avgs=0
+300/300: dt: 0.9000, rms radial error=127.231, avgs=0
+
+spherical inflation complete.
+epoch 1 (K=10.0), pass 1, starting sse = 16661.01
+taking momentum steps...
+taking momentum steps...
+taking momentum steps...
+pass 1 complete, delta sse/iter = 0.00/10 = 0.00012
+epoch 2 (K=40.0), pass 1, starting sse = 2771.17
+taking momentum steps...
+taking momentum steps...
+taking momentum steps...
+pass 1 complete, delta sse/iter = 0.00/10 = 0.00002
+epoch 3 (K=160.0), pass 1, starting sse = 275.79
+taking momentum steps...
+taking momentum steps...
+taking momentum steps...
+pass 1 complete, delta sse/iter = 0.10/12 = 0.00799
+epoch 4 (K=640.0), pass 1, starting sse = 16.51
+taking momentum steps...
+taking momentum steps...
+taking momentum steps...
+pass 1 complete, delta sse/iter = 0.11/13 = 0.00882
+final distance error %26.10
+writing spherical brain to ../surf/rh.qsphere.nofix
+spherical transformation took 0.05 hours
+mris_sphere utimesec    167.313125
+mris_sphere stimesec    0.203972
+mris_sphere ru_maxrss   182804
+mris_sphere ru_ixrss    0
+mris_sphere ru_idrss    0
+mris_sphere ru_isrss    0
+mris_sphere ru_minflt   189752
+mris_sphere ru_majflt   0
+mris_sphere ru_nswap    0
+mris_sphere ru_inblock  0
+mris_sphere ru_oublock  0
+mris_sphere ru_msgsnd   0
+mris_sphere ru_msgrcv   0
+mris_sphere ru_nsignals 0
+mris_sphere ru_nvcsw    15
+mris_sphere ru_nivcsw   490
+FSRUNTIME@ mris_sphere  0.0465 hours 1 threads
+#--------------------------------------------
+#@# Fix Topology Copy lh Sun Dec 30 15:29:51 PST 2018
+/gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/scripts
+
+ cp ../surf/lh.orig.nofix ../surf/lh.orig 
+
+
+ cp ../surf/lh.inflated.nofix ../surf/lh.inflated 
+
+#--------------------------------------------
+#@# Fix Topology Copy rh Sun Dec 30 15:29:51 PST 2018
+/gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/scripts
+
+ cp ../surf/rh.orig.nofix ../surf/rh.orig 
+
+
+ cp ../surf/rh.inflated.nofix ../surf/rh.inflated 
+
+#@# Fix Topology lh Sun Dec 30 15:29:51 PST 2018
+
+ mris_fix_topology -rusage /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/touch/rusage.mris_fix_topology.lh.dat -mgz -sphere qsphere.nofix -ga -seed 1234 sub-FP002 lh 
+
+reading spherical homeomorphism from 'qsphere.nofix'
+using genetic algorithm with optimized parameters
+setting seed for random number genererator to 1234
+
+*************************************************************
+Topology Correction Parameters
+retessellation mode:           genetic search
+number of patches/generation : 10
+number of generations :        10
+surface mri loglikelihood coefficient :         1.0
+volume mri loglikelihood coefficient :          10.0
+normal dot loglikelihood coefficient :          1.0
+quadratic curvature loglikelihood coefficient : 1.0
+volume resolution :                             2
+eliminate vertices during search :              1
+initial patch selection :                       1
+select all defect vertices :                    0
+ordering dependant retessellation:              0
+use precomputed edge table :                    0
+smooth retessellated patch :                    2
+match retessellated patch :                     1
+verbose mode :                                  0
+
+*************************************************************
+INFO: assuming .mgz format
+$Id: mris_fix_topology.c,v 1.50.2.1 2016/10/27 22:25:58 zkaufman Exp $
+  $Id: mrisurf.c,v 1.781.2.6 2016/12/27 16:47:14 zkaufman Exp $
+before topology correction, eno=-22 (nv=141540, nf=283124, ne=424686, g=12)
+using quasi-homeomorphic spherical map to tessellate cortical surface...
+
+Correction of the Topology
+Finding true center and radius of Spherical Surface...done
+Surface centered at (0,0,0) with radius 100.0 in 9 iterations
+marking ambiguous vertices...
+2792 ambiguous faces found in tessellation
+segmenting defects...
+20 defects found, arbitrating ambiguous regions...
+analyzing neighboring defects...
+20 defects to be corrected 
+0 vertices coincident
+reading input surface /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/surf/lh.qsphere.nofix...
+reading brain volume from brain...
+reading wm segmentation from wm...
+Computing Initial Surface Statistics
+      -face       loglikelihood: -9.5600  (-4.7800)
+      -vertex     loglikelihood: -6.0797  (-3.0398)
+      -normal dot loglikelihood: -3.6937  (-3.6937)
+      -quad curv  loglikelihood: -6.4158  (-3.2079)
+      Total Loglikelihood : -25.7492
+
+CORRECTING DEFECT 0 (vertices=158, convex hull=44, v0=10741)
+After retessellation of defect 0 (v0=10741), euler #=-17 (139920,419327,279390) : difference with theory (-17) = 0 
+
+CORRECTING DEFECT 1 (vertices=55, convex hull=86, v0=36518)
+After retessellation of defect 1 (v0=36518), euler #=-16 (139943,419430,279471) : difference with theory (-16) = 0 
+
+CORRECTING DEFECT 2 (vertices=25, convex hull=30, v0=57228)
+After retessellation of defect 2 (v0=57228), euler #=-15 (139947,419451,279489) : difference with theory (-15) = 0 
+
+CORRECTING DEFECT 3 (vertices=14, convex hull=23, v0=60763)
+After retessellation of defect 3 (v0=60763), euler #=-14 (139949,419464,279501) : difference with theory (-14) = 0 
+
+CORRECTING DEFECT 4 (vertices=232, convex hull=39, v0=74077)
+After retessellation of defect 4 (v0=74077), euler #=-13 (139960,419510,279537) : difference with theory (-13) = 0 
+
+CORRECTING DEFECT 5 (vertices=18, convex hull=64, v0=77097)
+After retessellation of defect 5 (v0=77097), euler #=-12 (139969,419559,279578) : difference with theory (-12) = 0 
+
+CORRECTING DEFECT 6 (vertices=21, convex hull=54, v0=81217)
+After retessellation of defect 6 (v0=81217), euler #=-11 (139984,419623,279628) : difference with theory (-11) = 0 
+
+CORRECTING DEFECT 7 (vertices=18, convex hull=50, v0=81852)
+After retessellation of defect 7 (v0=81852), euler #=-10 (139997,419684,279677) : difference with theory (-10) = 0 
+
+CORRECTING DEFECT 8 (vertices=24, convex hull=19, v0=88185)
+After retessellation of defect 8 (v0=88185), euler #=-9 (139999,419695,279687) : difference with theory (-9) = 0 
+
+CORRECTING DEFECT 9 (vertices=34, convex hull=31, v0=89429)
+After retessellation of defect 9 (v0=89429), euler #=-8 (140002,419716,279706) : difference with theory (-8) = 0 
+
+CORRECTING DEFECT 10 (vertices=73, convex hull=101, v0=89720)
+After retessellation of defect 10 (v0=89720), euler #=-7 (140038,419870,279825) : difference with theory (-7) = 0 
+
+CORRECTING DEFECT 11 (vertices=6, convex hull=15, v0=89814)
+After retessellation of defect 11 (v0=89814), euler #=-6 (140039,419875,279830) : difference with theory (-6) = 0 
+
+CORRECTING DEFECT 12 (vertices=112, convex hull=77, v0=95357)
+After retessellation of defect 12 (v0=95357), euler #=-5 (140087,420058,279966) : difference with theory (-5) = 0 
+
+CORRECTING DEFECT 13 (vertices=20, convex hull=21, v0=97524)
+After retessellation of defect 13 (v0=97524), euler #=-4 (140088,420068,279976) : difference with theory (-4) = 0 
+
+CORRECTING DEFECT 14 (vertices=606, convex hull=200, v0=98780)
+After retessellation of defect 14 (v0=98780), euler #=-3 (140213,420548,280332) : difference with theory (-3) = 0 
+
+CORRECTING DEFECT 15 (vertices=7, convex hull=16, v0=103892)
+After retessellation of defect 15 (v0=103892), euler #=-2 (140216,420560,280342) : difference with theory (-2) = 0 
+
+CORRECTING DEFECT 16 (vertices=34, convex hull=29, v0=113043)
+After retessellation of defect 16 (v0=113043), euler #=-1 (140224,420595,280370) : difference with theory (-1) = 0 
+
+CORRECTING DEFECT 17 (vertices=32, convex hull=32, v0=115601)
+After retessellation of defect 17 (v0=115601), euler #=0 (140229,420620,280391) : difference with theory (0) = 0 
+
+CORRECTING DEFECT 18 (vertices=90, convex hull=79, v0=115849)
+After retessellation of defect 18 (v0=115849), euler #=1 (140255,420734,280480) : difference with theory (1) = 0 
+
+CORRECTING DEFECT 19 (vertices=50, convex hull=60, v0=133572)
+After retessellation of defect 19 (v0=133572), euler #=2 (140269,420801,280534) : difference with theory (2) = 0 
+computing original vertex metric properties...
+storing new metric properties...
+computing tessellation statistics...
+vertex spacing 0.88 +- 0.21 (0.01-->7.89) (max @ vno 114535 --> 117250)
+face area 0.00 +- 0.00 (0.00-->0.00)
+performing soap bubble on retessellated vertices for 0 iterations...
+vertex spacing 0.88 +- 0.21 (0.01-->7.89) (max @ vno 114535 --> 117250)
+face area 0.00 +- 0.00 (0.00-->0.00)
+tessellation finished, orienting corrected surface...
+74 mutations (38.3%), 119 crossovers (61.7%), 13 vertices were eliminated
+building final representation...
+1271 vertices and 0 faces have been removed from triangulation
+after topology correction, eno=2 (nv=140269, nf=280534, ne=420801, g=0)
+writing corrected surface to /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/surf/lh.orig...
+
+0.000 % of the vertices (0 vertices) exhibit an orientation change
+topology fixing took 6.7 minutes
+0 defective edges
+removing intersecting faces
+000: 143 intersecting
+mris_fix_topology utimesec    401.310821
+mris_fix_topology stimesec    0.269961
+mris_fix_topology ru_maxrss   436288
+mris_fix_topology ru_ixrss    0
+mris_fix_topology ru_idrss    0
+mris_fix_topology ru_isrss    0
+mris_fix_topology ru_minflt   192488
+mris_fix_topology ru_majflt   0
+mris_fix_topology ru_nswap    0
+mris_fix_topology ru_inblock  0
+mris_fix_topology ru_oublock  0
+mris_fix_topology ru_msgsnd   0
+mris_fix_topology ru_msgrcv   0
+mris_fix_topology ru_nsignals 0
+mris_fix_topology ru_nvcsw    43
+mris_fix_topology ru_nivcsw   1510
+FSRUNTIME@ mris_fix_topology lh  0.1116 hours 1 threads
+#@# Fix Topology rh Sun Dec 30 15:36:33 PST 2018
+
+ mris_fix_topology -rusage /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/touch/rusage.mris_fix_topology.rh.dat -mgz -sphere qsphere.nofix -ga -seed 1234 sub-FP002 rh 
+
+reading spherical homeomorphism from 'qsphere.nofix'
+using genetic algorithm with optimized parameters
+setting seed for random number genererator to 1234
+
+*************************************************************
+Topology Correction Parameters
+retessellation mode:           genetic search
+number of patches/generation : 10
+number of generations :        10
+surface mri loglikelihood coefficient :         1.0
+volume mri loglikelihood coefficient :          10.0
+normal dot loglikelihood coefficient :          1.0
+quadratic curvature loglikelihood coefficient : 1.0
+volume resolution :                             2
+eliminate vertices during search :              1
+initial patch selection :                       1
+select all defect vertices :                    0
+ordering dependant retessellation:              0
+use precomputed edge table :                    0
+smooth retessellated patch :                    2
+match retessellated patch :                     1
+verbose mode :                                  0
+
+*************************************************************
+INFO: assuming .mgz format
+$Id: mris_fix_topology.c,v 1.50.2.1 2016/10/27 22:25:58 zkaufman Exp $
+  $Id: mrisurf.c,v 1.781.2.6 2016/12/27 16:47:14 zkaufman Exp $
+before topology correction, eno=-26 (nv=142426, nf=284904, ne=427356, g=14)
+using quasi-homeomorphic spherical map to tessellate cortical surface...
+
+Correction of the Topology
+Finding true center and radius of Spherical Surface...done
+Surface centered at (0,0,0) with radius 100.0 in 7 iterations
+marking ambiguous vertices...
+4628 ambiguous faces found in tessellation
+segmenting defects...
+33 defects found, arbitrating ambiguous regions...
+analyzing neighboring defects...
+      -merging segment 6 into 3
+      -merging segment 23 into 10
+      -merging segment 28 into 10
+30 defects to be corrected 
+0 vertices coincident
+reading input surface /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/surf/rh.qsphere.nofix...
+reading brain volume from brain...
+reading wm segmentation from wm...
+Computing Initial Surface Statistics
+      -face       loglikelihood: -9.5109  (-4.7555)
+      -vertex     loglikelihood: -6.0908  (-3.0454)
+      -normal dot loglikelihood: -3.5572  (-3.5572)
+      -quad curv  loglikelihood: -6.5387  (-3.2694)
+      Total Loglikelihood : -25.6976
+
+CORRECTING DEFECT 0 (vertices=18, convex hull=74, v0=5817)
+After retessellation of defect 0 (v0=5817), euler #=-29 (139725,418434,278680) : difference with theory (-27) = 2 
+
+CORRECTING DEFECT 1 (vertices=97, convex hull=92, v0=47469)
+After retessellation of defect 1 (v0=47469), euler #=-28 (139762,418588,278798) : difference with theory (-26) = 2 
+
+CORRECTING DEFECT 2 (vertices=283, convex hull=180, v0=50154)
+After retessellation of defect 2 (v0=50154), euler #=-27 (139796,418775,278952) : difference with theory (-25) = 2 
+
+CORRECTING DEFECT 3 (vertices=32, convex hull=45, v0=55690)
+After retessellation of defect 3 (v0=55690), euler #=-25 (139805,418816,278986) : difference with theory (-24) = 1 
+
+CORRECTING DEFECT 4 (vertices=31, convex hull=24, v0=58304)
+After retessellation of defect 4 (v0=58304), euler #=-24 (139811,418843,279008) : difference with theory (-23) = 1 
+
+CORRECTING DEFECT 5 (vertices=16, convex hull=40, v0=59611)
+After retessellation of defect 5 (v0=59611), euler #=-23 (139815,418868,279030) : difference with theory (-22) = 1 
+
+CORRECTING DEFECT 6 (vertices=285, convex hull=94, v0=71437)
+After retessellation of defect 6 (v0=71437), euler #=-22 (139859,419042,279161) : difference with theory (-21) = 1 
+
+CORRECTING DEFECT 7 (vertices=122, convex hull=34, v0=79558)
+After retessellation of defect 7 (v0=79558), euler #=-21 (139867,419078,279190) : difference with theory (-20) = 1 
+
+CORRECTING DEFECT 8 (vertices=7, convex hull=26, v0=86193)
+After retessellation of defect 8 (v0=86193), euler #=-20 (139869,419092,279203) : difference with theory (-19) = 1 
+
+CORRECTING DEFECT 9 (vertices=731, convex hull=259, v0=89893)
+After retessellation of defect 9 (v0=89893), euler #=-17 (140015,419670,279638) : difference with theory (-18) = -1 
+
+CORRECTING DEFECT 10 (vertices=9, convex hull=20, v0=90960)
+After retessellation of defect 10 (v0=90960), euler #=-16 (140016,419681,279649) : difference with theory (-17) = -1 
+
+CORRECTING DEFECT 11 (vertices=71, convex hull=36, v0=92027)
+After retessellation of defect 11 (v0=92027), euler #=-15 (140024,419715,279676) : difference with theory (-16) = -1 
+
+CORRECTING DEFECT 12 (vertices=30, convex hull=55, v0=92708)
+After retessellation of defect 12 (v0=92708), euler #=-14 (140033,419767,279720) : difference with theory (-15) = -1 
+
+CORRECTING DEFECT 13 (vertices=15, convex hull=24, v0=92989)
+After retessellation of defect 13 (v0=92989), euler #=-13 (140036,419783,279734) : difference with theory (-14) = -1 
+
+CORRECTING DEFECT 14 (vertices=6, convex hull=21, v0=94336)
+After retessellation of defect 14 (v0=94336), euler #=-12 (140037,419790,279741) : difference with theory (-13) = -1 
+
+CORRECTING DEFECT 15 (vertices=7, convex hull=34, v0=95621)
+After retessellation of defect 15 (v0=95621), euler #=-11 (140039,419806,279756) : difference with theory (-12) = -1 
+
+CORRECTING DEFECT 16 (vertices=17, convex hull=22, v0=95669)
+After retessellation of defect 16 (v0=95669), euler #=-10 (140044,419828,279774) : difference with theory (-11) = -1 
+
+CORRECTING DEFECT 17 (vertices=30, convex hull=37, v0=95757)
+After retessellation of defect 17 (v0=95757), euler #=-9 (140052,419866,279805) : difference with theory (-10) = -1 
+
+CORRECTING DEFECT 18 (vertices=268, convex hull=75, v0=97920)
+After retessellation of defect 18 (v0=97920), euler #=-8 (140061,419929,279860) : difference with theory (-9) = -1 
+
+CORRECTING DEFECT 19 (vertices=17, convex hull=45, v0=101464)
+After retessellation of defect 19 (v0=101464), euler #=-7 (140070,419973,279896) : difference with theory (-8) = -1 
+
+CORRECTING DEFECT 20 (vertices=35, convex hull=66, v0=103971)
+After retessellation of defect 20 (v0=103971), euler #=-6 (140092,420063,279965) : difference with theory (-7) = -1 
+
+CORRECTING DEFECT 21 (vertices=7, convex hull=22, v0=106363)
+After retessellation of defect 21 (v0=106363), euler #=-5 (140093,420071,279973) : difference with theory (-6) = -1 
+
+CORRECTING DEFECT 22 (vertices=108, convex hull=95, v0=109585)
+After retessellation of defect 22 (v0=109585), euler #=-4 (140135,420235,280096) : difference with theory (-5) = -1 
+
+CORRECTING DEFECT 23 (vertices=7, convex hull=21, v0=110481)
+After retessellation of defect 23 (v0=110481), euler #=-3 (140137,420247,280107) : difference with theory (-4) = -1 
+
+CORRECTING DEFECT 24 (vertices=157, convex hull=78, v0=112355)
+After retessellation of defect 24 (v0=112355), euler #=-2 (140181,420416,280233) : difference with theory (-3) = -1 
+
+CORRECTING DEFECT 25 (vertices=97, convex hull=105, v0=113281)
+After retessellation of defect 25 (v0=113281), euler #=-1 (140225,420598,280372) : difference with theory (-2) = -1 
+
+CORRECTING DEFECT 26 (vertices=35, convex hull=39, v0=118968)
+After retessellation of defect 26 (v0=118968), euler #=-1 (140234,420642,280407) : difference with theory (-1) = 0 
+
+CORRECTING DEFECT 27 (vertices=129, convex hull=33, v0=119884)
+After retessellation of defect 27 (v0=119884), euler #=0 (140242,420677,280435) : difference with theory (0) = 0 
+
+CORRECTING DEFECT 28 (vertices=29, convex hull=86, v0=127033)
+After retessellation of defect 28 (v0=127033), euler #=1 (140252,420741,280490) : difference with theory (1) = 0 
+
+CORRECTING DEFECT 29 (vertices=12, convex hull=27, v0=141296)
+After retessellation of defect 29 (v0=141296), euler #=2 (140255,420759,280506) : difference with theory (2) = 0 
+computing original vertex metric properties...
+storing new metric properties...
+computing tessellation statistics...
+vertex spacing 0.88 +- 0.22 (0.06-->16.24) (max @ vno 89001 --> 101321)
+face area 0.00 +- 0.00 (0.00-->0.00)
+performing soap bubble on retessellated vertices for 0 iterations...
+vertex spacing 0.88 +- 0.22 (0.06-->16.24) (max @ vno 89001 --> 101321)
+face area 0.00 +- 0.00 (0.00-->0.00)
+tessellation finished, orienting corrected surface...
+129 mutations (37.0%), 220 crossovers (63.0%), 83 vertices were eliminated
+building final representation...
+2171 vertices and 0 faces have been removed from triangulation
+after topology correction, eno=2 (nv=140255, nf=280506, ne=420759, g=0)
+writing corrected surface to /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/surf/rh.orig...
+
+0.000 % of the vertices (0 vertices) exhibit an orientation change
+topology fixing took 14.6 minutes
+0 defective edges
+removing intersecting faces
+000: 256 intersecting
+mris_fix_topology utimesec    876.345078
+mris_fix_topology stimesec    0.470939
+mris_fix_topology ru_maxrss   439452
+mris_fix_topology ru_ixrss    0
+mris_fix_topology ru_idrss    0
+mris_fix_topology ru_isrss    0
+mris_fix_topology ru_minflt   495914
+mris_fix_topology ru_majflt   0
+mris_fix_topology ru_nswap    0
+mris_fix_topology ru_inblock  0
+mris_fix_topology ru_oublock  0
+mris_fix_topology ru_msgsnd   0
+mris_fix_topology ru_msgrcv   0
+mris_fix_topology ru_nsignals 0
+mris_fix_topology ru_nvcsw    32
+mris_fix_topology ru_nivcsw   3099
+FSRUNTIME@ mris_fix_topology rh  0.2436 hours 1 threads
+
+ mris_euler_number ../surf/lh.orig 
+
+euler # = v-e+f = 2g-2: 140269 - 420801 + 280534 = 2 --> 0 holes
+      F =2V-4:          280534 = 280538-4 (0)
+      2E=3F:            841602 = 841602 (0)
+
+total defect index = 0
+
+ mris_euler_number ../surf/rh.orig 
+
+euler # = v-e+f = 2g-2: 140255 - 420759 + 280506 = 2 --> 0 holes
+      F =2V-4:          280506 = 280510-4 (0)
+      2E=3F:            841518 = 841518 (0)
+
+total defect index = 0
+/gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/scripts
+
+ mris_remove_intersection ../surf/lh.orig ../surf/lh.orig 
+
+intersection removal took 0.00 hours
+removing intersecting faces
+000: 35 intersecting
+writing corrected surface to ../surf/lh.orig
+
+ rm ../surf/lh.inflated 
+
+/gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/scripts
+
+ mris_remove_intersection ../surf/rh.orig ../surf/rh.orig 
+
+intersection removal took 0.00 hours
+removing intersecting faces
+000: 63 intersecting
+001: 9 intersecting
+002: 2 intersecting
+writing corrected surface to ../surf/rh.orig
+
+ rm ../surf/rh.inflated 
+
+#--------------------------------------------
+#@# Make White Surf lh Sun Dec 30 15:51:18 PST 2018
+/gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/scripts
+
+ mris_make_surfaces -aseg ../mri/aseg.presurf -white white.preaparc -noaparc -whiteonly -mgz -T1 brain.finalsurfs sub-FP002 lh 
+
+using white.preaparc as white matter name...
+only generating white matter surface
+using aseg volume ../mri/aseg.presurf to prevent surfaces crossing the midline
+not using aparc to prevent surfaces crossing the midline
+INFO: assuming MGZ format for volumes.
+using brain.finalsurfs as T1 volume...
+$Id: mris_make_surfaces.c,v 1.164.2.4 2016/12/13 22:26:32 zkaufman Exp $
+$Id: mrisurf.c,v 1.781.2.6 2016/12/27 16:47:14 zkaufman Exp $
+reading volume /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/mri/filled.mgz...
+reading volume /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/mri/brain.finalsurfs.mgz...
+reading volume /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/mri/../mri/aseg.presurf.mgz...
+reading volume /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/mri/wm.mgz...
+23546 bright wm thresholded.
+1757 bright non-wm voxels segmented.
+reading original surface position from /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/surf/lh.orig...
+computing class statistics...
+border white:    256200 voxels (1.53%)
+border gray      294327 voxels (1.75%)
+WM (99.0): 99.3 +- 8.3 [70.0 --> 110.0]
+GM (73.0) : 73.0 +- 9.2 [30.0 --> 110.0]
+setting MIN_GRAY_AT_WHITE_BORDER to 59.8 (was 70)
+setting MAX_BORDER_WHITE to 112.3 (was 105)
+setting MIN_BORDER_WHITE to 69.0 (was 85)
+setting MAX_CSF to 50.6 (was 40)
+setting MAX_GRAY to 95.7 (was 95)
+setting MAX_GRAY_AT_CSF_BORDER to 59.8 (was 75)
+setting MIN_GRAY_AT_CSF_BORDER to 41.4 (was 40)
+repositioning cortical surface to gray/white boundary
+smoothing T1 volume with sigma = 2.000
+vertex spacing 0.82 +- 0.21 (0.02-->3.54) (max @ vno 111849 --> 140117)
+face area 0.28 +- 0.12 (0.00-->1.41)
+mean absolute distance = 0.65 +- 0.79
+4927 vertices more than 2 sigmas from mean.
+averaging target values for 5 iterations...
+using class modes intead of means, discounting robust sigmas....
+intensity peaks found at WM=104+-4.3,    GM=69+-7.0
+mean inside = 95.0, mean outside = 76.7
+smoothing surface for 5 iterations...
+inhibiting deformation at non-cortical midline structures...
+removing 3 vertex label from ripped group
+mean border=80.7, 17 (17) missing vertices, mean dist 0.3 [0.5 (%35.2)->0.7 (%64.8))]
+%75 local maxima, %21 large gradients and % 0 min vals, 0 gradients ignored
+tol=1.0e-04, sigma=2.0, host= n079, nav=4, nbrs=2, l_repulse=5.000, l_tspring=1.000, l_nspring=0.500, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+complete_dist_mat 0
+rms 0
+smooth_averages 0
+remove_neg 0
+ico_order 0
+which_surface 0
+target_radius 0.000000
+nfields 0
+scale 0.000000
+desired_rms_height 0.000000
+momentum 0.000000
+nbhd_size 0
+max_nbrs 0
+niterations 25
+nsurfaces 0
+SURFACES 3
+flags 0 (0)
+use curv 0
+no sulc 0
+no rigid align 0
+mris->nsize 2
+mris->hemisphere 0
+randomSeed 0
+
+smoothing T1 volume with sigma = 1.000
+vertex spacing 0.92 +- 0.24 (0.13-->5.00) (max @ vno 140117 --> 140115)
+face area 0.28 +- 0.12 (0.00-->1.65)
+mean absolute distance = 0.32 +- 0.47
+3360 vertices more than 2 sigmas from mean.
+averaging target values for 5 iterations...
+000: dt: 0.0000, sse=3229388.8, rms=9.939
+001: dt: 0.5000, sse=1855895.9, rms=6.958 (29.993%)
+002: dt: 0.5000, sse=1269341.2, rms=5.182 (25.526%)
+003: dt: 0.5000, sse=1001812.1, rms=4.119 (20.509%)
+004: dt: 0.5000, sse=873426.8, rms=3.492 (15.214%)
+005: dt: 0.5000, sse=827903.2, rms=3.236 (7.351%)
+006: dt: 0.5000, sse=802670.4, rms=3.083 (4.735%)
+rms = 3.06, time step reduction 1 of 3 to 0.250...
+007: dt: 0.5000, sse=800310.5, rms=3.063 (0.627%)
+008: dt: 0.2500, sse=651469.4, rms=1.842 (39.882%)
+009: dt: 0.2500, sse=626203.3, rms=1.556 (15.496%)
+010: dt: 0.2500, sse=620862.9, rms=1.483 (4.687%)
+rms = 1.44, time step reduction 2 of 3 to 0.125...
+011: dt: 0.2500, sse=617945.6, rms=1.441 (2.816%)
+rms = 1.41, time step reduction 3 of 3 to 0.062...
+012: dt: 0.1250, sse=615549.1, rms=1.407 (2.411%)
+positioning took 0.9 minutes
+inhibiting deformation at non-cortical midline structures...
+removing 2 vertex label from ripped group
+removing 3 vertex label from ripped group
+removing 3 vertex label from ripped group
+removing 1 vertex label from ripped group
+removing 4 vertex label from ripped group
+mean border=84.2, 31 (2) missing vertices, mean dist -0.2 [0.3 (%78.7)->0.2 (%21.3))]
+%85 local maxima, %11 large gradients and % 0 min vals, 0 gradients ignored
+tol=1.0e-04, sigma=1.0, host= n079, nav=2, nbrs=2, l_repulse=5.000, l_tspring=1.000, l_nspring=0.500, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+smoothing T1 volume with sigma = 0.500
+vertex spacing 0.90 +- 0.24 (0.08-->5.42) (max @ vno 140117 --> 140115)
+face area 0.35 +- 0.15 (0.00-->2.51)
+mean absolute distance = 0.22 +- 0.31
+3628 vertices more than 2 sigmas from mean.
+averaging target values for 5 iterations...
+000: dt: 0.0000, sse=1353728.9, rms=4.896
+013: dt: 0.5000, sse=947735.2, rms=2.991 (38.903%)
+014: dt: 0.5000, sse=928819.2, rms=2.890 (3.380%)
+015: dt: 0.5000, sse=916498.9, rms=2.836 (1.881%)
+rms = 3.05, time step reduction 1 of 3 to 0.250...
+016: dt: 0.2500, sse=799899.2, rms=1.871 (34.024%)
+017: dt: 0.2500, sse=759733.6, rms=1.396 (25.409%)
+018: dt: 0.2500, sse=749809.7, rms=1.251 (10.361%)
+rms = 1.22, time step reduction 2 of 3 to 0.125...
+019: dt: 0.2500, sse=747749.6, rms=1.217 (2.678%)
+rms = 1.18, time step reduction 3 of 3 to 0.062...
+020: dt: 0.1250, sse=745168.6, rms=1.176 (3.376%)
+positioning took 0.6 minutes
+inhibiting deformation at non-cortical midline structures...
+removing 3 vertex label from ripped group
+removing 3 vertex label from ripped group
+removing 3 vertex label from ripped group
+removing 4 vertex label from ripped group
+removing 1 vertex label from ripped group
+removing 2 vertex label from ripped group
+removing 4 vertex label from ripped group
+mean border=86.7, 28 (2) missing vertices, mean dist -0.1 [0.2 (%76.0)->0.2 (%24.0))]
+%91 local maxima, % 5 large gradients and % 0 min vals, 0 gradients ignored
+tol=1.0e-04, sigma=0.5, host= n079, nav=1, nbrs=2, l_repulse=5.000, l_tspring=1.000, l_nspring=0.500, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+smoothing T1 volume with sigma = 0.250
+vertex spacing 0.89 +- 0.24 (0.08-->5.45) (max @ vno 140117 --> 140115)
+face area 0.34 +- 0.15 (0.00-->2.75)
+mean absolute distance = 0.18 +- 0.27
+3337 vertices more than 2 sigmas from mean.
+averaging target values for 5 iterations...
+000: dt: 0.0000, sse=946992.0, rms=3.143
+021: dt: 0.5000, sse=851938.4, rms=2.456 (21.879%)
+rms = 2.73, time step reduction 1 of 3 to 0.250...
+022: dt: 0.2500, sse=753596.8, rms=1.602 (34.780%)
+023: dt: 0.2500, sse=724195.1, rms=1.192 (25.596%)
+024: dt: 0.2500, sse=714883.4, rms=1.086 (8.870%)
+rms = 1.09, time step reduction 2 of 3 to 0.125...
+rms = 1.07, time step reduction 3 of 3 to 0.062...
+025: dt: 0.1250, sse=713671.0, rms=1.067 (1.697%)
+positioning took 0.4 minutes
+inhibiting deformation at non-cortical midline structures...
+removing 3 vertex label from ripped group
+removing 3 vertex label from ripped group
+removing 2 vertex label from ripped group
+removing 3 vertex label from ripped group
+removing 3 vertex label from ripped group
+removing 1 vertex label from ripped group
+removing 4 vertex label from ripped group
+removing 3 vertex label from ripped group
+removing 4 vertex label from ripped group
+removing 3 vertex label from ripped group
+mean border=87.5, 38 (2) missing vertices, mean dist -0.0 [0.2 (%57.5)->0.2 (%42.5))]
+%92 local maxima, % 3 large gradients and % 0 min vals, 0 gradients ignored
+tol=1.0e-04, sigma=0.2, host= n079, nav=0, nbrs=2, l_repulse=5.000, l_tspring=1.000, l_nspring=0.500, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+writing white matter surface to /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/surf/lh.white.preaparc...
+writing smoothed curvature to lh.curv
+000: dt: 0.0000, sse=724838.9, rms=1.394
+rms = 1.54, time step reduction 1 of 3 to 0.250...
+026: dt: 0.2500, sse=698520.6, rms=0.974 (30.083%)
+027: dt: 0.2500, sse=689817.1, rms=0.775 (20.413%)
+rms = 0.79, time step reduction 2 of 3 to 0.125...
+rms = 0.77, time step reduction 3 of 3 to 0.062...
+028: dt: 0.1250, sse=689260.3, rms=0.773 (0.267%)
+positioning took 0.3 minutes
+generating cortex label...
+10 non-cortical segments detected
+only using segment with 7054 vertices
+erasing segment 1 (vno[0] = 92235)
+erasing segment 2 (vno[0] = 92953)
+erasing segment 3 (vno[0] = 100212)
+erasing segment 4 (vno[0] = 100214)
+erasing segment 5 (vno[0] = 101180)
+erasing segment 6 (vno[0] = 103118)
+erasing segment 7 (vno[0] = 107068)
+erasing segment 8 (vno[0] = 119308)
+erasing segment 9 (vno[0] = 140137)
+writing cortex label to /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/label/lh.cortex.label...
+writing curvature file /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/surf/lh.curv
+writing smoothed area to lh.area
+writing curvature file /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/surf/lh.area
+vertex spacing 0.89 +- 0.24 (0.03-->5.51) (max @ vno 140115 --> 140117)
+face area 0.33 +- 0.15 (0.00-->2.79)
+refinement took 3.5 minutes
+#--------------------------------------------
+#@# Make White Surf rh Sun Dec 30 15:54:47 PST 2018
+/gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/scripts
+
+ mris_make_surfaces -aseg ../mri/aseg.presurf -white white.preaparc -noaparc -whiteonly -mgz -T1 brain.finalsurfs sub-FP002 rh 
+
+using white.preaparc as white matter name...
+only generating white matter surface
+using aseg volume ../mri/aseg.presurf to prevent surfaces crossing the midline
+not using aparc to prevent surfaces crossing the midline
+INFO: assuming MGZ format for volumes.
+using brain.finalsurfs as T1 volume...
+$Id: mris_make_surfaces.c,v 1.164.2.4 2016/12/13 22:26:32 zkaufman Exp $
+$Id: mrisurf.c,v 1.781.2.6 2016/12/27 16:47:14 zkaufman Exp $
+reading volume /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/mri/filled.mgz...
+reading volume /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/mri/brain.finalsurfs.mgz...
+reading volume /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/mri/../mri/aseg.presurf.mgz...
+reading volume /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/mri/wm.mgz...
+23546 bright wm thresholded.
+1757 bright non-wm voxels segmented.
+reading original surface position from /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/surf/rh.orig...
+computing class statistics...
+border white:    256200 voxels (1.53%)
+border gray      294327 voxels (1.75%)
+WM (99.0): 99.3 +- 8.3 [70.0 --> 110.0]
+GM (73.0) : 73.0 +- 9.2 [30.0 --> 110.0]
+setting MIN_GRAY_AT_WHITE_BORDER to 59.8 (was 70)
+setting MAX_BORDER_WHITE to 112.3 (was 105)
+setting MIN_BORDER_WHITE to 69.0 (was 85)
+setting MAX_CSF to 50.6 (was 40)
+setting MAX_GRAY to 95.7 (was 95)
+setting MAX_GRAY_AT_CSF_BORDER to 59.8 (was 75)
+setting MIN_GRAY_AT_CSF_BORDER to 41.4 (was 40)
+repositioning cortical surface to gray/white boundary
+smoothing T1 volume with sigma = 2.000
+vertex spacing 0.82 +- 0.21 (0.01-->4.50) (max @ vno 52594 --> 58068)
+face area 0.28 +- 0.12 (0.00-->4.07)
+mean absolute distance = 0.63 +- 0.77
+4242 vertices more than 2 sigmas from mean.
+averaging target values for 5 iterations...
+using class modes intead of means, discounting robust sigmas....
+intensity peaks found at WM=104+-4.3,    GM=69+-7.0
+mean inside = 94.9, mean outside = 76.5
+smoothing surface for 5 iterations...
+inhibiting deformation at non-cortical midline structures...
+mean border=81.0, 123 (123) missing vertices, mean dist 0.3 [0.5 (%37.2)->0.7 (%62.8))]
+%77 local maxima, %19 large gradients and % 0 min vals, 0 gradients ignored
+tol=1.0e-04, sigma=2.0, host= n079, nav=4, nbrs=2, l_repulse=5.000, l_tspring=1.000, l_nspring=0.500, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+complete_dist_mat 0
+rms 0
+smooth_averages 0
+remove_neg 0
+ico_order 0
+which_surface 0
+target_radius 0.000000
+nfields 0
+scale 0.000000
+desired_rms_height 0.000000
+momentum 0.000000
+nbhd_size 0
+max_nbrs 0
+niterations 25
+nsurfaces 0
+SURFACES 3
+flags 0 (0)
+use curv 0
+no sulc 0
+no rigid align 0
+mris->nsize 2
+mris->hemisphere 1
+randomSeed 0
+
+smoothing T1 volume with sigma = 1.000
+vertex spacing 0.91 +- 0.24 (0.09-->5.51) (max @ vno 53928 --> 139767)
+face area 0.28 +- 0.13 (0.00-->3.78)
+mean absolute distance = 0.31 +- 0.47
+2888 vertices more than 2 sigmas from mean.
+averaging target values for 5 iterations...
+000: dt: 0.0000, sse=3157245.8, rms=9.796
+001: dt: 0.5000, sse=1811824.5, rms=6.835 (30.223%)
+002: dt: 0.5000, sse=1254112.5, rms=5.123 (25.049%)
+003: dt: 0.5000, sse=1006605.8, rms=4.128 (19.422%)
+004: dt: 0.5000, sse=887440.8, rms=3.557 (13.833%)
+005: dt: 0.5000, sse=844773.1, rms=3.317 (6.756%)
+006: dt: 0.5000, sse=818680.9, rms=3.170 (4.433%)
+rms = 3.14, time step reduction 1 of 3 to 0.250...
+007: dt: 0.5000, sse=814437.3, rms=3.140 (0.929%)
+008: dt: 0.2500, sse=660385.9, rms=1.922 (38.788%)
+009: dt: 0.2500, sse=634078.6, rms=1.635 (14.928%)
+010: dt: 0.2500, sse=627741.6, rms=1.558 (4.715%)
+rms = 1.51, time step reduction 2 of 3 to 0.125...
+011: dt: 0.2500, sse=624830.3, rms=1.513 (2.893%)
+rms = 1.47, time step reduction 3 of 3 to 0.062...
+012: dt: 0.1250, sse=621160.4, rms=1.473 (2.630%)
+positioning took 0.9 minutes
+inhibiting deformation at non-cortical midline structures...
+removing 4 vertex label from ripped group
+removing 2 vertex label from ripped group
+mean border=84.2, 125 (60) missing vertices, mean dist -0.2 [0.3 (%76.7)->0.2 (%23.3))]
+%85 local maxima, %10 large gradients and % 0 min vals, 0 gradients ignored
+tol=1.0e-04, sigma=1.0, host= n079, nav=2, nbrs=2, l_repulse=5.000, l_tspring=1.000, l_nspring=0.500, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+smoothing T1 volume with sigma = 0.500
+vertex spacing 0.90 +- 0.24 (0.08-->5.94) (max @ vno 53928 --> 139767)
+face area 0.35 +- 0.16 (0.00-->4.96)
+mean absolute distance = 0.22 +- 0.32
+3207 vertices more than 2 sigmas from mean.
+averaging target values for 5 iterations...
+000: dt: 0.0000, sse=1295306.1, rms=4.680
+013: dt: 0.5000, sse=933363.7, rms=2.888 (38.295%)
+rms = 2.88, time step reduction 1 of 3 to 0.250...
+014: dt: 0.5000, sse=925714.8, rms=2.882 (0.204%)
+015: dt: 0.2500, sse=777347.9, rms=1.645 (42.926%)
+016: dt: 0.2500, sse=758049.6, rms=1.409 (14.370%)
+017: dt: 0.2500, sse=753171.4, rms=1.334 (5.266%)
+rms = 1.29, time step reduction 2 of 3 to 0.125...
+018: dt: 0.2500, sse=749546.8, rms=1.287 (3.531%)
+rms = 1.25, time step reduction 3 of 3 to 0.062...
+019: dt: 0.1250, sse=747125.2, rms=1.249 (2.957%)
+positioning took 0.5 minutes
+inhibiting deformation at non-cortical midline structures...
+removing 4 vertex label from ripped group
+removing 4 vertex label from ripped group
+removing 2 vertex label from ripped group
+mean border=86.6, 117 (47) missing vertices, mean dist -0.1 [0.2 (%75.0)->0.2 (%25.0))]
+%91 local maxima, % 5 large gradients and % 0 min vals, 0 gradients ignored
+tol=1.0e-04, sigma=0.5, host= n079, nav=1, nbrs=2, l_repulse=5.000, l_tspring=1.000, l_nspring=0.500, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+smoothing T1 volume with sigma = 0.250
+vertex spacing 0.89 +- 0.24 (0.09-->6.07) (max @ vno 53928 --> 139767)
+face area 0.34 +- 0.15 (0.00-->4.91)
+mean absolute distance = 0.18 +- 0.27
+3356 vertices more than 2 sigmas from mean.
+averaging target values for 5 iterations...
+000: dt: 0.0000, sse=952343.1, rms=3.164
+020: dt: 0.5000, sse=867877.3, rms=2.562 (19.037%)
+rms = 2.79, time step reduction 1 of 3 to 0.250...
+021: dt: 0.2500, sse=764909.2, rms=1.706 (33.384%)
+022: dt: 0.2500, sse=732872.1, rms=1.274 (25.357%)
+023: dt: 0.2500, sse=720482.7, rms=1.152 (9.581%)
+rms = 1.14, time step reduction 2 of 3 to 0.125...
+024: dt: 0.2500, sse=719522.8, rms=1.139 (1.069%)
+rms = 1.10, time step reduction 3 of 3 to 0.062...
+025: dt: 0.1250, sse=717204.2, rms=1.102 (3.283%)
+positioning took 0.5 minutes
+inhibiting deformation at non-cortical midline structures...
+removing 3 vertex label from ripped group
+removing 4 vertex label from ripped group
+removing 1 vertex label from ripped group
+mean border=87.4, 127 (40) missing vertices, mean dist -0.0 [0.2 (%58.1)->0.2 (%41.9))]
+%92 local maxima, % 3 large gradients and % 0 min vals, 0 gradients ignored
+tol=1.0e-04, sigma=0.2, host= n079, nav=0, nbrs=2, l_repulse=5.000, l_tspring=1.000, l_nspring=0.500, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+writing white matter surface to /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/surf/rh.white.preaparc...
+writing smoothed curvature to rh.curv
+000: dt: 0.0000, sse=727787.8, rms=1.413
+rms = 1.51, time step reduction 1 of 3 to 0.250...
+026: dt: 0.2500, sse=702906.4, rms=1.010 (28.515%)
+027: dt: 0.2500, sse=694368.4, rms=0.824 (18.428%)
+rms = 0.84, time step reduction 2 of 3 to 0.125...
+rms = 0.82, time step reduction 3 of 3 to 0.062...
+028: dt: 0.1250, sse=692523.8, rms=0.823 (0.120%)
+positioning took 0.3 minutes
+generating cortex label...
+11 non-cortical segments detected
+only using segment with 6906 vertices
+erasing segment 1 (vno[0] = 50167)
+erasing segment 2 (vno[0] = 60265)
+erasing segment 3 (vno[0] = 62862)
+erasing segment 4 (vno[0] = 92133)
+erasing segment 5 (vno[0] = 95482)
+erasing segment 6 (vno[0] = 97317)
+erasing segment 7 (vno[0] = 97604)
+erasing segment 8 (vno[0] = 98892)
+erasing segment 9 (vno[0] = 103169)
+erasing segment 10 (vno[0] = 106869)
+writing cortex label to /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/label/rh.cortex.label...
+writing curvature file /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/surf/rh.curv
+writing smoothed area to rh.area
+writing curvature file /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/surf/rh.area
+vertex spacing 0.89 +- 0.24 (0.03-->6.12) (max @ vno 53928 --> 139767)
+face area 0.33 +- 0.15 (0.00-->4.86)
+refinement took 3.4 minutes
+#--------------------------------------------
+#@# Smooth2 lh Sun Dec 30 15:58:10 PST 2018
+/gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/scripts
+
+ mris_smooth -n 3 -nw -seed 1234 ../surf/lh.white.preaparc ../surf/lh.smoothwm 
+
+smoothing for 3 iterations
+setting seed for random number generator to 1234
+smoothing surface tessellation for 3 iterations...
+smoothing complete - recomputing first and second fundamental forms...
+#--------------------------------------------
+#@# Smooth2 rh Sun Dec 30 15:58:14 PST 2018
+/gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/scripts
+
+ mris_smooth -n 3 -nw -seed 1234 ../surf/rh.white.preaparc ../surf/rh.smoothwm 
+
+smoothing for 3 iterations
+setting seed for random number generator to 1234
+smoothing surface tessellation for 3 iterations...
+smoothing complete - recomputing first and second fundamental forms...
+#--------------------------------------------
+#@# Inflation2 lh Sun Dec 30 15:58:18 PST 2018
+/gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/scripts
+
+ mris_inflate -rusage /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/touch/rusage.mris_inflate.lh.dat ../surf/lh.smoothwm ../surf/lh.inflated 
+
+Reading ../surf/lh.smoothwm
+avg radius = 45.2 mm, total surface area = 84459 mm^2
+writing inflated surface to ../surf/lh.inflated
+writing sulcal depths to ../surf/lh.sulc
+step 000: RMS=0.178 (target=0.015)   step 005: RMS=0.123 (target=0.015)   step 010: RMS=0.089 (target=0.015)   step 015: RMS=0.074 (target=0.015)   step 020: RMS=0.061 (target=0.015)   step 025: RMS=0.051 (target=0.015)   step 030: RMS=0.042 (target=0.015)   step 035: RMS=0.035 (target=0.015)   step 040: RMS=0.031 (target=0.015)   step 045: RMS=0.027 (target=0.015)   step 050: RMS=0.024 (target=0.015)   step 055: RMS=0.022 (target=0.015)   step 060: RMS=0.020 (target=0.015)   
+inflation complete.
+inflation took 0.4 minutes
+mris_inflate utimesec    26.163049
+mris_inflate stimesec    0.125980
+mris_inflate ru_maxrss   179888
+mris_inflate ru_ixrss    0
+mris_inflate ru_idrss    0
+mris_inflate ru_isrss    0
+mris_inflate ru_minflt   111077
+mris_inflate ru_majflt   0
+mris_inflate ru_nswap    0
+mris_inflate ru_inblock  0
+mris_inflate ru_oublock  0
+mris_inflate ru_msgsnd   0
+mris_inflate ru_msgrcv   0
+mris_inflate ru_nsignals 0
+mris_inflate ru_nvcsw    19
+mris_inflate ru_nivcsw   88
+#--------------------------------------------
+#@# Inflation2 rh Sun Dec 30 15:58:44 PST 2018
+/gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/scripts
+
+ mris_inflate -rusage /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/touch/rusage.mris_inflate.rh.dat ../surf/rh.smoothwm ../surf/rh.inflated 
+
+Reading ../surf/rh.smoothwm
+avg radius = 44.9 mm, total surface area = 84408 mm^2
+writing inflated surface to ../surf/rh.inflated
+writing sulcal depths to ../surf/rh.sulc
+step 000: RMS=0.179 (target=0.015)   step 005: RMS=0.124 (target=0.015)   step 010: RMS=0.091 (target=0.015)   step 015: RMS=0.076 (target=0.015)   step 020: RMS=0.062 (target=0.015)   step 025: RMS=0.052 (target=0.015)   step 030: RMS=0.044 (target=0.015)   step 035: RMS=0.037 (target=0.015)   step 040: RMS=0.032 (target=0.015)   step 045: RMS=0.028 (target=0.015)   step 050: RMS=0.025 (target=0.015)   step 055: RMS=0.024 (target=0.015)   step 060: RMS=0.022 (target=0.015)   
+inflation complete.
+inflation took 0.4 minutes
+mris_inflate utimesec    26.232074
+mris_inflate stimesec    0.116995
+mris_inflate ru_maxrss   180004
+mris_inflate ru_ixrss    0
+mris_inflate ru_idrss    0
+mris_inflate ru_isrss    0
+mris_inflate ru_minflt   111223
+mris_inflate ru_majflt   0
+mris_inflate ru_nswap    0
+mris_inflate ru_inblock  0
+mris_inflate ru_oublock  0
+mris_inflate ru_msgsnd   0
+mris_inflate ru_msgrcv   0
+mris_inflate ru_nsignals 0
+mris_inflate ru_nvcsw    19
+mris_inflate ru_nivcsw   72
+#--------------------------------------------
+#@# Curv .H and .K lh Sun Dec 30 15:59:11 PST 2018
+/gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/surf
+
+ mris_curvature -w lh.white.preaparc 
+
+total integrated curvature = -2.766*4pi (-34.760) --> 4 handles
+ICI = 145.5, FI = 1921.3, variation=29006.851
+writing Gaussian curvature to ./lh.white.preaparc.K...done.
+writing mean curvature to ./lh.white.preaparc.H...done.
+rm -f lh.white.H
+ln -s lh.white.preaparc.H lh.white.H
+rm -f lh.white.K
+ln -s lh.white.preaparc.K lh.white.K
+
+ mris_curvature -thresh .999 -n -a 5 -w -distances 10 10 lh.inflated 
+
+normalizing curvature values.
+averaging curvature patterns 5 times.
+sampling 10 neighbors out to a distance of 10 mm
+213 vertices thresholded to be in k1 ~ [-0.19 0.46], k2 ~ [-0.08 0.06]
+total integrated curvature = 0.630*4pi (7.920) --> 0 handles
+ICI = 1.5, FI = 9.5, variation=162.597
+106 vertices thresholded to be in [-0.01 0.01]
+writing Gaussian curvature to ./lh.inflated.K...thresholding curvature at 99.90% level
+curvature mean = 0.000, std = 0.001
+137 vertices thresholded to be in [-0.11 0.19]
+done.
+writing mean curvature to ./lh.inflated.H...curvature mean = -0.016, std = 0.023
+done.
+#--------------------------------------------
+#@# Curv .H and .K rh Sun Dec 30 16:00:07 PST 2018
+/gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/surf
+
+ mris_curvature -w rh.white.preaparc 
+
+total integrated curvature = 2.439*4pi (30.651) --> -1 handles
+ICI = 155.2, FI = 1892.2, variation=28874.703
+writing Gaussian curvature to ./rh.white.preaparc.K...done.
+writing mean curvature to ./rh.white.preaparc.H...done.
+rm -f rh.white.H
+ln -s rh.white.preaparc.H rh.white.H
+rm -f rh.white.K
+ln -s rh.white.preaparc.K rh.white.K
+
+ mris_curvature -thresh .999 -n -a 5 -w -distances 10 10 rh.inflated 
+
+normalizing curvature values.
+averaging curvature patterns 5 times.
+sampling 10 neighbors out to a distance of 10 mm
+145 vertices thresholded to be in k1 ~ [-0.27 0.32], k2 ~ [-0.10 0.14]
+total integrated curvature = 0.540*4pi (6.780) --> 0 handles
+ICI = 1.5, FI = 9.1, variation=157.398
+109 vertices thresholded to be in [-0.01 0.01]
+writing Gaussian curvature to ./rh.inflated.K...thresholding curvature at 99.90% level
+curvature mean = 0.000, std = 0.001
+131 vertices thresholded to be in [-0.12 0.16]
+done.
+writing mean curvature to ./rh.inflated.H...curvature mean = -0.016, std = 0.022
+done.
+
+#-----------------------------------------
+#@# Curvature Stats lh Sun Dec 30 16:01:03 PST 2018
+/gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/surf
+
+ mris_curvature_stats -m --writeCurvatureFiles -G -o ../stats/lh.curv.stats -F smoothwm sub-FP002 lh curv sulc 
+
+             Toggling save flag on curvature files                       [ ok ]
+                 Outputting results using filestem   [ ../stats/lh.curv.stats ]
+             Toggling save flag on curvature files                       [ ok ]
+                                   Setting surface    [ sub-FP002/lh.smoothwm ]
+                                Reading surface...                       [ ok ]
+                                   Setting texture                     [ curv ]
+                                Reading texture...                       [ ok ]
+                                   Setting texture                     [ sulc ]
+                                Reading texture...Gb_filter = 0
+                       [ ok ]
+      Calculating Discrete Principal Curvatures...
+   Determining geometric order for vertex faces... [####################] [ ok ]
+                      Determining KH curvatures... [####################] [ ok ]
+                    Determining k1k2 curvatures... [####################] [ ok ]
+                                   deltaViolations                      [ 231 ]
+Gb_filter = 0
+
+WARN:    S lookup   min:                          -0.359278
+WARN:    S explicit min:                          0.000000	vertex = 558
+
+#-----------------------------------------
+#@# Curvature Stats rh Sun Dec 30 16:01:06 PST 2018
+/gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/surf
+
+ mris_curvature_stats -m --writeCurvatureFiles -G -o ../stats/rh.curv.stats -F smoothwm sub-FP002 rh curv sulc 
+
+             Toggling save flag on curvature files                       [ ok ]
+                 Outputting results using filestem   [ ../stats/rh.curv.stats ]
+             Toggling save flag on curvature files                       [ ok ]
+                                   Setting surface    [ sub-FP002/rh.smoothwm ]
+                                Reading surface...                       [ ok ]
+                                   Setting texture                     [ curv ]
+                                Reading texture...                       [ ok ]
+                                   Setting texture                     [ sulc ]
+                                Reading texture...Gb_filter = 0
+                       [ ok ]
+      Calculating Discrete Principal Curvatures...
+   Determining geometric order for vertex faces... [####################] [ ok ]
+                      Determining KH curvatures... [####################] [ ok ]
+                    Determining k1k2 curvatures... [####################] [ ok ]
+                                   deltaViolations                      [ 262 ]
+Gb_filter = 0
+
+WARN:    S lookup   min:                          -0.641650
+WARN:    S explicit min:                          0.000000	vertex = 81
+#--------------------------------------------
+#@# Sphere lh Sun Dec 30 16:01:09 PST 2018
+/gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/scripts
+
+ mris_sphere -rusage /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/touch/rusage.mris_sphere.lh.dat -seed 1234 ../surf/lh.inflated ../surf/lh.sphere 
+
+setting seed for random number genererator to 1234
+$Id: mris_sphere.c,v 1.61 2016/01/20 23:42:15 greve Exp $
+  $Id: mrisurf.c,v 1.781.2.6 2016/12/27 16:47:14 zkaufman Exp $
+reading original vertex positions...
+unfolding cortex into spherical form...
+surface projected - minimizing metric distortion...
+
+== Number of threads available to mris_sphere for OpenMP = 1 == 
+scaling brain by 0.292...
+MRISunfold() max_passes = 1 -------
+tol=5.0e-01, sigma=0.0, host= n079, nav=1024, nbrs=2, l_area=1.000, l_dist=1.000
+using quadratic fit line minimization
+complete_dist_mat 0
+rms 0
+smooth_averages 0
+remove_neg 0
+ico_order 0
+which_surface 0
+target_radius 0.000000
+nfields 0
+scale 1.000000
+desired_rms_height -1.000000
+momentum 0.900000
+nbhd_size 7
+max_nbrs 8
+niterations 25
+nsurfaces 0
+SURFACES 3
+flags 0 (0)
+use curv 0
+no sulc 0
+no rigid align 0
+mris->nsize 2
+mris->hemisphere 0
+randomSeed 1234
+
+--------------------
+  mrisRemoveNegativeArea()
+pass 1: epoch 1 of 3 starting distance error %18.91
+pass 1: epoch 2 of 3 starting distance error %18.92
+unfolding complete - removing small folds...
+starting distance error %18.87
+removing remaining folds...
+final distance error %18.88
+MRISunfold() return, current seed 1234
+-01: dt=0.0000, 85 negative triangles
+168: dt=0.9900, 85 negative triangles
+169: dt=0.9900, 29 negative triangles
+170: dt=0.9900, 22 negative triangles
+171: dt=0.9900, 14 negative triangles
+172: dt=0.9900, 14 negative triangles
+173: dt=0.9900, 14 negative triangles
+174: dt=0.9900, 16 negative triangles
+175: dt=0.9900, 8 negative triangles
+176: dt=0.9900, 6 negative triangles
+177: dt=0.9900, 5 negative triangles
+178: dt=0.9900, 3 negative triangles
+179: dt=0.9900, 2 negative triangles
+180: dt=0.9900, 1 negative triangles
+181: dt=0.9900, 3 negative triangles
+182: dt=0.9900, 1 negative triangles
+183: dt=0.9900, 1 negative triangles
+writing spherical brain to ../surf/lh.sphere
+spherical transformation took 0.53 hours
+mris_sphere utimesec    1916.975077
+mris_sphere stimesec    0.824896
+mris_sphere ru_maxrss   248712
+mris_sphere ru_ixrss    0
+mris_sphere ru_idrss    0
+mris_sphere ru_isrss    0
+mris_sphere ru_minflt   731203
+mris_sphere ru_majflt   0
+mris_sphere ru_nswap    0
+mris_sphere ru_inblock  0
+mris_sphere ru_oublock  0
+mris_sphere ru_msgsnd   0
+mris_sphere ru_msgrcv   0
+mris_sphere ru_nsignals 0
+mris_sphere ru_nvcsw    27
+mris_sphere ru_nivcsw   6584
+FSRUNTIME@ mris_sphere  0.5328 hours 1 threads
+#--------------------------------------------
+#@# Sphere rh Sun Dec 30 16:33:07 PST 2018
+/gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/scripts
+
+ mris_sphere -rusage /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/touch/rusage.mris_sphere.rh.dat -seed 1234 ../surf/rh.inflated ../surf/rh.sphere 
+
+setting seed for random number genererator to 1234
+$Id: mris_sphere.c,v 1.61 2016/01/20 23:42:15 greve Exp $
+  $Id: mrisurf.c,v 1.781.2.6 2016/12/27 16:47:14 zkaufman Exp $
+reading original vertex positions...
+unfolding cortex into spherical form...
+surface projected - minimizing metric distortion...
+
+== Number of threads available to mris_sphere for OpenMP = 1 == 
+scaling brain by 0.291...
+MRISunfold() max_passes = 1 -------
+tol=5.0e-01, sigma=0.0, host= n079, nav=1024, nbrs=2, l_area=1.000, l_dist=1.000
+using quadratic fit line minimization
+complete_dist_mat 0
+rms 0
+smooth_averages 0
+remove_neg 0
+ico_order 0
+which_surface 0
+target_radius 0.000000
+nfields 0
+scale 1.000000
+desired_rms_height -1.000000
+momentum 0.900000
+nbhd_size 7
+max_nbrs 8
+niterations 25
+nsurfaces 0
+SURFACES 3
+flags 0 (0)
+use curv 0
+no sulc 0
+no rigid align 0
+mris->nsize 2
+mris->hemisphere 1
+randomSeed 1234
+
+singular matrix in quadratic form
+--------------------
+  mrisRemoveNegativeArea()
+pass 1: epoch 1 of 3 starting distance error %19.69
+pass 1: epoch 2 of 3 starting distance error %19.67
+unfolding complete - removing small folds...
+starting distance error %19.64
+removing remaining folds...
+final distance error %19.66
+MRISunfold() return, current seed 1234
+-01: dt=0.0000, 103 negative triangles
+203: dt=0.9900, 103 negative triangles
+204: dt=0.9900, 54 negative triangles
+205: dt=0.9900, 49 negative triangles
+206: dt=0.9900, 49 negative triangles
+207: dt=0.9900, 43 negative triangles
+208: dt=0.9900, 45 negative triangles
+209: dt=0.9900, 46 negative triangles
+210: dt=0.9900, 46 negative triangles
+211: dt=0.9900, 34 negative triangles
+212: dt=0.9900, 44 negative triangles
+213: dt=0.9900, 35 negative triangles
+214: dt=0.9900, 42 negative triangles
+215: dt=0.9900, 40 negative triangles
+216: dt=0.9900, 39 negative triangles
+217: dt=0.9900, 30 negative triangles
+218: dt=0.9900, 30 negative triangles
+219: dt=0.9900, 27 negative triangles
+220: dt=0.9900, 28 negative triangles
+221: dt=0.9900, 26 negative triangles
+222: dt=0.9900, 24 negative triangles
+223: dt=0.9900, 22 negative triangles
+224: dt=0.9900, 27 negative triangles
+225: dt=0.9900, 22 negative triangles
+226: dt=0.9900, 21 negative triangles
+227: dt=0.9900, 16 negative triangles
+228: dt=0.9900, 17 negative triangles
+229: dt=0.9900, 13 negative triangles
+230: dt=0.9900, 14 negative triangles
+231: dt=0.9900, 11 negative triangles
+232: dt=0.9900, 9 negative triangles
+233: dt=0.9900, 11 negative triangles
+234: dt=0.9900, 6 negative triangles
+235: dt=0.9900, 8 negative triangles
+236: dt=0.9900, 5 negative triangles
+237: dt=0.9900, 1 negative triangles
+238: dt=0.9900, 5 negative triangles
+239: dt=0.9900, 3 negative triangles
+writing spherical brain to ../surf/rh.sphere
+spherical transformation took 0.53 hours
+mris_sphere utimesec    1898.562084
+mris_sphere stimesec    0.857891
+mris_sphere ru_maxrss   247696
+mris_sphere ru_ixrss    0
+mris_sphere ru_idrss    0
+mris_sphere ru_isrss    0
+mris_sphere ru_minflt   819653
+mris_sphere ru_majflt   0
+mris_sphere ru_nswap    0
+mris_sphere ru_inblock  0
+mris_sphere ru_oublock  0
+mris_sphere ru_msgsnd   0
+mris_sphere ru_msgrcv   0
+mris_sphere ru_nsignals 0
+mris_sphere ru_nvcsw    14
+mris_sphere ru_nivcsw   6219
+FSRUNTIME@ mris_sphere  0.5277 hours 1 threads
+#--------------------------------------------
+#@# Surf Reg lh Sun Dec 30 17:04:47 PST 2018
+/gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/scripts
+
+ mris_register -curv -rusage /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/touch/rusage.mris_register.lh.dat ../surf/lh.sphere /packages/freesurfer/6.0.0/freesurfer/average/lh.folding.atlas.acfb40.noaparc.i12.2016-08-02.tif ../surf/lh.sphere.reg 
+
+using smoothwm curvature for final alignment
+
+cwd /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/scripts
+cmdline mris_register -curv -rusage /gpfs/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP002/touch/rusage.mris_register.lh.dat ../surf/lh.sphere /packages/freesurfer/6.0.0/freesurfer/average/lh.folding.atlas.acfb40.noaparc.i12.2016-08-02.tif ../surf/lh.sphere.reg 
+
+0 inflated.H
+1 sulc
+2 smoothwm (computed)
+$Id: mris_register.c,v 1.63 2016/01/20 23:43:04 greve Exp $
+  $Id: mrisurf.c,v 1.781.2.6 2016/12/27 16:47:14 zkaufman Exp $
+reading surface from ../surf/lh.sphere...
+reading template parameterization from /packages/freesurfer/6.0.0/freesurfer/average/lh.folding.atlas.acfb40.noaparc.i12.2016-08-02.tif...
+MRISregister() -------
+max_passes = 4 
+min_degrees = 0.500000 
+max_degrees = 64.000000 
+nangles = 8 
+tol=5.0e-01, sigma=0.0, host= n079, nav=1024, nbrs=1, l_extern=10000.000, l_parea=0.200, l_nlarea=1.000, l_corr=1.000, l_dist=5.000
+using quadratic fit line minimization
+complete_dist_mat 0
+rms 0
+smooth_averages 0
+remove_neg 0
+ico_order 0
+which_surface 0
+target_radius 0.000000
+nfields 0
+scale 0.000000
+desired_rms_height -1.000000
+momentum 0.950000
+nbhd_size -10
+max_nbrs 10
+niterations 25
+nsurfaces 0
+SURFACES 3
+flags 16 (10)
+use curv 16
+no sulc 0
+no rigid align 0
+mris->nsize 1
+mris->hemisphere 0
+randomSeed 0
+
+tol=5.0e-01, sigma=0.0, host= n079, nav=1024, nbrs=1, l_extern=10000.000, l_parea=0.200, l_nlarea=1.000, l_corr=1.000, l_dist=5.000
+using quadratic fit line minimization
+--------------------
+1 Reading lh.sulc
+curvature mean = 0.000, std = 5.637
+curvature mean = 0.019, std = 0.816
+curvature mean = 0.020, std = 0.868
+Starting MRISrigidBodyAlignGlobal()
+  d=64.00 min @ (0.00, -16.00, 0.00) sse = 350829.1, tmin=0.6416
+  d=32.00 min @ (0.00, 8.00, 8.00) sse = 243031.6, tmin=1.2885
+  d=16.00 min @ (4.00, 0.00, -4.00) sse = 222359.5, tmin=1.9421
+  d=8.00 min @ (-2.00, 0.00, 0.00) sse = 218157.0, tmin=2.6020
+  d=4.00 min @ (1.00, 0.00, 1.00) sse = 216123.2, tmin=3.2641
+  d=2.00 min @ (-0.50, -0.50, 0.00) sse = 215392.3, tmin=3.9273
+  d=1.00 min @ (0.00, 0.25, -0.25) sse = 215220.0, tmin=4.5878
+  d=0.50 min @ (-0.12, 0.00, 0.12) sse = 215154.6, tmin=5.2515
