@@ -18,13 +18,13 @@ REPLACESID=001
 SPM_PATH=/projects/dsnlab/shared/SPM12
 
 # Set MATLAB script path
-SCRIPT=${STUDY}/fMRI/fx/models/svc/wave1/fx_betaseries.m
+SCRIPT=${STUDY}/fMRI/fx/models/svc/wave1/fx_event_noderiv.m
 
 # Set shell script to execute
 SHELL_SCRIPT=spm_job.sh
 
 # FP the results files
-RESULTS_INFIX=fx_betaseries
+RESULTS_INFIX=fx_event_noderiv
 
 # Set output dir and make it if it doesn't exist
 OUTPUTDIR=${STUDY}/fMRI/fx/models/svc/wave1/output

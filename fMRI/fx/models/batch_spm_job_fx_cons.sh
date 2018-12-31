@@ -24,13 +24,13 @@ SPM_PATH=/projects/dsnlab/shared/SPM12
 SCRIPTS_DIR=/projects/dsnlab/shared/${STUDY}/${STUDY}_scripts
 
 # Set MATLAB script path
-SCRIPT=${SCRIPTS_DIR}/fMRI/fx/models/svc/wave1/fx_event_cons.m
+SCRIPT=${SCRIPTS_DIR}/fMRI/fx/models/svc/wave1/fx_event_noderiv_cons.m
 
 # Set shell script to execute
 SHELL_SCRIPT=spm_job_residuals.sh
 
 # FP the results files
-RESULTS_INFIX=fx_event_cons
+RESULTS_INFIX=fx_event_noderiv_cons
 
 # Set output dir and make it if it doesn't exist
 OUTPUTDIR=${SCRIPTS_DIR}/fMRI/fx/models/svc/wave1/output
@@ -43,7 +43,7 @@ fi
 RUNS=(1 2)
 
 # model output directory
-MODEL_DIR=/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event
+MODEL_DIR=/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event_noderiv
 
 # Make text file with residual files for each run
 echo $(printf "Res_%04d.nii\n" {1..122}) > residuals_run1.txt
