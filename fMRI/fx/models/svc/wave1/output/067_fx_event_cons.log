@@ -39,7 +39,7 @@ Running job #1
 -------------------------------------------------------------------------------
 Merging residuals
 -------------------------------------------------------------------------------
-/cm/local/apps/slurm/var/spool/job2972134/slurm_script: line 40: cd: /projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP067: No such file or directory
+/cm/local/apps/slurm/var/spool/job2974259/slurm_script: line 40: cd: /projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event/sub-FP067: No such file or directory
 merging residuals for run1
 Cannot open volume Res_0001 for reading!
 rm: cannot remove ‘Res_0001.nii’: No such file or directory
