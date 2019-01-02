@@ -28,21 +28,14 @@ echo -e "\nThe Freesurfer output Directory is $freesurferdir"
 cd $SUBJECTS_DIR/$SUBID/mri
 
 #below will convert the aseg.mgz file first into T1 native space, then into a .nii.
-#mri_convert -rl $SUBJECTS_DIR/$SUBID/mri/rawavg.mgz -rt nearest $SUBJECTS_DIR/$SUBID/mri/aseg.mgz $SUBJECTS_DIR/$SUBID/mri/fromannots/"$SUBID"_aseg2raw.nii.gz
+mri_convert -rl $SUBJECTS_DIR/$SUBID/mri/rawavg.mgz -rt nearest $SUBJECTS_DIR/$SUBID/mri/aseg.mgz $SUBJECTS_DIR/$SUBID/mri/fromannots/"$SUBID"_aseg2raw.nii.gz
 
 pushd $templatedir/lists
 #edit the below with the numbers matching your ROIs from the FreeSurfer Color Lookup Table (ColorLUT)
 asegs=`cat aseg_labels.txt`
-echo 1 $asegs
-echo 2 ${asegs[@]}
 
-#cd /projects/dsnlab/shared/FP/bids_data/derivatives/mvpa/$SUBID/ses-wave1 && mkdir masks
-cd /projects/dsnlab/shared/FP/bids_data/derivatives/mvpa/$SUBID/ses-wave1/masks 
+cd $SUBJECTS_DIR/$SUBID/mri/fromannots/
 
 for aseg in $asegs; do
-	echo $SUBJECTS_DIR/$SUBID/mri/fromannots/${SUBID}_aseg2raw.nii.gz	
 	fslmaths $SUBJECTS_DIR/$SUBID/mri/fromannots/${SUBID}_aseg2raw.nii.gz -uthr "${aseg}" -thr "${aseg}" -bin segment"${aseg}"_freesurfer_rawavg.nii.gz  
 done
-
-
-
