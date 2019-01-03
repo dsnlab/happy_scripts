@@ -9,7 +9,7 @@
 STUDY=/projects/dsnlab/shared/FP/FP_scripts
 
 # Set subject list
-SUBJLIST=`cat subject_list_test.txt`
+SUBJLIST=`cat subject_list.txt`
 
 # Set shell script to execute
 SHELL_SCRIPT=job_aParcMasks.sh
