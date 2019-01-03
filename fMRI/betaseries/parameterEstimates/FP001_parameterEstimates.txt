@@ -1,0 +1,1080 @@
+FP001 beta_0001.nii pgACC
+FP001 beta_0002.nii pgACC
+FP001 beta_0003.nii pgACC
+FP001 beta_0004.nii pgACC
+FP001 beta_0005.nii pgACC
+FP001 beta_0006.nii pgACC
+FP001 beta_0007.nii pgACC
+FP001 beta_0008.nii pgACC
+FP001 beta_0009.nii pgACC
+FP001 beta_0010.nii pgACC
+FP001 beta_0011.nii pgACC
+FP001 beta_0012.nii pgACC
+FP001 beta_0013.nii pgACC
+FP001 beta_0014.nii pgACC
+FP001 beta_0015.nii pgACC
+FP001 beta_0016.nii pgACC
+FP001 beta_0017.nii pgACC
+FP001 beta_0018.nii pgACC
+FP001 beta_0019.nii pgACC
+FP001 beta_0020.nii pgACC
+FP001 beta_0021.nii pgACC
+FP001 beta_0022.nii pgACC
+FP001 beta_0023.nii pgACC
+FP001 beta_0024.nii pgACC
+FP001 beta_0025.nii pgACC
+FP001 beta_0026.nii pgACC
+FP001 beta_0027.nii pgACC
+FP001 beta_0028.nii pgACC
+FP001 beta_0029.nii pgACC
+FP001 beta_0030.nii pgACC
+FP001 beta_0031.nii pgACC
+FP001 beta_0032.nii pgACC
+FP001 beta_0033.nii pgACC
+FP001 beta_0034.nii pgACC
+FP001 beta_0035.nii pgACC
+FP001 beta_0036.nii pgACC
+FP001 beta_0043.nii pgACC
+FP001 beta_0044.nii pgACC
+FP001 beta_0045.nii pgACC
+FP001 beta_0046.nii pgACC
+FP001 beta_0047.nii pgACC
+FP001 beta_0048.nii pgACC
+FP001 beta_0049.nii pgACC
+FP001 beta_0050.nii pgACC
+FP001 beta_0051.nii pgACC
+FP001 beta_0052.nii pgACC
+FP001 beta_0053.nii pgACC
+FP001 beta_0054.nii pgACC
+FP001 beta_0055.nii pgACC
+FP001 beta_0056.nii pgACC
+FP001 beta_0057.nii pgACC
+FP001 beta_0058.nii pgACC
+FP001 beta_0059.nii pgACC
+FP001 beta_0060.nii pgACC
+FP001 beta_0061.nii pgACC
+FP001 beta_0062.nii pgACC
+FP001 beta_0063.nii pgACC
+FP001 beta_0064.nii pgACC
+FP001 beta_0065.nii pgACC
+FP001 beta_0066.nii pgACC
+FP001 beta_0067.nii pgACC
+FP001 beta_0068.nii pgACC
+FP001 beta_0069.nii pgACC
+FP001 beta_0070.nii pgACC
+FP001 beta_0071.nii pgACC
+FP001 beta_0072.nii pgACC
+FP001 beta_0073.nii pgACC
+FP001 beta_0074.nii pgACC
+FP001 beta_0075.nii pgACC
+FP001 beta_0076.nii pgACC
+FP001 beta_0077.nii pgACC
+FP001 beta_0078.nii pgACC
+FP001 beta_0001.nii vmPFC
+FP001 beta_0002.nii vmPFC
+FP001 beta_0003.nii vmPFC
+FP001 beta_0004.nii vmPFC
+FP001 beta_0005.nii vmPFC
+FP001 beta_0006.nii vmPFC
+FP001 beta_0007.nii vmPFC
+FP001 beta_0008.nii vmPFC
+FP001 beta_0009.nii vmPFC
+FP001 beta_0010.nii vmPFC
+FP001 beta_0011.nii vmPFC
+FP001 beta_0012.nii vmPFC
+FP001 beta_0013.nii vmPFC
+FP001 beta_0014.nii vmPFC
+FP001 beta_0015.nii vmPFC
+FP001 beta_0016.nii vmPFC
+FP001 beta_0017.nii vmPFC
+FP001 beta_0018.nii vmPFC
+FP001 beta_0019.nii vmPFC
+FP001 beta_0020.nii vmPFC
+FP001 beta_0021.nii vmPFC
+FP001 beta_0022.nii vmPFC
+FP001 beta_0023.nii vmPFC
+FP001 beta_0024.nii vmPFC
+FP001 beta_0025.nii vmPFC
+FP001 beta_0026.nii vmPFC
+FP001 beta_0027.nii vmPFC
+FP001 beta_0028.nii vmPFC
+FP001 beta_0029.nii vmPFC
+FP001 beta_0030.nii vmPFC
+FP001 beta_0031.nii vmPFC
+FP001 beta_0032.nii vmPFC
+FP001 beta_0033.nii vmPFC
+FP001 beta_0034.nii vmPFC
+FP001 beta_0035.nii vmPFC
+FP001 beta_0036.nii vmPFC
+FP001 beta_0043.nii vmPFC
+FP001 beta_0044.nii vmPFC
+FP001 beta_0045.nii vmPFC
+FP001 beta_0046.nii vmPFC
+FP001 beta_0047.nii vmPFC
+FP001 beta_0048.nii vmPFC
+FP001 beta_0049.nii vmPFC
+FP001 beta_0050.nii vmPFC
+FP001 beta_0051.nii vmPFC
+FP001 beta_0052.nii vmPFC
+FP001 beta_0053.nii vmPFC
+FP001 beta_0054.nii vmPFC
+FP001 beta_0055.nii vmPFC
+FP001 beta_0056.nii vmPFC
+FP001 beta_0057.nii vmPFC
+FP001 beta_0058.nii vmPFC
+FP001 beta_0059.nii vmPFC
+FP001 beta_0060.nii vmPFC
+FP001 beta_0061.nii vmPFC
+FP001 beta_0062.nii vmPFC
+FP001 beta_0063.nii vmPFC
+FP001 beta_0064.nii vmPFC
+FP001 beta_0065.nii vmPFC
+FP001 beta_0066.nii vmPFC
+FP001 beta_0067.nii vmPFC
+FP001 beta_0068.nii vmPFC
+FP001 beta_0069.nii vmPFC
+FP001 beta_0070.nii vmPFC
+FP001 beta_0071.nii vmPFC
+FP001 beta_0072.nii vmPFC
+FP001 beta_0073.nii vmPFC
+FP001 beta_0074.nii vmPFC
+FP001 beta_0075.nii vmPFC
+FP001 beta_0076.nii vmPFC
+FP001 beta_0077.nii vmPFC
+FP001 beta_0078.nii vmPFC
+FP001 beta_0001.nii VS
+FP001 beta_0002.nii VS
+FP001 beta_0003.nii VS
+FP001 beta_0004.nii VS
+FP001 beta_0005.nii VS
+FP001 beta_0006.nii VS
+FP001 beta_0007.nii VS
+FP001 beta_0008.nii VS
+FP001 beta_0009.nii VS
+FP001 beta_0010.nii VS
+FP001 beta_0011.nii VS
+FP001 beta_0012.nii VS
+FP001 beta_0013.nii VS
+FP001 beta_0014.nii VS
+FP001 beta_0015.nii VS
+FP001 beta_0016.nii VS
+FP001 beta_0017.nii VS
+FP001 beta_0018.nii VS
+FP001 beta_0019.nii VS
+FP001 beta_0020.nii VS
+FP001 beta_0021.nii VS
+FP001 beta_0022.nii VS
+FP001 beta_0023.nii VS
+FP001 beta_0024.nii VS
+FP001 beta_0025.nii VS
+FP001 beta_0026.nii VS
+FP001 beta_0027.nii VS
+FP001 beta_0028.nii VS
+FP001 beta_0029.nii VS
+FP001 beta_0030.nii VS
+FP001 beta_0031.nii VS
+FP001 beta_0032.nii VS
+FP001 beta_0033.nii VS
+FP001 beta_0034.nii VS
+FP001 beta_0035.nii VS
+FP001 beta_0036.nii VS
+FP001 beta_0043.nii VS
+FP001 beta_0044.nii VS
+FP001 beta_0045.nii VS
+FP001 beta_0046.nii VS
+FP001 beta_0047.nii VS
+FP001 beta_0048.nii VS
+FP001 beta_0049.nii VS
+FP001 beta_0050.nii VS
+FP001 beta_0051.nii VS
+FP001 beta_0052.nii VS
+FP001 beta_0053.nii VS
+FP001 beta_0054.nii VS
+FP001 beta_0055.nii VS
+FP001 beta_0056.nii VS
+FP001 beta_0057.nii VS
+FP001 beta_0058.nii VS
+FP001 beta_0059.nii VS
+FP001 beta_0060.nii VS
+FP001 beta_0061.nii VS
+FP001 beta_0062.nii VS
+FP001 beta_0063.nii VS
+FP001 beta_0064.nii VS
+FP001 beta_0065.nii VS
+FP001 beta_0066.nii VS
+FP001 beta_0067.nii VS
+FP001 beta_0068.nii VS
+FP001 beta_0069.nii VS
+FP001 beta_0070.nii VS
+FP001 beta_0071.nii VS
+FP001 beta_0072.nii VS
+FP001 beta_0073.nii VS
+FP001 beta_0074.nii VS
+FP001 beta_0075.nii VS
+FP001 beta_0076.nii VS
+FP001 beta_0077.nii VS
+FP001 beta_0078.nii VS
+FP001 beta_0001.nii NAcc
+FP001 beta_0002.nii NAcc
+FP001 beta_0003.nii NAcc
+FP001 beta_0004.nii NAcc
+FP001 beta_0005.nii NAcc
+FP001 beta_0006.nii NAcc
+FP001 beta_0007.nii NAcc
+FP001 beta_0008.nii NAcc
+FP001 beta_0009.nii NAcc
+FP001 beta_0010.nii NAcc
+FP001 beta_0011.nii NAcc
+FP001 beta_0012.nii NAcc
+FP001 beta_0013.nii NAcc
+FP001 beta_0014.nii NAcc
+FP001 beta_0015.nii NAcc
+FP001 beta_0016.nii NAcc
+FP001 beta_0017.nii NAcc
+FP001 beta_0018.nii NAcc
+FP001 beta_0019.nii NAcc
+FP001 beta_0020.nii NAcc
+FP001 beta_0021.nii NAcc
+FP001 beta_0022.nii NAcc
+FP001 beta_0023.nii NAcc
+FP001 beta_0024.nii NAcc
+FP001 beta_0025.nii NAcc
+FP001 beta_0026.nii NAcc
+FP001 beta_0027.nii NAcc
+FP001 beta_0028.nii NAcc
+FP001 beta_0029.nii NAcc
+FP001 beta_0030.nii NAcc
+FP001 beta_0031.nii NAcc
+FP001 beta_0032.nii NAcc
+FP001 beta_0033.nii NAcc
+FP001 beta_0034.nii NAcc
+FP001 beta_0035.nii NAcc
+FP001 beta_0036.nii NAcc
+FP001 beta_0043.nii NAcc
+FP001 beta_0044.nii NAcc
+FP001 beta_0045.nii NAcc
+FP001 beta_0046.nii NAcc
+FP001 beta_0047.nii NAcc
+FP001 beta_0048.nii NAcc
+FP001 beta_0049.nii NAcc
+FP001 beta_0050.nii NAcc
+FP001 beta_0051.nii NAcc
+FP001 beta_0052.nii NAcc
+FP001 beta_0053.nii NAcc
+FP001 beta_0054.nii NAcc
+FP001 beta_0055.nii NAcc
+FP001 beta_0056.nii NAcc
+FP001 beta_0057.nii NAcc
+FP001 beta_0058.nii NAcc
+FP001 beta_0059.nii NAcc
+FP001 beta_0060.nii NAcc
+FP001 beta_0061.nii NAcc
+FP001 beta_0062.nii NAcc
+FP001 beta_0063.nii NAcc
+FP001 beta_0064.nii NAcc
+FP001 beta_0065.nii NAcc
+FP001 beta_0066.nii NAcc
+FP001 beta_0067.nii NAcc
+FP001 beta_0068.nii NAcc
+FP001 beta_0069.nii NAcc
+FP001 beta_0070.nii NAcc
+FP001 beta_0071.nii NAcc
+FP001 beta_0072.nii NAcc
+FP001 beta_0073.nii NAcc
+FP001 beta_0074.nii NAcc
+FP001 beta_0075.nii NAcc
+FP001 beta_0076.nii NAcc
+FP001 beta_0077.nii NAcc
+FP001 beta_0078.nii NAcc
+FP001 beta_0001.nii putamen
+FP001 beta_0002.nii putamen
+FP001 beta_0003.nii putamen
+FP001 beta_0004.nii putamen
+FP001 beta_0005.nii putamen
+FP001 beta_0006.nii putamen
+FP001 beta_0007.nii putamen
+FP001 beta_0008.nii putamen
+FP001 beta_0009.nii putamen
+FP001 beta_0010.nii putamen
+FP001 beta_0011.nii putamen
+FP001 beta_0012.nii putamen
+FP001 beta_0013.nii putamen
+FP001 beta_0014.nii putamen
+FP001 beta_0015.nii putamen
+FP001 beta_0016.nii putamen
+FP001 beta_0017.nii putamen
+FP001 beta_0018.nii putamen
+FP001 beta_0019.nii putamen
+FP001 beta_0020.nii putamen
+FP001 beta_0021.nii putamen
+FP001 beta_0022.nii putamen
+FP001 beta_0023.nii putamen
+FP001 beta_0024.nii putamen
+FP001 beta_0025.nii putamen
+FP001 beta_0026.nii putamen
+FP001 beta_0027.nii putamen
+FP001 beta_0028.nii putamen
+FP001 beta_0029.nii putamen
+FP001 beta_0030.nii putamen
+FP001 beta_0031.nii putamen
+FP001 beta_0032.nii putamen
+FP001 beta_0033.nii putamen
+FP001 beta_0034.nii putamen
+FP001 beta_0035.nii putamen
+FP001 beta_0036.nii putamen
+FP001 beta_0043.nii putamen
+FP001 beta_0044.nii putamen
+FP001 beta_0045.nii putamen
+FP001 beta_0046.nii putamen
+FP001 beta_0047.nii putamen
+FP001 beta_0048.nii putamen
+FP001 beta_0049.nii putamen
+FP001 beta_0050.nii putamen
+FP001 beta_0051.nii putamen
+FP001 beta_0052.nii putamen
+FP001 beta_0053.nii putamen
+FP001 beta_0054.nii putamen
+FP001 beta_0055.nii putamen
+FP001 beta_0056.nii putamen
+FP001 beta_0057.nii putamen
+FP001 beta_0058.nii putamen
+FP001 beta_0059.nii putamen
+FP001 beta_0060.nii putamen
+FP001 beta_0061.nii putamen
+FP001 beta_0062.nii putamen
+FP001 beta_0063.nii putamen
+FP001 beta_0064.nii putamen
+FP001 beta_0065.nii putamen
+FP001 beta_0066.nii putamen
+FP001 beta_0067.nii putamen
+FP001 beta_0068.nii putamen
+FP001 beta_0069.nii putamen
+FP001 beta_0070.nii putamen
+FP001 beta_0071.nii putamen
+FP001 beta_0072.nii putamen
+FP001 beta_0073.nii putamen
+FP001 beta_0074.nii putamen
+FP001 beta_0075.nii putamen
+FP001 beta_0076.nii putamen
+FP001 beta_0077.nii putamen
+FP001 beta_0078.nii putamen
+FP001 beta_0001.nii pgACC
+FP001 beta_0002.nii pgACC
+FP001 beta_0003.nii pgACC
+FP001 beta_0004.nii pgACC
+FP001 beta_0005.nii pgACC
+FP001 beta_0006.nii pgACC
+FP001 beta_0007.nii pgACC
+FP001 beta_0008.nii pgACC
+FP001 beta_0009.nii pgACC
+FP001 beta_0010.nii pgACC
+FP001 beta_0011.nii pgACC
+FP001 beta_0012.nii pgACC
+FP001 beta_0013.nii pgACC
+FP001 beta_0014.nii pgACC
+FP001 beta_0015.nii pgACC
+FP001 beta_0016.nii pgACC
+FP001 beta_0017.nii pgACC
+FP001 beta_0018.nii pgACC
+FP001 beta_0019.nii pgACC
+FP001 beta_0020.nii pgACC
+FP001 beta_0021.nii pgACC
+FP001 beta_0022.nii pgACC
+FP001 beta_0023.nii pgACC
+FP001 beta_0024.nii pgACC
+FP001 beta_0025.nii pgACC
+FP001 beta_0026.nii pgACC
+FP001 beta_0027.nii pgACC
+FP001 beta_0028.nii pgACC
+FP001 beta_0029.nii pgACC
+FP001 beta_0030.nii pgACC
+FP001 beta_0031.nii pgACC
+FP001 beta_0032.nii pgACC
+FP001 beta_0033.nii pgACC
+FP001 beta_0034.nii pgACC
+FP001 beta_0035.nii pgACC
+FP001 beta_0036.nii pgACC
+FP001 beta_0043.nii pgACC
+FP001 beta_0044.nii pgACC
+FP001 beta_0045.nii pgACC
+FP001 beta_0046.nii pgACC
+FP001 beta_0047.nii pgACC
+FP001 beta_0048.nii pgACC
+FP001 beta_0049.nii pgACC
+FP001 beta_0050.nii pgACC
+FP001 beta_0051.nii pgACC
+FP001 beta_0052.nii pgACC
+FP001 beta_0053.nii pgACC
+FP001 beta_0054.nii pgACC
+FP001 beta_0055.nii pgACC
+FP001 beta_0056.nii pgACC
+FP001 beta_0057.nii pgACC
+FP001 beta_0058.nii pgACC
+FP001 beta_0059.nii pgACC
+FP001 beta_0060.nii pgACC
+FP001 beta_0061.nii pgACC
+FP001 beta_0062.nii pgACC
+FP001 beta_0063.nii pgACC
+FP001 beta_0064.nii pgACC
+FP001 beta_0065.nii pgACC
+FP001 beta_0066.nii pgACC
+FP001 beta_0067.nii pgACC
+FP001 beta_0068.nii pgACC
+FP001 beta_0069.nii pgACC
+FP001 beta_0070.nii pgACC
+FP001 beta_0071.nii pgACC
+FP001 beta_0072.nii pgACC
+FP001 beta_0073.nii pgACC
+FP001 beta_0074.nii pgACC
+FP001 beta_0075.nii pgACC
+FP001 beta_0076.nii pgACC
+FP001 beta_0077.nii pgACC
+FP001 beta_0078.nii pgACC
+FP001 beta_0001.nii vmPFC
+FP001 beta_0002.nii vmPFC
+FP001 beta_0003.nii vmPFC
+FP001 beta_0004.nii vmPFC
+FP001 beta_0005.nii vmPFC
+FP001 beta_0006.nii vmPFC
+FP001 beta_0007.nii vmPFC
+FP001 beta_0008.nii vmPFC
+FP001 beta_0009.nii vmPFC
+FP001 beta_0010.nii vmPFC
+FP001 beta_0011.nii vmPFC
+FP001 beta_0012.nii vmPFC
+FP001 beta_0013.nii vmPFC
+FP001 beta_0014.nii vmPFC
+FP001 beta_0015.nii vmPFC
+FP001 beta_0016.nii vmPFC
+FP001 beta_0017.nii vmPFC
+FP001 beta_0018.nii vmPFC
+FP001 beta_0019.nii vmPFC
+FP001 beta_0020.nii vmPFC
+FP001 beta_0021.nii vmPFC
+FP001 beta_0022.nii vmPFC
+FP001 beta_0023.nii vmPFC
+FP001 beta_0024.nii vmPFC
+FP001 beta_0025.nii vmPFC
+FP001 beta_0026.nii vmPFC
+FP001 beta_0027.nii vmPFC
+FP001 beta_0028.nii vmPFC
+FP001 beta_0029.nii vmPFC
+FP001 beta_0030.nii vmPFC
+FP001 beta_0031.nii vmPFC
+FP001 beta_0032.nii vmPFC
+FP001 beta_0033.nii vmPFC
+FP001 beta_0034.nii vmPFC
+FP001 beta_0035.nii vmPFC
+FP001 beta_0036.nii vmPFC
+FP001 beta_0043.nii vmPFC
+FP001 beta_0044.nii vmPFC
+FP001 beta_0045.nii vmPFC
+FP001 beta_0046.nii vmPFC
+FP001 beta_0047.nii vmPFC
+FP001 beta_0048.nii vmPFC
+FP001 beta_0049.nii vmPFC
+FP001 beta_0050.nii vmPFC
+FP001 beta_0051.nii vmPFC
+FP001 beta_0052.nii vmPFC
+FP001 beta_0053.nii vmPFC
+FP001 beta_0054.nii vmPFC
+FP001 beta_0055.nii vmPFC
+FP001 beta_0056.nii vmPFC
+FP001 beta_0057.nii vmPFC
+FP001 beta_0058.nii vmPFC
+FP001 beta_0059.nii vmPFC
+FP001 beta_0060.nii vmPFC
+FP001 beta_0061.nii vmPFC
+FP001 beta_0062.nii vmPFC
+FP001 beta_0063.nii vmPFC
+FP001 beta_0064.nii vmPFC
+FP001 beta_0065.nii vmPFC
+FP001 beta_0066.nii vmPFC
+FP001 beta_0067.nii vmPFC
+FP001 beta_0068.nii vmPFC
+FP001 beta_0069.nii vmPFC
+FP001 beta_0070.nii vmPFC
+FP001 beta_0071.nii vmPFC
+FP001 beta_0072.nii vmPFC
+FP001 beta_0073.nii vmPFC
+FP001 beta_0074.nii vmPFC
+FP001 beta_0075.nii vmPFC
+FP001 beta_0076.nii vmPFC
+FP001 beta_0077.nii vmPFC
+FP001 beta_0078.nii vmPFC
+FP001 beta_0001.nii VS
+FP001 beta_0002.nii VS
+FP001 beta_0003.nii VS
+FP001 beta_0004.nii VS
+FP001 beta_0005.nii VS
+FP001 beta_0006.nii VS
+FP001 beta_0007.nii VS
+FP001 beta_0008.nii VS
+FP001 beta_0009.nii VS
+FP001 beta_0010.nii VS
+FP001 beta_0011.nii VS
+FP001 beta_0012.nii VS
+FP001 beta_0013.nii VS
+FP001 beta_0014.nii VS
+FP001 beta_0015.nii VS
+FP001 beta_0016.nii VS
+FP001 beta_0017.nii VS
+FP001 beta_0018.nii VS
+FP001 beta_0019.nii VS
+FP001 beta_0020.nii VS
+FP001 beta_0021.nii VS
+FP001 beta_0022.nii VS
+FP001 beta_0023.nii VS
+FP001 beta_0024.nii VS
+FP001 beta_0025.nii VS
+FP001 beta_0026.nii VS
+FP001 beta_0027.nii VS
+FP001 beta_0028.nii VS
+FP001 beta_0029.nii VS
+FP001 beta_0030.nii VS
+FP001 beta_0031.nii VS
+FP001 beta_0032.nii VS
+FP001 beta_0033.nii VS
+FP001 beta_0034.nii VS
+FP001 beta_0035.nii VS
+FP001 beta_0036.nii VS
+FP001 beta_0043.nii VS
+FP001 beta_0044.nii VS
+FP001 beta_0045.nii VS
+FP001 beta_0046.nii VS
+FP001 beta_0047.nii VS
+FP001 beta_0048.nii VS
+FP001 beta_0049.nii VS
+FP001 beta_0050.nii VS
+FP001 beta_0051.nii VS
+FP001 beta_0052.nii VS
+FP001 beta_0053.nii VS
+FP001 beta_0054.nii VS
+FP001 beta_0055.nii VS
+FP001 beta_0056.nii VS
+FP001 beta_0057.nii VS
+FP001 beta_0058.nii VS
+FP001 beta_0059.nii VS
+FP001 beta_0060.nii VS
+FP001 beta_0061.nii VS
+FP001 beta_0062.nii VS
+FP001 beta_0063.nii VS
+FP001 beta_0064.nii VS
+FP001 beta_0065.nii VS
+FP001 beta_0066.nii VS
+FP001 beta_0067.nii VS
+FP001 beta_0068.nii VS
+FP001 beta_0069.nii VS
+FP001 beta_0070.nii VS
+FP001 beta_0071.nii VS
+FP001 beta_0072.nii VS
+FP001 beta_0073.nii VS
+FP001 beta_0074.nii VS
+FP001 beta_0075.nii VS
+FP001 beta_0076.nii VS
+FP001 beta_0077.nii VS
+FP001 beta_0078.nii VS
+FP001 beta_0001.nii NAcc
+FP001 beta_0002.nii NAcc
+FP001 beta_0003.nii NAcc
+FP001 beta_0004.nii NAcc
+FP001 beta_0005.nii NAcc
+FP001 beta_0006.nii NAcc
+FP001 beta_0007.nii NAcc
+FP001 beta_0008.nii NAcc
+FP001 beta_0009.nii NAcc
+FP001 beta_0010.nii NAcc
+FP001 beta_0011.nii NAcc
+FP001 beta_0012.nii NAcc
+FP001 beta_0013.nii NAcc
+FP001 beta_0014.nii NAcc
+FP001 beta_0015.nii NAcc
+FP001 beta_0016.nii NAcc
+FP001 beta_0017.nii NAcc
+FP001 beta_0018.nii NAcc
+FP001 beta_0019.nii NAcc
+FP001 beta_0020.nii NAcc
+FP001 beta_0021.nii NAcc
+FP001 beta_0022.nii NAcc
+FP001 beta_0023.nii NAcc
+FP001 beta_0024.nii NAcc
+FP001 beta_0025.nii NAcc
+FP001 beta_0026.nii NAcc
+FP001 beta_0027.nii NAcc
+FP001 beta_0028.nii NAcc
+FP001 beta_0029.nii NAcc
+FP001 beta_0030.nii NAcc
+FP001 beta_0031.nii NAcc
+FP001 beta_0032.nii NAcc
+FP001 beta_0033.nii NAcc
+FP001 beta_0034.nii NAcc
+FP001 beta_0035.nii NAcc
+FP001 beta_0036.nii NAcc
+FP001 beta_0043.nii NAcc
+FP001 beta_0044.nii NAcc
+FP001 beta_0045.nii NAcc
+FP001 beta_0046.nii NAcc
+FP001 beta_0047.nii NAcc
+FP001 beta_0048.nii NAcc
+FP001 beta_0049.nii NAcc
+FP001 beta_0050.nii NAcc
+FP001 beta_0051.nii NAcc
+FP001 beta_0052.nii NAcc
+FP001 beta_0053.nii NAcc
+FP001 beta_0054.nii NAcc
+FP001 beta_0055.nii NAcc
+FP001 beta_0056.nii NAcc
+FP001 beta_0057.nii NAcc
+FP001 beta_0058.nii NAcc
+FP001 beta_0059.nii NAcc
+FP001 beta_0060.nii NAcc
+FP001 beta_0061.nii NAcc
+FP001 beta_0062.nii NAcc
+FP001 beta_0063.nii NAcc
+FP001 beta_0064.nii NAcc
+FP001 beta_0065.nii NAcc
+FP001 beta_0066.nii NAcc
+FP001 beta_0067.nii NAcc
+FP001 beta_0068.nii NAcc
+FP001 beta_0069.nii NAcc
+FP001 beta_0070.nii NAcc
+FP001 beta_0071.nii NAcc
+FP001 beta_0072.nii NAcc
+FP001 beta_0073.nii NAcc
+FP001 beta_0074.nii NAcc
+FP001 beta_0075.nii NAcc
+FP001 beta_0076.nii NAcc
+FP001 beta_0077.nii NAcc
+FP001 beta_0078.nii NAcc
+FP001 beta_0001.nii putamen
+FP001 beta_0002.nii putamen
+FP001 beta_0003.nii putamen
+FP001 beta_0004.nii putamen
+FP001 beta_0005.nii putamen
+FP001 beta_0006.nii putamen
+FP001 beta_0007.nii putamen
+FP001 beta_0008.nii putamen
+FP001 beta_0009.nii putamen
+FP001 beta_0010.nii putamen
+FP001 beta_0011.nii putamen
+FP001 beta_0012.nii putamen
+FP001 beta_0013.nii putamen
+FP001 beta_0014.nii putamen
+FP001 beta_0015.nii putamen
+FP001 beta_0016.nii putamen
+FP001 beta_0017.nii putamen
+FP001 beta_0018.nii putamen
+FP001 beta_0019.nii putamen
+FP001 beta_0020.nii putamen
+FP001 beta_0021.nii putamen
+FP001 beta_0022.nii putamen
+FP001 beta_0023.nii putamen
+FP001 beta_0024.nii putamen
+FP001 beta_0025.nii putamen
+FP001 beta_0026.nii putamen
+FP001 beta_0027.nii putamen
+FP001 beta_0028.nii putamen
+FP001 beta_0029.nii putamen
+FP001 beta_0030.nii putamen
+FP001 beta_0031.nii putamen
+FP001 beta_0032.nii putamen
+FP001 beta_0033.nii putamen
+FP001 beta_0034.nii putamen
+FP001 beta_0035.nii putamen
+FP001 beta_0036.nii putamen
+FP001 beta_0043.nii putamen
+FP001 beta_0044.nii putamen
+FP001 beta_0045.nii putamen
+FP001 beta_0046.nii putamen
+FP001 beta_0047.nii putamen
+FP001 beta_0048.nii putamen
+FP001 beta_0049.nii putamen
+FP001 beta_0050.nii putamen
+FP001 beta_0051.nii putamen
+FP001 beta_0052.nii putamen
+FP001 beta_0053.nii putamen
+FP001 beta_0054.nii putamen
+FP001 beta_0055.nii putamen
+FP001 beta_0056.nii putamen
+FP001 beta_0057.nii putamen
+FP001 beta_0058.nii putamen
+FP001 beta_0059.nii putamen
+FP001 beta_0060.nii putamen
+FP001 beta_0061.nii putamen
+FP001 beta_0062.nii putamen
+FP001 beta_0063.nii putamen
+FP001 beta_0064.nii putamen
+FP001 beta_0065.nii putamen
+FP001 beta_0066.nii putamen
+FP001 beta_0067.nii putamen
+FP001 beta_0068.nii putamen
+FP001 beta_0069.nii putamen
+FP001 beta_0070.nii putamen
+FP001 beta_0071.nii putamen
+FP001 beta_0072.nii putamen
+FP001 beta_0073.nii putamen
+FP001 beta_0074.nii putamen
+FP001 beta_0075.nii putamen
+FP001 beta_0076.nii putamen
+FP001 beta_0077.nii putamen
+FP001 beta_0078.nii putamen
+FP001 beta_0001.nii pgACC -1.11764 5.00048
+FP001 beta_0002.nii pgACC 0.222885 2.42063
+FP001 beta_0003.nii pgACC -0.607638 2.56183
+FP001 beta_0004.nii pgACC 1.84047 3.0443
+FP001 beta_0005.nii pgACC -0.960765 5.61262
+FP001 beta_0006.nii pgACC -1.88939 8.33907
+FP001 beta_0007.nii pgACC 1.22312 4.13896
+FP001 beta_0008.nii pgACC -2.99893 3.40288
+FP001 beta_0009.nii pgACC 0.636388 3.81381
+FP001 beta_0010.nii pgACC -1.88611 4.01182
+FP001 beta_0011.nii pgACC 0.493846 2.27948
+FP001 beta_0012.nii pgACC 0.0960588 2.0538
+FP001 beta_0013.nii pgACC 0.329472 3.83222
+FP001 beta_0014.nii pgACC -3.47839 5.42562
+FP001 beta_0015.nii pgACC 0.364199 3.56025
+FP001 beta_0016.nii pgACC -2.27172 2.99131
+FP001 beta_0017.nii pgACC 0.815413 4.2167
+FP001 beta_0018.nii pgACC -1.45218 2.69922
+FP001 beta_0019.nii pgACC 1.15072 8.27178
+FP001 beta_0020.nii pgACC -0.379853 3.57791
+FP001 beta_0021.nii pgACC 0.548661 4.36476
+FP001 beta_0022.nii pgACC -1.04433 3.15955
+FP001 beta_0023.nii pgACC 0.562627 2.63719
+FP001 beta_0024.nii pgACC -1.90722 5.41145
+FP001 beta_0025.nii pgACC -2.27648 3.7002
+FP001 beta_0026.nii pgACC 1.15414 2.79959
+FP001 beta_0027.nii pgACC -1.05807 3.71866
+FP001 beta_0028.nii pgACC 0.833615 3.36671
+FP001 beta_0029.nii pgACC 0.293345 2.08086
+FP001 beta_0030.nii pgACC 0.781037 3.60235
+FP001 beta_0031.nii pgACC -1.12046 1.9859
+FP001 beta_0032.nii pgACC -0.754218 1.67301
+FP001 beta_0033.nii pgACC -0.824015 2.96869
+FP001 beta_0034.nii pgACC -0.378698 3.78654
+FP001 beta_0035.nii pgACC -0.223022 3.13123
+FP001 beta_0036.nii pgACC -0.841863 2.63093
+FP001 beta_0043.nii pgACC -2.51401 6.11152
+FP001 beta_0044.nii pgACC 0.171083 2.85475
+FP001 beta_0045.nii pgACC -1.20495 5.10106
+FP001 beta_0046.nii pgACC -0.144854 2.97766
+FP001 beta_0047.nii pgACC -1.21968 3.82625
+FP001 beta_0048.nii pgACC -0.28819 7.14506
+FP001 beta_0049.nii pgACC -1.25258 1.7535
+FP001 beta_0050.nii pgACC -0.728897 4.5702
+FP001 beta_0051.nii pgACC 0.185524 3.23154
+FP001 beta_0052.nii pgACC -2.01532 2.84884
+FP001 beta_0053.nii pgACC -0.759396 1.66807
+FP001 beta_0054.nii pgACC 0.101721 1.44273
+FP001 beta_0055.nii pgACC -3.14123 3.99879
+FP001 beta_0056.nii pgACC 3.54438 7.15766
+FP001 beta_0057.nii pgACC -1.29379 2.29714
+FP001 beta_0058.nii pgACC 0.337198 3.31925
+FP001 beta_0059.nii pgACC 0.490647 3.55683
+FP001 beta_0060.nii pgACC -0.71467 2.06369
+FP001 beta_0061.nii pgACC -2.0916 3.96505
+FP001 beta_0062.nii pgACC 0.76853 5.29671
+FP001 beta_0063.nii pgACC -1.69284 4.18058
+FP001 beta_0064.nii pgACC -0.134555 2.17874
+FP001 beta_0065.nii pgACC 0.732866 2.28383
+FP001 beta_0066.nii pgACC 1.70468 3.64263
+FP001 beta_0067.nii pgACC 0.154783 4.20135
+FP001 beta_0068.nii pgACC 2.38058 6.03833
+FP001 beta_0069.nii pgACC -2.61237 7.12535
+FP001 beta_0070.nii pgACC 0.918435 5.97984
+FP001 beta_0071.nii pgACC -0.624732 5.76583
+FP001 beta_0072.nii pgACC -1.14014 7.46861
+FP001 beta_0073.nii pgACC -0.806981 3.59439
+FP001 beta_0074.nii pgACC -4.16673 5.78488
+FP001 beta_0075.nii pgACC -0.000990082 3.12466
+FP001 beta_0076.nii pgACC -6.48258 8.4189
+FP001 beta_0077.nii pgACC -0.0321668 0.0801627
+FP001 beta_0078.nii pgACC 51.0291 97.2556
+FP001 beta_0001.nii vmPFC -0.102151 1.67627
+FP001 beta_0002.nii vmPFC 0.398717 1.65063
+FP001 beta_0003.nii vmPFC 0.0772887 1.07075
+FP001 beta_0004.nii vmPFC 2.10411 3.08961
+FP001 beta_0005.nii vmPFC 2.04628 2.079
+FP001 beta_0006.nii vmPFC 3.64277 3.72923
+FP001 beta_0007.nii vmPFC -1.41199 2.30664
+FP001 beta_0008.nii vmPFC -2.37496 2.81618
+FP001 beta_0009.nii vmPFC -0.990077 2.73858
+FP001 beta_0010.nii vmPFC -1.85858 3.92959
+FP001 beta_0011.nii vmPFC -0.964817 1.56562
+FP001 beta_0012.nii vmPFC 0.969444 2.00025
+FP001 beta_0013.nii vmPFC -0.453486 2.05442
+FP001 beta_0014.nii vmPFC -1.58238 3.06725
+FP001 beta_0015.nii vmPFC 0.588845 2.32465
+FP001 beta_0016.nii vmPFC -0.398305 2.09034
+FP001 beta_0017.nii vmPFC 1.26466 2.69441
+FP001 beta_0018.nii vmPFC 0.142699 1.99779
+FP001 beta_0019.nii vmPFC -0.905521 3.63862
+FP001 beta_0020.nii vmPFC -1.13352 2.59396
+FP001 beta_0021.nii vmPFC -0.744836 2.53896
+FP001 beta_0022.nii vmPFC 0.563015 1.98481
+FP001 beta_0023.nii vmPFC 0.0282473 1.48868
+FP001 beta_0024.nii vmPFC 1.12754 1.91882
+FP001 beta_0025.nii vmPFC -1.11352 3.27763
+FP001 beta_0026.nii vmPFC 1.49736 2.60803
+FP001 beta_0027.nii vmPFC -0.575323 2.90724
+FP001 beta_0028.nii vmPFC -0.224582 1.8951
+FP001 beta_0029.nii vmPFC 0.274132 1.28104
+FP001 beta_0030.nii vmPFC 0.652017 2.86955
+FP001 beta_0031.nii vmPFC -0.611602 1.2608
+FP001 beta_0032.nii vmPFC -0.87544 1.20267
+FP001 beta_0033.nii vmPFC -0.435617 1.4315
+FP001 beta_0034.nii vmPFC 1.28498 2.47421
+FP001 beta_0035.nii vmPFC 1.76471 2.43225
+FP001 beta_0036.nii vmPFC -1.53808 1.67273
+FP001 beta_0043.nii vmPFC -2.75444 4.16536
+FP001 beta_0044.nii vmPFC -0.176432 1.6486
+FP001 beta_0045.nii vmPFC 0.743417 2.62655
+FP001 beta_0046.nii vmPFC -2.05881 2.02089
+FP001 beta_0047.nii vmPFC -0.362875 2.11344
+FP001 beta_0048.nii vmPFC 1.79259 3.71497
+FP001 beta_0049.nii vmPFC -0.646003 1.27574
+FP001 beta_0050.nii vmPFC -0.80367 2.55212
+FP001 beta_0051.nii vmPFC 0.71838 2.33194
+FP001 beta_0052.nii vmPFC -1.09174 1.97378
+FP001 beta_0053.nii vmPFC -0.270102 1.18159
+FP001 beta_0054.nii vmPFC 0.419462 1.26005
+FP001 beta_0055.nii vmPFC -0.711083 3.20569
+FP001 beta_0056.nii vmPFC 0.125518 2.77555
+FP001 beta_0057.nii vmPFC -1.30842 1.71377
+FP001 beta_0058.nii vmPFC 0.372844 2.53853
+FP001 beta_0059.nii vmPFC -0.898583 1.55764
+FP001 beta_0060.nii vmPFC -0.0727772 1.36241
+FP001 beta_0061.nii vmPFC -1.39219 3.76053
+FP001 beta_0062.nii vmPFC -1.45661 2.0282
+FP001 beta_0063.nii vmPFC -0.673086 2.30154
+FP001 beta_0064.nii vmPFC -1.00344 1.26231
+FP001 beta_0065.nii vmPFC -0.0100939 0.646157
+FP001 beta_0066.nii vmPFC 1.30053 2.34349
+FP001 beta_0067.nii vmPFC -2.23781 3.39991
+FP001 beta_0068.nii vmPFC -0.825099 5.92159
+FP001 beta_0069.nii vmPFC -3.26858 5.62848
+FP001 beta_0070.nii vmPFC -4.39339 4.51218
+FP001 beta_0071.nii vmPFC 1.08069 3.89214
+FP001 beta_0072.nii vmPFC 2.26708 2.87465
+FP001 beta_0073.nii vmPFC -2.59433 2.37071
+FP001 beta_0074.nii vmPFC -2.82824 3.63173
+FP001 beta_0075.nii vmPFC -0.171835 2.25986
+FP001 beta_0076.nii vmPFC -8.96008 7.27415
+FP001 beta_0077.nii vmPFC -0.0256053 0.0538817
+FP001 beta_0078.nii vmPFC 56.1831 109.562
+FP001 beta_0001.nii VS 0.693925 3.00252
+FP001 beta_0002.nii VS 0.345094 3.55623
+FP001 beta_0003.nii VS 0.331157 1.89507
+FP001 beta_0004.nii VS 0.29428 3.62422
+FP001 beta_0005.nii VS 1.50301 2.2272
+FP001 beta_0006.nii VS 0.59993 4.98667
+FP001 beta_0007.nii VS -0.835168 2.97175
+FP001 beta_0008.nii VS -0.842543 1.89601
+FP001 beta_0009.nii VS -0.777067 3.20268
+FP001 beta_0010.nii VS -0.103113 3.75678
+FP001 beta_0011.nii VS -0.284127 2.10889
+FP001 beta_0012.nii VS 0.0995635 2.40832
+FP001 beta_0013.nii VS -0.64813 3.3815
+FP001 beta_0014.nii VS 0.718908 3.92127
+FP001 beta_0015.nii VS 0.427153 3.79897
+FP001 beta_0016.nii VS 0.972447 2.29988
+FP001 beta_0017.nii VS -1.52682 3.84634
+FP001 beta_0018.nii VS 1.79272 3.26706
+FP001 beta_0019.nii VS -2.43392 3.77628
+FP001 beta_0020.nii VS -1.42861 3.75026
+FP001 beta_0021.nii VS -0.176454 2.69041
+FP001 beta_0022.nii VS 1.13253 4.25691
+FP001 beta_0023.nii VS 0.740945 2.24983
+FP001 beta_0024.nii VS 1.39006 3.28266
+FP001 beta_0025.nii VS 0.799989 4.16732
+FP001 beta_0026.nii VS 1.24629 2.41938
+FP001 beta_0027.nii VS 0.561038 3.67937
+FP001 beta_0028.nii VS 0.0824407 2.8737
+FP001 beta_0029.nii VS 0.691596 1.87237
+FP001 beta_0030.nii VS 0.457739 5.86212
+FP001 beta_0031.nii VS -0.13159 1.86604
+FP001 beta_0032.nii VS 0.823637 1.58369
+FP001 beta_0033.nii VS 0.576536 2.33675
+FP001 beta_0034.nii VS 1.98623 3.39884
+FP001 beta_0035.nii VS 1.00464 2.68094
+FP001 beta_0036.nii VS 0.0239416 2.77112
+FP001 beta_0043.nii VS 2.15915 5.23602
+FP001 beta_0044.nii VS 0.657922 2.33282
+FP001 beta_0045.nii VS 1.8432 3.69251
+FP001 beta_0046.nii VS 1.91717 3.13814
+FP001 beta_0047.nii VS -0.272266 3.12232
+FP001 beta_0048.nii VS 1.71561 3.82826
+FP001 beta_0049.nii VS 0.142824 1.27103
+FP001 beta_0050.nii VS -0.447031 4.05322
+FP001 beta_0051.nii VS 0.584861 4.1
+FP001 beta_0052.nii VS -0.23511 2.46925
+FP001 beta_0053.nii VS -0.0374989 1.21795
+FP001 beta_0054.nii VS 0.414064 1.89326
+FP001 beta_0055.nii VS -0.937449 2.96496
+FP001 beta_0056.nii VS -1.12606 2.9147
+FP001 beta_0057.nii VS -0.29458 2.08206
+FP001 beta_0058.nii VS -0.690476 2.76398
+FP001 beta_0059.nii VS -0.294013 2.34531
+FP001 beta_0060.nii VS 0.310276 2.3073
+FP001 beta_0061.nii VS -0.380154 3.4093
+FP001 beta_0062.nii VS -1.21475 3.05361
+FP001 beta_0063.nii VS 1.09808 2.74835
+FP001 beta_0064.nii VS -0.0752818 1.53176
+FP001 beta_0065.nii VS -0.101656 1.68241
+FP001 beta_0066.nii VS 1.80482 2.67685
+FP001 beta_0067.nii VS 1.62568 3.54398
+FP001 beta_0068.nii VS 2.41427 4.71404
+FP001 beta_0069.nii VS 2.2934 6.7784
+FP001 beta_0070.nii VS -0.00960368 6.31592
+FP001 beta_0071.nii VS 3.27789 3.67965
+FP001 beta_0072.nii VS 3.3083 4.07358
+FP001 beta_0073.nii VS -0.401327 2.75936
+FP001 beta_0074.nii VS 1.12393 3.52976
+FP001 beta_0075.nii VS 0.845484 3.89408
+FP001 beta_0076.nii VS -4.15557 5.90697
+FP001 beta_0077.nii VS 0.0222177 0.0692796
+FP001 beta_0078.nii VS -29.046 78.8952
+FP001 beta_0001.nii NAcc 0.153484 2.12843
+FP001 beta_0002.nii NAcc -1.88988 3.22261
+FP001 beta_0003.nii NAcc -0.240397 1.68805
+FP001 beta_0004.nii NAcc -1.10607 4.80197
+FP001 beta_0005.nii NAcc 1.05107 1.92573
+FP001 beta_0006.nii NAcc -0.647738 4.43971
+FP001 beta_0007.nii NAcc -0.385377 2.68435
+FP001 beta_0008.nii NAcc -0.83059 1.42062
+FP001 beta_0009.nii NAcc -1.12368 2.41474
+FP001 beta_0010.nii NAcc 0.893631 3.38096
+FP001 beta_0011.nii NAcc -0.154881 1.93201
+FP001 beta_0012.nii NAcc 0.647441 2.12907
+FP001 beta_0013.nii NAcc -0.855961 2.91415
+FP001 beta_0014.nii NAcc -0.625822 2.5787
+FP001 beta_0015.nii NAcc -0.236279 3.23756
+FP001 beta_0016.nii NAcc 0.00624545 2.22014
+FP001 beta_0017.nii NAcc -0.860408 3.02008
+FP001 beta_0018.nii NAcc -0.732864 2.2894
+FP001 beta_0019.nii NAcc -3.79532 2.89196
+FP001 beta_0020.nii NAcc -0.929172 2.11475
+FP001 beta_0021.nii NAcc -1.27485 2.14732
+FP001 beta_0022.nii NAcc -1.93579 1.77551
+FP001 beta_0023.nii NAcc 0.460894 1.79427
+FP001 beta_0024.nii NAcc -0.296439 2.28421
+FP001 beta_0025.nii NAcc 0.535891 4.52275
+FP001 beta_0026.nii NAcc 1.93669 2.17242
+FP001 beta_0027.nii NAcc -0.467077 3.33031
+FP001 beta_0028.nii NAcc 0.0245967 2.26309
+FP001 beta_0029.nii NAcc 0.0885428 0.891604
+FP001 beta_0030.nii NAcc -3.50667 5.12072
+FP001 beta_0031.nii NAcc -0.400569 1.53612
+FP001 beta_0032.nii NAcc 1.91247 1.75096
+FP001 beta_0033.nii NAcc -0.00918756 1.49904
+FP001 beta_0034.nii NAcc 3.01451 2.62437
+FP001 beta_0035.nii NAcc 1.37424 2.58253
+FP001 beta_0036.nii NAcc 0.412324 1.65107
+FP001 beta_0043.nii NAcc 2.77756 3.91061
+FP001 beta_0044.nii NAcc 1.04648 2.30826
+FP001 beta_0045.nii NAcc 1.41458 2.7851
+FP001 beta_0046.nii NAcc 3.21525 2.8007
+FP001 beta_0047.nii NAcc -1.2396 2.10201
+FP001 beta_0048.nii NAcc 4.12972 3.82696
+FP001 beta_0049.nii NAcc 0.108279 1.29713
+FP001 beta_0050.nii NAcc -0.605599 3.75615
+FP001 beta_0051.nii NAcc 1.34156 3.35726
+FP001 beta_0052.nii NAcc -1.72794 2.39862
+FP001 beta_0053.nii NAcc 0.143326 0.948158
+FP001 beta_0054.nii NAcc 0.895707 1.42473
+FP001 beta_0055.nii NAcc -2.21873 2.435
+FP001 beta_0056.nii NAcc -0.47114 2.62254
+FP001 beta_0057.nii NAcc 0.275243 1.44581
+FP001 beta_0058.nii NAcc -0.781862 2.51408
+FP001 beta_0059.nii NAcc -0.752623 1.87931
+FP001 beta_0060.nii NAcc -0.344796 1.20137
+FP001 beta_0061.nii NAcc -0.837996 3.30656
+FP001 beta_0062.nii NAcc 0.617955 2.11664
+FP001 beta_0063.nii NAcc 2.2792 1.78062
+FP001 beta_0064.nii NAcc 0.12492 1.07679
+FP001 beta_0065.nii NAcc 0.0460234 1.3469
+FP001 beta_0066.nii NAcc 3.08525 2.12874
+FP001 beta_0067.nii NAcc 1.33579 2.81097
+FP001 beta_0068.nii NAcc 1.26347 3.44117
+FP001 beta_0069.nii NAcc 1.23819 6.27315
+FP001 beta_0070.nii NAcc -1.86805 3.71713
+FP001 beta_0071.nii NAcc 1.12242 3.57054
+FP001 beta_0072.nii NAcc 1.45556 2.98534
+FP001 beta_0073.nii NAcc -1.52653 2.1801
+FP001 beta_0074.nii NAcc 1.41695 3.23745
+FP001 beta_0075.nii NAcc -1.14352 3.40855
+FP001 beta_0076.nii NAcc -2.39589 5.49745
+FP001 beta_0077.nii NAcc 0.0121864 0.0485959
+FP001 beta_0078.nii NAcc -44.0219 51.3778
+FP001 beta_0001.nii putamen 0.771862 3.1012
+FP001 beta_0002.nii putamen 0.667399 3.48653
+FP001 beta_0003.nii putamen 0.41358 1.90957
+FP001 beta_0004.nii putamen 0.496224 3.37576
+FP001 beta_0005.nii putamen 1.56819 2.26055
+FP001 beta_0006.nii putamen 0.779856 5.03669
+FP001 beta_0007.nii putamen -0.900033 3.00628
+FP001 beta_0008.nii putamen -0.844267 1.95547
+FP001 beta_0009.nii putamen -0.727081 3.29853
+FP001 beta_0010.nii putamen -0.246853 3.78746
+FP001 beta_0011.nii putamen -0.302766 2.13319
+FP001 beta_0012.nii putamen 0.0205542 2.43651
+FP001 beta_0013.nii putamen -0.618159 3.44358
+FP001 beta_0014.nii putamen 0.912831 4.04252
+FP001 beta_0015.nii putamen 0.522826 3.86487
+FP001 beta_0016.nii putamen 1.11178 2.27835
+FP001 beta_0017.nii putamen -1.62292 3.94289
+FP001 beta_0018.nii putamen 2.15693 3.22617
+FP001 beta_0019.nii putamen -2.2376 3.84855
+FP001 beta_0020.nii putamen -1.50064 3.92566
+FP001 beta_0021.nii putamen -0.0180543 2.72426
+FP001 beta_0022.nii putamen 1.57501 4.32772
+FP001 beta_0023.nii putamen 0.781331 2.30586
+FP001 beta_0024.nii putamen 1.63328 3.33348
+FP001 beta_0025.nii putamen 0.838075 4.1139
+FP001 beta_0026.nii putamen 1.14672 2.43758
+FP001 beta_0027.nii putamen 0.709302 3.70465
+FP001 beta_0028.nii putamen 0.0907824 2.95194
+FP001 beta_0029.nii putamen 0.778563 1.95896
+FP001 beta_0030.nii putamen 1.02945 5.74138
+FP001 beta_0031.nii putamen -0.0928008 1.90627
+FP001 beta_0032.nii putamen 0.666617 1.49468
+FP001 beta_0033.nii putamen 0.661003 2.42263
+FP001 beta_0034.nii putamen 1.83794 3.47213
+FP001 beta_0035.nii putamen 0.951345 2.69156
+FP001 beta_0036.nii putamen -0.0320669 2.89327
+FP001 beta_0043.nii putamen 2.06997 5.39569
+FP001 beta_0044.nii putamen 0.601888 2.33184
+FP001 beta_0045.nii putamen 1.90501 3.80239
+FP001 beta_0046.nii putamen 1.72998 3.1408
+FP001 beta_0047.nii putamen -0.132767 3.21975
+FP001 beta_0048.nii putamen 1.36747 3.70207
+FP001 beta_0049.nii putamen 0.147806 1.26763
+FP001 beta_0050.nii putamen -0.424164 4.09506
+FP001 beta_0051.nii putamen 0.475737 4.18605
+FP001 beta_0052.nii putamen -0.0198298 2.4048
+FP001 beta_0053.nii putamen -0.0635756 1.2502
+FP001 beta_0054.nii putamen 0.344606 1.94215
+FP001 beta_0055.nii putamen -0.752676 2.98952
+FP001 beta_0056.nii putamen -1.22051 2.94332
+FP001 beta_0057.nii putamen -0.376754 2.14634
+FP001 beta_0058.nii putamen -0.677298 2.79878
+FP001 beta_0059.nii putamen -0.227877 2.39843
+FP001 beta_0060.nii putamen 0.404744 2.41119
+FP001 beta_0061.nii putamen -0.314129 3.41999
+FP001 beta_0062.nii putamen -1.47905 3.07771
+FP001 beta_0063.nii putamen 0.927755 2.82097
+FP001 beta_0064.nii putamen -0.104153 1.58487
+FP001 beta_0065.nii putamen -0.122953 1.72479
+FP001 beta_0066.nii putamen 1.62017 2.69782
+FP001 beta_0067.nii putamen 1.66748 3.63648
+FP001 beta_0068.nii putamen 2.58023 4.84873
+FP001 beta_0069.nii putamen 2.44558 6.83689
+FP001 beta_0070.nii putamen 0.258402 6.56456
+FP001 beta_0071.nii putamen 3.58873 3.59111
+FP001 beta_0072.nii putamen 3.57548 4.14033
+FP001 beta_0073.nii putamen -0.239061 2.79668
+FP001 beta_0074.nii putamen 1.08167 3.56906
+FP001 beta_0075.nii putamen 1.13232 3.87695
+FP001 beta_0076.nii putamen -4.40934 5.92259
+FP001 beta_0077.nii putamen 0.0236643 0.0716702
+FP001 beta_0078.nii putamen -26.8863 81.8943
