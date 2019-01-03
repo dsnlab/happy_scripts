@@ -9,7 +9,7 @@
 STUDY=/projects/dsnlab/shared/FP/FP_scripts
 
 # Set subject list
-SUBJLIST=`cat subject_list.txt`
+SUBJLIST=`cat subject_list_test.txt`
 
 # Set shell script to execute
 SHELL_SCRIPT=extract_parameterEstimates.sh

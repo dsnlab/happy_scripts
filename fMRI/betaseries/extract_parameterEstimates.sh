@@ -17,7 +17,8 @@ echo ---------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------
 # variables
 rois=(pgACC vmPFC VS NAcc putamen)
-betas=`cat /projects/dsnlab/shared/FP/FP_scripts/fMRI/fx/mergebetas/subject_beta_info/self_"${SUB}".txt` #beta list to extract from
+#betas=`cat /projects/dsnlab/shared/FP/FP_scripts/fMRI/fx/mergebetas/subject_beta_info/self_"${SUB}".txt` #beta list to extract from
+betas=`echo $(printf "beta_%04d.nii\n" {1..36}) $(printf "beta_%04d.nii\n" {43..78})`
 
 # paths
 beta_dir=/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/betaseries/sub-"${SUB}" #beta directory
