@@ -1,0 +1,99 @@
+-------------------------------------------------------------------------------
+FP078
+Running 
+Sat Jan  5 11:55:31 PST 2019
+-------------------------------------------------------------------------------
+++ 3dAllineate: AFNI version=AFNI_18.2.04 (Jul  6 2018) [64-bit]
+++ Authored by: Zhark the Registrator
+++ Source dataset: /projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP078/mri/fromannots/pgACC.nii.gz
+++ Base dataset:   (not given)
+++ Loading datasets
+++ OpenMP thread count = 1
+++ ========== Applying transformation to 1 sub-bricks ==========
+[7m** ERROR:[0m output dataset name 'aligned_pgACC' conflicts with existing file
+[7m** ERROR:[0m dataset NOT written to disk!
+++ 3dAllineate: total CPU time = 0.0 sec  Elapsed = 0.9
+++ ###########################################################
+++ 3dmaskdump: AFNI version=AFNI_18.2.04 (Jul  6 2018) [64-bit]
+++ 633 voxels in the mask
+[7m*+ WARNING:[0m file /projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/betaseries/sub-FP078/task_betas.nii.gz: corrected 59303880 float errors
+++ 3dAllineate: AFNI version=AFNI_18.2.04 (Jul  6 2018) [64-bit]
+++ Authored by: Zhark the Registrator
+++ Source dataset: /projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP078/mri/fromannots/vmPFC.nii.gz
+++ Base dataset:   (not given)
+++ Loading datasets
+++ OpenMP thread count = 1
+++ ========== Applying transformation to 1 sub-bricks ==========
+[7m** ERROR:[0m output dataset name 'aligned_vmPFC' conflicts with existing file
+[7m** ERROR:[0m dataset NOT written to disk!
+++ 3dAllineate: total CPU time = 0.0 sec  Elapsed = 0.8
+++ ###########################################################
+++ 3dmaskdump: AFNI version=AFNI_18.2.04 (Jul  6 2018) [64-bit]
+++ 954 voxels in the mask
+[7m*+ WARNING:[0m file /projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/betaseries/sub-FP078/task_betas.nii.gz: corrected 59303880 float errors
+++ 3dAllineate: AFNI version=AFNI_18.2.04 (Jul  6 2018) [64-bit]
+++ Authored by: Zhark the Registrator
+[7m*+ WARNING:[0m   If you are performing spatial transformations on an oblique dset, 
+  such as /projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP078/mri/fromannots/VS.nii.gz,
+  or viewing/combining it with volumes of differing obliquity,
+  you should consider running: 
+     3dWarp -deoblique 
+  on this and  other oblique datasets in the same session.
+ See 3dWarp -help for details.
+++ Oblique dataset:/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP078/mri/fromannots/VS.nii.gz is 5.643058 degrees from plumb.
+++ Source dataset: /projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP078/mri/fromannots/VS.nii.gz
+++ Base dataset:   (not given)
+++ Loading datasets
+++ OpenMP thread count = 1
+++ ========== Applying transformation to 1 sub-bricks ==========
+[7m** ERROR:[0m output dataset name 'aligned_VS' conflicts with existing file
+[7m** ERROR:[0m dataset NOT written to disk!
+++ 3dAllineate: total CPU time = 0.0 sec  Elapsed = 0.6
+++ ###########################################################
+++ 3dmaskdump: AFNI version=AFNI_18.2.04 (Jul  6 2018) [64-bit]
+++ 1559 voxels in the mask
+[7m*+ WARNING:[0m file /projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/betaseries/sub-FP078/task_betas.nii.gz: corrected 59303880 float errors
+++ 3dAllineate: AFNI version=AFNI_18.2.04 (Jul  6 2018) [64-bit]
+++ Authored by: Zhark the Registrator
+[7m*+ WARNING:[0m   If you are performing spatial transformations on an oblique dset, 
+  such as /projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP078/mri/fromannots/NAcc.nii.gz,
+  or viewing/combining it with volumes of differing obliquity,
+  you should consider running: 
+     3dWarp -deoblique 
+  on this and  other oblique datasets in the same session.
+ See 3dWarp -help for details.
+++ Oblique dataset:/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP078/mri/fromannots/NAcc.nii.gz is 5.643058 degrees from plumb.
+++ Source dataset: /projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP078/mri/fromannots/NAcc.nii.gz
+++ Base dataset:   (not given)
+++ Loading datasets
+++ OpenMP thread count = 1
+++ ========== Applying transformation to 1 sub-bricks ==========
+[7m** ERROR:[0m output dataset name 'aligned_NAcc' conflicts with existing file
+[7m** ERROR:[0m dataset NOT written to disk!
+++ 3dAllineate: total CPU time = 0.0 sec  Elapsed = 0.6
+++ ###########################################################
+++ 3dmaskdump: AFNI version=AFNI_18.2.04 (Jul  6 2018) [64-bit]
+++ 146 voxels in the mask
+[7m*+ WARNING:[0m file /projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/betaseries/sub-FP078/task_betas.nii.gz: corrected 59303880 float errors
+++ 3dAllineate: AFNI version=AFNI_18.2.04 (Jul  6 2018) [64-bit]
+++ Authored by: Zhark the Registrator
+[7m*+ WARNING:[0m   If you are performing spatial transformations on an oblique dset, 
+  such as /projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP078/mri/fromannots/putamen.nii.gz,
+  or viewing/combining it with volumes of differing obliquity,
+  you should consider running: 
+     3dWarp -deoblique 
+  on this and  other oblique datasets in the same session.
+ See 3dWarp -help for details.
+++ Oblique dataset:/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP078/mri/fromannots/putamen.nii.gz is 5.643058 degrees from plumb.
+++ Source dataset: /projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP078/mri/fromannots/putamen.nii.gz
+++ Base dataset:   (not given)
+++ Loading datasets
+++ OpenMP thread count = 1
+++ ========== Applying transformation to 1 sub-bricks ==========
+[7m** ERROR:[0m output dataset name 'aligned_putamen' conflicts with existing file
+[7m** ERROR:[0m dataset NOT written to disk!
+++ 3dAllineate: total CPU time = 0.0 sec  Elapsed = 0.6
+++ ###########################################################
+++ 3dmaskdump: AFNI version=AFNI_18.2.04 (Jul  6 2018) [64-bit]
+++ 1413 voxels in the mask
+[7m*+ WARNING:[0m file /projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/betaseries/sub-FP078/task_betas.nii.gz: corrected 59303880 float errors

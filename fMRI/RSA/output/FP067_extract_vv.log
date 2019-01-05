@@ -1,0 +1,66 @@
+-------------------------------------------------------------------------------
+FP067
+Running 
+Sat Jan  5 11:55:30 PST 2019
+-------------------------------------------------------------------------------
+/cm/local/apps/slurm/var/spool/job2989363/slurm_script: line 34: cd: /projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/betaseries/sub-FP067: No such file or directory
+Cannot open volume beta_0001 for reading!
+++ 3dAllineate: AFNI version=AFNI_18.2.04 (Jul  6 2018) [64-bit]
+++ Authored by: Zhark the Registrator
+** ERROR (nifti_image_read): failed to find header file for '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/betaseries/sub-FP067/mask.nii'
+[7m** FATAL ERROR:[0m can't open -master dataset '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/betaseries/sub-FP067/mask.nii' :-(
+** Program compile date = Jul  6 2018
+[7m** FATAL ERROR:[0m Cannot open mask dataset!
+** Program compile date = Jul  6 2018
+++ 3dAllineate: AFNI version=AFNI_18.2.04 (Jul  6 2018) [64-bit]
+++ Authored by: Zhark the Registrator
+** ERROR (nifti_image_read): failed to find header file for '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/betaseries/sub-FP067/mask.nii'
+[7m** FATAL ERROR:[0m can't open -master dataset '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/betaseries/sub-FP067/mask.nii' :-(
+** Program compile date = Jul  6 2018
+[7m** FATAL ERROR:[0m Cannot open mask dataset!
+** Program compile date = Jul  6 2018
+++ 3dAllineate: AFNI version=AFNI_18.2.04 (Jul  6 2018) [64-bit]
+++ Authored by: Zhark the Registrator
+[7m*+ WARNING:[0m   If you are performing spatial transformations on an oblique dset, 
+  such as /projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP067/mri/fromannots/VS.nii.gz,
+  or viewing/combining it with volumes of differing obliquity,
+  you should consider running: 
+     3dWarp -deoblique 
+  on this and  other oblique datasets in the same session.
+ See 3dWarp -help for details.
+++ Oblique dataset:/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP067/mri/fromannots/VS.nii.gz is 4.897450 degrees from plumb.
+** ERROR (nifti_image_read): failed to find header file for '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/betaseries/sub-FP067/mask.nii'
+[7m** FATAL ERROR:[0m can't open -master dataset '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/betaseries/sub-FP067/mask.nii' :-(
+** Program compile date = Jul  6 2018
+[7m** FATAL ERROR:[0m Cannot open mask dataset!
+** Program compile date = Jul  6 2018
+++ 3dAllineate: AFNI version=AFNI_18.2.04 (Jul  6 2018) [64-bit]
+++ Authored by: Zhark the Registrator
+[7m*+ WARNING:[0m   If you are performing spatial transformations on an oblique dset, 
+  such as /projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP067/mri/fromannots/NAcc.nii.gz,
+  or viewing/combining it with volumes of differing obliquity,
+  you should consider running: 
+     3dWarp -deoblique 
+  on this and  other oblique datasets in the same session.
+ See 3dWarp -help for details.
+++ Oblique dataset:/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP067/mri/fromannots/NAcc.nii.gz is 4.897450 degrees from plumb.
+** ERROR (nifti_image_read): failed to find header file for '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/betaseries/sub-FP067/mask.nii'
+[7m** FATAL ERROR:[0m can't open -master dataset '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/betaseries/sub-FP067/mask.nii' :-(
+** Program compile date = Jul  6 2018
+[7m** FATAL ERROR:[0m Cannot open mask dataset!
+** Program compile date = Jul  6 2018
+++ 3dAllineate: AFNI version=AFNI_18.2.04 (Jul  6 2018) [64-bit]
+++ Authored by: Zhark the Registrator
+[7m*+ WARNING:[0m   If you are performing spatial transformations on an oblique dset, 
+  such as /projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP067/mri/fromannots/putamen.nii.gz,
+  or viewing/combining it with volumes of differing obliquity,
+  you should consider running: 
+     3dWarp -deoblique 
+  on this and  other oblique datasets in the same session.
+ See 3dWarp -help for details.
+++ Oblique dataset:/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP067/mri/fromannots/putamen.nii.gz is 4.897450 degrees from plumb.
+** ERROR (nifti_image_read): failed to find header file for '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/betaseries/sub-FP067/mask.nii'
+[7m** FATAL ERROR:[0m can't open -master dataset '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/betaseries/sub-FP067/mask.nii' :-(
+** Program compile date = Jul  6 2018
+[7m** FATAL ERROR:[0m Cannot open mask dataset!
+** Program compile date = Jul  6 2018

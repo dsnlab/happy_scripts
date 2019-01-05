@@ -1,0 +1,42 @@
+-------------------------------------------------------------------------------
+FP083
+Running 
+Sat Jan  5 11:55:31 PST 2019
+-------------------------------------------------------------------------------
+/cm/local/apps/slurm/var/spool/job2989379/slurm_script: line 34: cd: /projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/betaseries/sub-FP083: No such file or directory
+Cannot open volume beta_0001 for reading!
+++ 3dAllineate: AFNI version=AFNI_18.2.04 (Jul  6 2018) [64-bit]
+++ Authored by: Zhark the Registrator
+** ERROR (nifti_image_read): failed to find header file for '/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP083/mri/fromannots/pgACC.nii.gz'
+[7m** FATAL ERROR:[0m can't open --source dataset '/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP083/mri/fromannots/pgACC.nii.gz' :-(
+** Program compile date = Jul  6 2018
+[7m** FATAL ERROR:[0m Cannot open mask dataset!
+** Program compile date = Jul  6 2018
+++ 3dAllineate: AFNI version=AFNI_18.2.04 (Jul  6 2018) [64-bit]
+++ Authored by: Zhark the Registrator
+** ERROR (nifti_image_read): failed to find header file for '/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP083/mri/fromannots/vmPFC.nii.gz'
+[7m** FATAL ERROR:[0m can't open --source dataset '/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP083/mri/fromannots/vmPFC.nii.gz' :-(
+** Program compile date = Jul  6 2018
+[7m** FATAL ERROR:[0m Cannot open mask dataset!
+** Program compile date = Jul  6 2018
+++ 3dAllineate: AFNI version=AFNI_18.2.04 (Jul  6 2018) [64-bit]
+++ Authored by: Zhark the Registrator
+** ERROR (nifti_image_read): failed to find header file for '/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP083/mri/fromannots/VS.nii.gz'
+[7m** FATAL ERROR:[0m can't open --source dataset '/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP083/mri/fromannots/VS.nii.gz' :-(
+** Program compile date = Jul  6 2018
+[7m** FATAL ERROR:[0m Cannot open mask dataset!
+** Program compile date = Jul  6 2018
+++ 3dAllineate: AFNI version=AFNI_18.2.04 (Jul  6 2018) [64-bit]
+++ Authored by: Zhark the Registrator
+** ERROR (nifti_image_read): failed to find header file for '/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP083/mri/fromannots/NAcc.nii.gz'
+[7m** FATAL ERROR:[0m can't open --source dataset '/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP083/mri/fromannots/NAcc.nii.gz' :-(
+** Program compile date = Jul  6 2018
+[7m** FATAL ERROR:[0m Cannot open mask dataset!
+** Program compile date = Jul  6 2018
+++ 3dAllineate: AFNI version=AFNI_18.2.04 (Jul  6 2018) [64-bit]
+++ Authored by: Zhark the Registrator
+** ERROR (nifti_image_read): failed to find header file for '/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP083/mri/fromannots/putamen.nii.gz'
+[7m** FATAL ERROR:[0m can't open --source dataset '/projects/dsnlab/shared/FP/bids_data/derivatives/freesurfer/sub-FP083/mri/fromannots/putamen.nii.gz' :-(
+** Program compile date = Jul  6 2018
+[7m** FATAL ERROR:[0m Cannot open mask dataset!
+** Program compile date = Jul  6 2018
