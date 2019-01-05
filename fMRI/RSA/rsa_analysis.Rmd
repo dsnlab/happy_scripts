@@ -1,0 +1,28 @@
+---
+title: "RSA_analysis"
+author: "Dani Cosme"
+date: "1/4/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# load packages
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(gtools)
+```
+
+# define color palettes
+```{r}
+rois = c("#1F2041", "#4B3F72", "#723F70", "#119DA4", "#19647E")
+facets = c("#2364AA", "#73BFB8","#FEC601")  #c("#73BFB8", "#3DA5D9", "#EABE20") c("#2364AA", "#FEC601")
+instructions = wesanderson::wes_palette("Darjeeling1", 2, "continuous")
+```
+
+# source data
+```{r}
+source("merge_tidy.R")
+```
