@@ -1,0 +1,265 @@
+-------------------------------------------------------------------------------
+001
+Running /projects/dsnlab/shared/FP/FP_scripts/fMRI/fx/models/svc/wave1/fx_event_noderiv_sessions_cons.m
+-------------------------------------------------------------------------------
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2018 The MathWorks, Inc.
+                   R2018b (9.5.0.944444) 64-bit (glnxa64)
+                              August 28, 2018
+
+ 
+To get started, type doc.
+For product information, visit www.mathworks.com.
+ 
+
+
+------------------------------------------------------------------------
+Running job #1
+------------------------------------------------------------------------
+Running 'Model estimation'
+
+SPM12: spm_spm (v6842)                             13:48:51 - 07/01/2019
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Spatial non-sphericity (over scans)     :      ...estimating derivatives ...writing resels/voxel image                       ...done
+Saving SPM.mat                          :                     ...writing                       ...done
+Completed                               :          13:51:33 - 07/01/2019
+Done
+Done    'Model estimation'
+Running 'Contrast Manager'
+
+SPM12: spm_contrasts.m                             13:55:36 - 07/01/2019
+========================================================================
+Contrasts folder                        :      ./event_noderiv/sub-FP001
+	contrast image  1               :                   ...computing       ...written con_0001.nii
+	spm{T} image  1                 :                   ...computing      ...written spmT_0001.nii
+	contrast image  2               :                   ...computing       ...written con_0002.nii
+	spm{T} image  2                 :                   ...computing      ...written spmT_0002.nii
+	contrast image  3               :                   ...computing       ...written con_0003.nii
+	spm{T} image  3                 :                   ...computing      ...written spmT_0003.nii
+	contrast image  4               :                   ...computing       ...written con_0004.nii
+	spm{T} image  4                 :                   ...computing      ...written spmT_0004.nii
+	contrast image  5               :                   ...computing       ...written con_0005.nii
+	spm{T} image  5                 :                   ...computing      ...written spmT_0005.nii
+	contrast image  6               :                   ...computing       ...written con_0006.nii
+	spm{T} image  6                 :                   ...computing      ...written spmT_0006.nii
+	contrast image  7               :                   ...computing       ...written con_0007.nii
+	spm{T} image  7                 :                   ...computing      ...written spmT_0007.nii
+	contrast image  8               :                   ...computing       ...written con_0008.nii
+	spm{T} image  8                 :                   ...computing      ...written spmT_0008.nii
+	contrast image  9               :                   ...computing       ...written con_0009.nii
+	spm{T} image  9                 :                   ...computing      ...written spmT_0009.nii
+	contrast image 10               :                   ...computing       ...written con_0010.nii
+	spm{T} image 10                 :                   ...computing      ...written spmT_0010.nii
+	contrast image 11               :                   ...computing       ...written con_0011.nii
+	spm{T} image 11                 :                   ...computing      ...written spmT_0011.nii
+	contrast image 12               :                   ...computing       ...written con_0012.nii
+	spm{T} image 12                 :                   ...computing      ...written spmT_0012.nii
+	contrast image 13               :                   ...computing       ...written con_0013.nii
+	spm{T} image 13                 :                   ...computing      ...written spmT_0013.nii
+	contrast image 14               :                   ...computing       ...written con_0014.nii
+	spm{T} image 14                 :                   ...computing      ...written spmT_0014.nii
+	contrast image 15               :                   ...computing       ...written con_0015.nii
+	spm{T} image 15                 :                   ...computing      ...written spmT_0015.nii
+	contrast image 16               :                   ...computing       ...written con_0016.nii
+	spm{T} image 16                 :                   ...computing      ...written spmT_0016.nii
+	contrast image 17               :                   ...computing       ...written con_0017.nii
+	spm{T} image 17                 :                   ...computing      ...written spmT_0017.nii
+	contrast image 18               :                   ...computing       ...written con_0018.nii
+	spm{T} image 18                 :                   ...computing      ...written spmT_0018.nii
+	contrast image 19               :                   ...computing       ...written con_0019.nii
+	spm{T} image 19                 :                   ...computing      ...written spmT_0019.nii
+	contrast image 20               :                   ...computing       ...written con_0020.nii
+	spm{T} image 20                 :                   ...computing      ...written spmT_0020.nii
+	contrast image 21               :                   ...computing       ...written con_0021.nii
+	spm{T} image 21                 :                   ...computing      ...written spmT_0021.nii
+	contrast image 22               :                   ...computing       ...written con_0022.nii
+	spm{T} image 22                 :                   ...computing      ...written spmT_0022.nii
+	contrast image 23               :                   ...computing       ...written con_0023.nii
+	spm{T} image 23                 :                   ...computing      ...written spmT_0023.nii
+	contrast image 24               :                   ...computing       ...written con_0024.nii
+	spm{T} image 24                 :                   ...computing      ...written spmT_0024.nii
+	contrast image 25               :                   ...computing       ...written con_0025.nii
+	spm{T} image 25                 :                   ...computing      ...written spmT_0025.nii
+	contrast image 26               :                   ...computing       ...written con_0026.nii
+	spm{T} image 26                 :                   ...computing      ...written spmT_0026.nii
+	contrast image 27               :                   ...computing       ...written con_0027.nii
+	spm{T} image 27                 :                   ...computing      ...written spmT_0027.nii
+	contrast image 28               :                   ...computing       ...written con_0028.nii
+	spm{T} image 28                 :                   ...computing      ...written spmT_0028.nii
+	contrast image 29               :                   ...computing       ...written con_0029.nii
+	spm{T} image 29                 :                   ...computing      ...written spmT_0029.nii
+	contrast image 30               :                   ...computing       ...written con_0030.nii
+	spm{T} image 30                 :                   ...computing      ...written spmT_0030.nii
+	contrast image 31               :                   ...computing       ...written con_0031.nii
+	spm{T} image 31                 :                   ...computing      ...written spmT_0031.nii
+	contrast image 32               :                   ...computing       ...written con_0032.nii
+	spm{T} image 32                 :                   ...computing      ...written spmT_0032.nii
+	contrast image 33               :                   ...computing       ...written con_0033.nii
+	spm{T} image 33                 :                   ...computing      ...written spmT_0033.nii
+	contrast image 34               :                   ...computing       ...written con_0034.nii
+	spm{T} image 34                 :                   ...computing      ...written spmT_0034.nii
+	contrast image 35               :                   ...computing       ...written con_0035.nii
+	spm{T} image 35                 :                   ...computing      ...written spmT_0035.nii
+	contrast image 36               :                   ...computing       ...written con_0036.nii
+	spm{T} image 36                 :                   ...computing      ...written spmT_0036.nii
+	contrast image 37               :                   ...computing       ...written con_0037.nii
+	spm{T} image 37                 :                   ...computing      ...written spmT_0037.nii
+	contrast image 38               :                   ...computing       ...written con_0038.nii
+	spm{T} image 38                 :                   ...computing      ...written spmT_0038.nii
+	contrast image 39               :                   ...computing       ...written con_0039.nii
+	spm{T} image 39                 :                   ...computing      ...written spmT_0039.nii
+	contrast image 40               :                   ...computing       ...written con_0040.nii
+	spm{T} image 40                 :                   ...computing      ...written spmT_0040.nii
+	contrast image 41               :                   ...computing       ...written con_0041.nii
+	spm{T} image 41                 :                   ...computing      ...written spmT_0041.nii
+	contrast image 42               :                   ...computing       ...written con_0042.nii
+	spm{T} image 42                 :                   ...computing      ...written spmT_0042.nii
+	contrast image 43               :                   ...computing       ...written con_0043.nii
+	spm{T} image 43                 :                   ...computing      ...written spmT_0043.nii
+	contrast image 44               :                   ...computing       ...written con_0044.nii
+	spm{T} image 44                 :                   ...computing      ...written spmT_0044.nii
+	contrast image 45               :                   ...computing       ...written con_0045.nii
+	spm{T} image 45                 :                   ...computing      ...written spmT_0045.nii
+	contrast image 46               :                   ...computing       ...written con_0046.nii
+	spm{T} image 46                 :                   ...computing      ...written spmT_0046.nii
+	contrast image 47               :                   ...computing       ...written con_0047.nii
+	spm{T} image 47                 :                   ...computing      ...written spmT_0047.nii
+	contrast image 48               :                   ...computing       ...written con_0048.nii
+	spm{T} image 48                 :                   ...computing      ...written spmT_0048.nii
+	contrast image 49               :                   ...computing       ...written con_0049.nii
+	spm{T} image 49                 :                   ...computing      ...written spmT_0049.nii
+	contrast image 50               :                   ...computing       ...written con_0050.nii
+	spm{T} image 50                 :                   ...computing      ...written spmT_0050.nii
+	contrast image 51               :                   ...computing       ...written con_0051.nii
+	spm{T} image 51                 :                   ...computing      ...written spmT_0051.nii
+	contrast image 52               :                   ...computing       ...written con_0052.nii
+	spm{T} image 52                 :                   ...computing      ...written spmT_0052.nii
+	contrast image 53               :                   ...computing       ...written con_0053.nii
+	spm{T} image 53                 :                   ...computing      ...written spmT_0053.nii
+	contrast image 54               :                   ...computing       ...written con_0054.nii
+	spm{T} image 54                 :                   ...computing      ...written spmT_0054.nii
+	contrast image 55               :                   ...computing       ...written con_0055.nii
+	spm{T} image 55                 :                   ...computing      ...written spmT_0055.nii
+	contrast image 56               :                   ...computing       ...written con_0056.nii
+	spm{T} image 56                 :                   ...computing      ...written spmT_0056.nii
+	contrast image 57               :                   ...computing       ...written con_0057.nii
+	spm{T} image 57                 :                   ...computing      ...written spmT_0057.nii
+	contrast image 58               :                   ...computing       ...written con_0058.nii
+	spm{T} image 58                 :                   ...computing      ...written spmT_0058.nii
+	contrast image 59               :                   ...computing       ...written con_0059.nii
+	spm{T} image 59                 :                   ...computing      ...written spmT_0059.nii
+	contrast image 60               :                   ...computing       ...written con_0060.nii
+	spm{T} image 60                 :                   ...computing      ...written spmT_0060.nii
+	contrast image 61               :                   ...computing       ...written con_0061.nii
+	spm{T} image 61                 :                   ...computing      ...written spmT_0061.nii
+	contrast image 62               :                   ...computing       ...written con_0062.nii
+	spm{T} image 62                 :                   ...computing      ...written spmT_0062.nii
+	contrast image 63               :                   ...computing       ...written con_0063.nii
+	spm{T} image 63                 :                   ...computing      ...written spmT_0063.nii
+	contrast image 64               :                   ...computing       ...written con_0064.nii
+	spm{T} image 64                 :                   ...computing      ...written spmT_0064.nii
+	contrast image 65               :                   ...computing       ...written con_0065.nii
+	spm{T} image 65                 :                   ...computing      ...written spmT_0065.nii
+	contrast image 66               :                   ...computing       ...written con_0066.nii
+	spm{T} image 66                 :                   ...computing      ...written spmT_0066.nii
+	contrast image 67               :                   ...computing       ...written con_0067.nii
+	spm{T} image 67                 :                   ...computing      ...written spmT_0067.nii
+	contrast image 68               :                   ...computing       ...written con_0068.nii
+	spm{T} image 68                 :                   ...computing      ...written spmT_0068.nii
+	contrast image 69               :                   ...computing       ...written con_0069.nii
+	spm{T} image 69                 :                   ...computing      ...written spmT_0069.nii
+	contrast image 70               :                   ...computing       ...written con_0070.nii
+	spm{T} image 70                 :                   ...computing      ...written spmT_0070.nii
+	contrast image 71               :                   ...computing       ...written con_0071.nii
+	spm{T} image 71                 :                   ...computing      ...written spmT_0071.nii
+	contrast image 72               :                   ...computing       ...written con_0072.nii
+	spm{T} image 72                 :                   ...computing      ...written spmT_0072.nii
+	contrast image 73               :                   ...computing       ...written con_0073.nii
+	spm{T} image 73                 :                   ...computing      ...written spmT_0073.nii
+	contrast image 74               :                   ...computing       ...written con_0074.nii
+	spm{T} image 74                 :                   ...computing      ...written spmT_0074.nii
+	contrast image 75               :                   ...computing       ...written con_0075.nii
+	spm{T} image 75                 :                   ...computing      ...written spmT_0075.nii
+	contrast image 76               :                   ...computing       ...written con_0076.nii
+	spm{T} image 76                 :                   ...computing      ...written spmT_0076.nii
+	contrast image 77               :                   ...computing       ...written con_0077.nii
+	spm{T} image 77                 :                   ...computing      ...written spmT_0077.nii
+	contrast image 78               :                   ...computing       ...written con_0078.nii
+	spm{T} image 78                 :                   ...computing      ...written spmT_0078.nii
+	contrast image 79               :                   ...computing       ...written con_0079.nii
+	spm{T} image 79                 :                   ...computing      ...written spmT_0079.nii
+	contrast image 80               :                   ...computing       ...written con_0080.nii
+	spm{T} image 80                 :                   ...computing      ...written spmT_0080.nii
+	contrast image 81               :                   ...computing       ...written con_0081.nii
+	spm{T} image 81                 :                   ...computing      ...written spmT_0081.nii
+	contrast image 82               :                   ...computing       ...written con_0082.nii
+	spm{T} image 82                 :                   ...computing      ...written spmT_0082.nii
+	contrast image 83               :                   ...computing       ...written con_0083.nii
+	spm{T} image 83                 :                   ...computing      ...written spmT_0083.nii
+	contrast image 84               :                   ...computing       ...written con_0084.nii
+	spm{T} image 84                 :                   ...computing      ...written spmT_0084.nii
+	contrast image 85               :                   ...computing       ...written con_0085.nii
+	spm{T} image 85                 :                   ...computing      ...written spmT_0085.nii
+	contrast image 86               :                   ...computing       ...written con_0086.nii
+	spm{T} image 86                 :                   ...computing      ...written spmT_0086.nii
+	contrast image 87               :                   ...computing       ...written con_0087.nii
+	spm{T} image 87                 :                   ...computing      ...written spmT_0087.nii
+	contrast image 88               :                   ...computing       ...written con_0088.nii
+	spm{T} image 88                 :                   ...computing      ...written spmT_0088.nii
+	contrast image 89               :                   ...computing       ...written con_0089.nii
+	spm{T} image 89                 :                   ...computing      ...written spmT_0089.nii
+	contrast image 90               :                   ...computing       ...written con_0090.nii
+	spm{T} image 90                 :                   ...computing      ...written spmT_0090.nii
+	contrast image 91               :                   ...computing       ...written con_0091.nii
+	spm{T} image 91                 :                   ...computing      ...written spmT_0091.nii
+	contrast image 92               :                   ...computing       ...written con_0092.nii
+	spm{T} image 92                 :                   ...computing      ...written spmT_0092.nii
+	contrast image 93               :                   ...computing       ...written con_0093.nii
+	spm{T} image 93                 :                   ...computing      ...written spmT_0093.nii
+Completed                               :          13:56:07 - 07/01/2019
+Done    'Contrast Manager'
+Done
+
+-------------------------------------------------------------------------------
+Merging residuals
+-------------------------------------------------------------------------------
+merging residuals for run1
+merging residuals for run2
+-------------------------------------------------------------------------------
+Calculating ACF parameters
+-------------------------------------------------------------------------------
+calculating ACF parameters for run1
+++ 3dFWHMx: AFNI version=AFNI_18.2.04 (Jul  6 2018) [64-bit]
+++ Authored by: The Bob
+++ Number of voxels in mask = 258370
+** AFNI converts NIFTI_datatype=64 (FLOAT64) in file residuals_run1.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+++ start ACF calculations out to radius = 23.29 mm
+ + ACF done (0.00 CPU s thus far)
+++ ACF 1D file [radius ACF mixed_model gaussian_NEWmodel] written to 3dFWHMx.1D
+++ 1dplot: AFNI version=AFNI_18.2.04 (Jul  6 2018) [64-bit]
+++ Authored by: RWC et al.
+ + and 1dplot-ed to file 3dFWHMx.1D.png
+calculating ACF parameters for run2
+++ 3dFWHMx: AFNI version=AFNI_18.2.04 (Jul  6 2018) [64-bit]
+++ Authored by: The Bob
+++ Number of voxels in mask = 258370
+** AFNI converts NIFTI_datatype=64 (FLOAT64) in file residuals_run2.nii.gz to FLOAT32
+     Warnings of this type will be muted for this session.
+     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+++ start ACF calculations out to radius = 23.90 mm
+ + ACF done (0.00 CPU s thus far)
+[7m** ERROR:[0m (FAILED) attempt to over-write file 3dFWHMx.1D
+++ ACF 1D file [radius ACF mixed_model gaussian_NEWmodel] written to 3dFWHMx.1D
+++ 1dplot: AFNI version=AFNI_18.2.04 (Jul  6 2018) [64-bit]
+++ Authored by: RWC et al.
+ + and 1dplot-ed to file 3dFWHMx.1D.png
+-------------------------------------------------------------------------------
+Averaging ACF parameters
+-------------------------------------------------------------------------------
+++ 3dTstat: AFNI version=AFNI_18.2.04 (Jul  6 2018) [64-bit]
+++ Authored by: KR Hammett & RW Cox
+[7m*+ WARNING:[0m Input dataset is not 3D+time; assuming TR=1.0

@@ -9,7 +9,7 @@
 STUDY=/projects/dsnlab/shared/FP/FP_scripts
 
 # Set subject list
-SUBJLIST=`cat subject_list.txt`
+SUBJLIST=`cat subject_list_mods.txt`
 
 # Which SID should be replaced?
 REPLACESID=FP001
@@ -18,13 +18,13 @@ REPLACESID=FP001
 SPM_PATH=/projects/dsnlab/shared/SPM12
 
 # Set MATLAB script path
-SCRIPT=${STUDY}/fMRI/ppc/smooth/smooth.m
+SCRIPT=${STUDY}/fMRI/ppc/smooth/smooth_2mm.m
 
 # Set shell script to execute
 SHELL_SCRIPT=spm_job.sh
 
 # Tag the results files
-RESULTS_INFIX=smooth
+RESULTS_INFIX=smooth_2mm
 
 # Set output dir and make it if it doesn't exist
 OUTPUTDIR=${STUDY}/fMRI/ppc/smooth/output

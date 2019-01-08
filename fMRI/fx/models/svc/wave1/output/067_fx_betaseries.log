@@ -20,7 +20,7 @@ Running job #1
 Running 'Expand image frames'
 Failed  'Expand image frames'
 Error using read_hdr (line 32)
-Error reading header file "/projects/dsnlab/shared/FP/bids_data/derivatives/fmriprep/sub-FP067/ses-wave1/func/s2_sub-FP067_ses-wave1_task-SVC_acq-01_bold_space-MNI152NLin2009cAsym_preproc.nii".
+Error reading header file "/projects/dsnlab/shared/FP/bids_data/derivatives/fmriprep/sub-FP067/ses-wave1/func/s2_sub-FP067_ses-wave1_task-SVC_acq-01_bold_space-T1w_preproc.nii".
 In file "/gpfs/projects/dsnlab/shared/SPM12/@nifti/private/read_hdr.m" (v4967), function "read_hdr" at line 32.
 In file "/gpfs/projects/dsnlab/shared/SPM12/@nifti/nifti.m" (v4986), function "nifti" at line 26.
 In file "/gpfs/projects/dsnlab/shared/SPM12/spm_select.m" (v6530), function "spm_select_get_nbframes" at line 268.
@@ -31,7 +31,7 @@ In file "/gpfs/projects/dsnlab/shared/SPM12/config/spm_cfg_exp_frames.m" (v5956)
 Running 'Expand image frames'
 Failed  'Expand image frames'
 Error using read_hdr (line 32)
-Error reading header file "/projects/dsnlab/shared/FP/bids_data/derivatives/fmriprep/sub-FP067/ses-wave1/func/s2_sub-FP067_ses-wave1_task-SVC_acq-02_bold_space-MNI152NLin2009cAsym_preproc.nii".
+Error reading header file "/projects/dsnlab/shared/FP/bids_data/derivatives/fmriprep/sub-FP067/ses-wave1/func/s2_sub-FP067_ses-wave1_task-SVC_acq-02_bold_space-T1w_preproc.nii".
 In file "/gpfs/projects/dsnlab/shared/SPM12/@nifti/private/read_hdr.m" (v4967), function "read_hdr" at line 32.
 In file "/gpfs/projects/dsnlab/shared/SPM12/@nifti/nifti.m" (v4986), function "nifti" at line 26.
 In file "/gpfs/projects/dsnlab/shared/SPM12/spm_select.m" (v6530), function "spm_select_get_nbframes" at line 268.
@@ -39,6 +39,8 @@ In file "/gpfs/projects/dsnlab/shared/SPM12/spm_select.m" (v6530), function "spm
 In file "/gpfs/projects/dsnlab/shared/SPM12/spm_select.m" (v6530), function "spm_select" at line 130.
 In file "/gpfs/projects/dsnlab/shared/SPM12/config/spm_cfg_exp_frames.m" (v5956), function "run_frames" at line 46.
 
+Running 'Gunzip Files'
+Done    'Gunzip Files'
 No executable modules, but still unresolved dependencies or incomplete module inputs.
 The following modules did not run:
 Failed: Expand image frames

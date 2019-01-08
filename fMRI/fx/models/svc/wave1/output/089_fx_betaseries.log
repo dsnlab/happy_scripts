@@ -21,47 +21,40 @@ Running 'Expand image frames'
 Done    'Expand image frames'
 Running 'Expand image frames'
 Done    'Expand image frames'
+Running 'Gunzip Files'
+Done    'Gunzip Files'
 Running 'fMRI model specification'
 
-SPM12: spm_fMRI_design (v5183)                     14:37:56 - 29/12/2018
+SPM12: spm_fMRI_design (v5183)                     14:50:17 - 07/01/2019
 ========================================================================
 Saving fMRI design                      :               ...SPM.mat saved
 
-SPM12: spm_fmri_spm_ui (v6088)                     14:37:56 - 29/12/2018
+SPM12: spm_fmri_spm_ui (v6088)                     14:50:19 - 07/01/2019
 ========================================================================
 Mapping files                           :                        ...done
 Calculating globals                     :                        ...done
 Saving SPM configuration                :               ...SPM.mat saved
 Saving SPM configuration                :               ...SPM.mat saved
-Completed                               :          14:38:03 - 29/12/2018
+Completed                               :          14:50:37 - 07/01/2019
 Done    'fMRI model specification'
 Running 'Model estimation'
 
-SPM12: spm_spm (v6842)                             14:38:03 - 29/12/2018
+SPM12: spm_spm (v6842)                             14:50:37 - 07/01/2019
 ========================================================================
 
-SPM12: spm_est_non_sphericity (v6913)              14:38:04 - 29/12/2018
+SPM12: spm_est_non_sphericity (v6913)              14:50:39 - 07/01/2019
 ========================================================================
-Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing
-Temporal non-sphericity (217168 voxels) :             ...ReML estimation
+Chunk   1/4                             :                  ...processing                       ...doneChunk   2/4                             :                  ...processing                       ...doneChunk   3/4                             :                  ...processing                       ...doneChunk   4/4                             :                  ...processing                       ...done
+Temporal non-sphericity (139539 voxels) :             ...ReML estimation
   ReML Block 1                
-  ReML Iteration 1                      :        ...1.637886e+01 [+4.25]
-  ReML Iteration 2                      :        ...7.244619e+00 [+4.50]
-  ReML Iteration 3                      :        ...1.856311e-01 [+4.75]
-  ReML Iteration 4                      :        ...4.888242e-02 [+5.00]
-  ReML Iteration 1                      :        ...1.649505e+01 [+2.25]
-  ReML Iteration 2                      :        ...6.262054e+00 [-5.50]
-  ReML Iteration 3                      :        ...8.182205e-02 [-13.25]
-  ReML Block 2                
-  ReML Iteration 1                      :        ...2.207006e+01 [+4.25]
-  ReML Iteration 2                      :        ...2.606648e+00 [+4.50]
-  ReML Iteration 3                      :        ...2.122652e-01 [+4.75]
-  ReML Iteration 4                      :        ...2.688248e-02 [+5.00]
-  ReML Iteration 1                      :        ...2.209268e+01 [+2.25]
-  ReML Iteration 2                      :        ...2.899831e+00 [-5.50]
-  ReML Iteration 3                      :        ...3.721304e-02 [-13.25]
+  ReML Iteration 1                      :        ...1.627168e+01 [+4.25]
+  ReML Iteration 2                      :        ...1.485317e-01 [+4.50]
+  ReML Iteration 3                      :        ...1.024997e-02 [+4.75]
+  ReML Iteration 1                      :        ...1.630854e+01 [+2.25]
+  ReML Iteration 2                      :        ...1.801536e-01 [-5.50]
+  ReML Iteration 3                      :        ...4.653445e-03 [-13.25]
 [Warning: Matrix is close to singular or badly scaled. Results may be
-inaccurate. RCOND =  1.436974e-16.] 
+inaccurate. RCOND =  1.583113e-16.] 
 [> In spm_reml (line 220)
   In spm_reml (line 208)
   In spm_est_non_sphericity (line 276)
@@ -72,13 +65,20 @@ inaccurate. RCOND =  1.436974e-16.]
   In cfg_util (line 959)
   In spm_jobman>fill_run_job (line 458)
   In spm_jobman (line 247)] 
+  ReML Block 2                
+  ReML Iteration 1                      :        ...2.090212e+01 [+4.25]
+  ReML Iteration 2                      :        ...3.601635e-01 [+4.50]
+  ReML Iteration 3                      :        ...2.155999e-02 [+4.75]
+  ReML Iteration 1                      :        ...2.090671e+01 [+2.25]
+  ReML Iteration 2                      :        ...3.878114e-01 [-5.50]
+  ReML Iteration 3                      :        ...7.589661e-03 [-13.25]
 
-SPM12: spm_spm (v6842)                             14:38:15 - 29/12/2018
+SPM12: spm_spm (v6842)                             14:50:58 - 07/01/2019
 ========================================================================
-Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Chunk   1/4                             :                  ...processing                       ...doneChunk   2/4                             :                  ...processing                       ...doneChunk   3/4                             :                  ...processing                       ...doneChunk   4/4                             :                  ...processing                       ...done
 Spatial non-sphericity (over scans)     :      ...estimating derivatives ...writing resels/voxel image                       ...done
 Saving SPM.mat                          :                     ...writing                       ...done
-Completed                               :          14:39:46 - 29/12/2018
+Completed                               :          14:52:11 - 07/01/2019
 Done
 Done    'Model estimation'
 Done
