@@ -40,23 +40,23 @@ echo "Creating masks"
 # echo "VS mask"
 # fslmaths segment26_freesurfer_rawavg -add segment58_freesurfer_rawavg -add segment12_freesurfer_rawavg -add segment51_freesurfer_rawavg VS.nii.gz
 
-echo "pgACC_61 mask"
-fslmaths lh.L_a24_ROI.nii.gz -add rh.R_a24_ROI.nii.gz pgACC_61.nii.gz
+# echo "pgACC_61 mask"
+# fslmaths lh.L_a24_ROI.nii.gz -add rh.R_a24_ROI.nii.gz pgACC_61.nii.gz
 
-echo "sgACC_164 mask"
-fslmaths lh.L_25_ROI.nii.gz -add rh.R_25_ROI.nii.gz sgACC_164.nii.gz
+# echo "sgACC_164 mask"
+# fslmaths lh.L_25_ROI.nii.gz -add rh.R_25_ROI.nii.gz sgACC_164.nii.gz
 
-echo "sgACC_165 mask"
-fslmaths lh.L_s32_ROI.nii.gz -add rh.R_s32_ROI.nii.gz sgACC_165.nii.gz
+# echo "sgACC_165 mask"
+# fslmaths lh.L_s32_ROI.nii.gz -add rh.R_s32_ROI.nii.gz sgACC_165.nii.gz
 
-echo "vmPFC_64 mask"
-fslmaths lh.L_p32_ROI.nii.gz -add rh.R_p32_ROI.nii.gz -add vmPFC_64.nii.gz
+# echo "vmPFC_64 mask"
+# fslmaths lh.L_p32_ROI.nii.gz -add rh.R_p32_ROI.nii.gz -add vmPFC_64.nii.gz
 
-echo "vmPFC_65 mask"
-fslmaths lh.L_10r_ROI.nii.gz -add rh.R_10r_ROI.nii.gz -add vmPFC_65.nii.gz
+# echo "vmPFC_65 mask"
+# fslmaths lh.L_10r_ROI.nii.gz -add rh.R_10r_ROI.nii.gz -add vmPFC_65.nii.gz
 
-echo "mOFC mask"
-fslmaths lh.L_10v_ROI.nii.gz -add rh.R_10v_ROI.nii.gz -add mOFC.nii.gz
+# echo "mOFC mask"
+# fslmaths lh.L_10v_ROI.nii.gz -add rh.R_10v_ROI.nii.gz -add mOFC.nii.gz
 
 # echo "NAcc mask"
 # fslmaths segment26_freesurfer_rawavg -add segment58_freesurfer_rawavg NAcc.nii.gz
@@ -64,3 +64,13 @@ fslmaths lh.L_10v_ROI.nii.gz -add rh.R_10v_ROI.nii.gz -add mOFC.nii.gz
 # echo "putamen mask"
 # fslmaths segment12_freesurfer_rawavg -add segment51_freesurfer_rawavg putamen.nii.gz
 
+## binarize masks
+fslmaths pgACC.nii.gz -bin pgACC.nii.gz
+fslmaths vmPFC.nii.gz -bin vmPFC.nii.gz
+fslmaths VS.nii.gz -bin VS.nii.gz
+fslmaths pgACC_61.nii.gz -bin pgACC_61.nii.gz
+fslmaths sgACC_164.nii.gz -bin sgACC_164.nii.gz
+fslmaths sgACC_165.nii.gz -bin sgACC_165.nii.gz
+fslmaths vmPFC_64.nii.gz -bin vmPFC_64.nii.gz
+fslmaths vmPFC_65.nii.gz -bin vmPFC_65.nii.gz
+fslmaths mOFC.nii.gz -bin mOFC.nii.gz
