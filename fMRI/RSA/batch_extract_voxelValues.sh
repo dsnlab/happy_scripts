@@ -12,10 +12,10 @@ STUDY=/projects/dsnlab/shared/FP/FP_scripts
 SUBJLIST=`cat subject_list.txt`
 
 # Set shell script to execute
-SHELL_SCRIPT=extract_voxelValues.sh
+SHELL_SCRIPT=extract_voxelValues_cons.sh
 
 # FP the results files
-RESULTS_INFIX=extract_vv
+RESULTS_INFIX=extract_vv_cons
 
 # Set output dir and make it if it doesn't exist
 OUTPUTDIR=${STUDY}/fMRI/RSA/output
