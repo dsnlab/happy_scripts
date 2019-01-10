@@ -21,7 +21,7 @@ images=`echo $(printf "con_%04d.nii\n" {1..3})` #images to extract parameter est
 
 # paths
 image_dir=/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event_noderiv/sub-"${SUB}" #fx directory
-roi_dir=/projects/dsnlab/shared/FP/nonbids_data/roi #roi directory (alt. example: roi_dir=/projects/sanlab/shared/study/bids_data/derivatives/freesurfer/sub-"${SUB}"/mri/fromannots)
+roi_dir=/projects/dsnlab/shared/FP/nonbids_data/fMRI/roi #roi directory (alt. example: roi_dir=/projects/sanlab/shared/study/bids_data/derivatives/freesurfer/sub-"${SUB}"/mri/fromannots)
 output_dir=/projects/dsnlab/shared/FP/FP_scripts/fMRI/roi/parameterEstimates #parameter estimate output directory
 
 if [ ! -d ${output_dir} ]; then
