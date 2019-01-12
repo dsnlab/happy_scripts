@@ -6,7 +6,7 @@
 #--------------------------------------------------------------
 
 # Set your study
-STUDY=/projects/sanlab/shared/study/study_scripts
+STUDY=/projects/dsnlab/shared/FP/FP_scripts
 
 # Set subject list
 SUBJLIST=`cat subject_list.txt`
@@ -18,7 +18,7 @@ SHELL_SCRIPT=extract_parameterEstimates.sh
 RESULTS_INFIX=extract
 
 # Set output dir and make it if it doesn't exist
-OUTPUTDIR=${STUDY}/fMRI/betaseries/output
+OUTPUTDIR=${STUDY}/fMRI/roi/output
 
 if [ ! -d ${OUTPUTDIR} ]; then
 	mkdir -p ${OUTPUTDIR}
