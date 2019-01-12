@@ -5,7 +5,7 @@
 %-----------------------------------------------------------------------
 matlabbatch{1}.spm.util.exp_frames.files = {'/projects/dsnlab/shared/FP/bids_data/derivatives/fmriprep/sub-FP001/ses-wave1/func/s2_sub-FP001_ses-wave1_task-SVC_acq-01_bold_space-T1w_preproc.nii,1'};
 matlabbatch{1}.spm.util.exp_frames.frames = Inf;
-matlabbatch{2}.spm.util.exp_frames.files = {'/projects/dsnlab/shared/FP/bids_data/derivatives/fmriprep/sub-FP001/ses-wave1/func/s2_sub-FP001_ses-wave1_task-SVC_acq-01_bold_space-T1w_preproc.nii,1'};
+matlabbatch{2}.spm.util.exp_frames.files = {'/projects/dsnlab/shared/FP/bids_data/derivatives/fmriprep/sub-FP001/ses-wave1/func/s2_sub-FP001_ses-wave1_task-SVC_acq-02_bold_space-T1w_preproc.nii,1'};
 matlabbatch{2}.spm.util.exp_frames.frames = Inf;
 matlabbatch{3}.cfg_basicio.file_dir.file_ops.cfg_gunzip_files.files = {'/projects/dsnlab/shared/FP/bids_data/derivatives/fmriprep/sub-FP001/ses-wave1/func/sub-FP001_ses-wave1_task-SVC_acq-01_bold_space-T1w_brainmask.nii.gz'};
 matlabbatch{3}.cfg_basicio.file_dir.file_ops.cfg_gunzip_files.outdir = {''};
