@@ -17,7 +17,7 @@ echo ---------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------
 # variables
 rois=(pgACC vmPFC VS pgACC_61 sgACC_164 sgACC_165 vmPFC_64 vmPFC_65 mOFC NAcc putamen)
-cons=`echo $(printf "con_%04d.nii\n" {1..6})`
+cons=`echo $(printf "con_%04d.nii\n" {1..6}) $(printf "con_%04d.nii\n" {25..30})`
 
 # paths
 con_dir=/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event_noderiv_session/sub-"${SUB}" #con directory
