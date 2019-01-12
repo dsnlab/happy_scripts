@@ -8,3 +8,5 @@ behavioral/*
 /**/logs_bidsQC/*
 /**/output/*
 *.log
+*_error.txt
+*_output.txt
