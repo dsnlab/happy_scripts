@@ -17,7 +17,7 @@ echo ---------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------
 # variables
 rois=(pgACC vmPFC VS pgACC_61 sgACC_164 sgACC_165 vmPFC_64 vmPFC_65 mOFC NAcc putamen) #roi masks (without file format, specified below as .nii)
-images=`echo $(printf "con_%04d.nii\n" {1..3})` #images to extract parameter estimates from (alt. example: images=`echo $(printf "beta_%04d.nii\n" {1..36}) $(printf "beta_%04d.nii\n" {43..78})`)
+images=`echo $(printf "con_%04d.nii\n" {1..3}) $(printf "con_%04d.nii\n" {13..15})` #images to extract parameter estimates from (alt. example: images=`echo $(printf "beta_%04d.nii\n" {1..36}) $(printf "beta_%04d.nii\n" {43..78})`)
 
 # paths
 image_dir=/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event_noderiv/sub-"${SUB}" #fx directory
