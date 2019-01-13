@@ -1,9 +1,9 @@
 %-----------------------------------------------------------------------
-% Job saved on 13-Jan-2019 11:59:51 by cfg_util (rev $Rev: 6942 $)
+% Job saved on 13-Jan-2019 12:14:05 by cfg_util (rev $Rev: 6942 $)
 % spm SPM - SPM12 (7219)
 % cfg_basicio BasicIO - Unknown
 %-----------------------------------------------------------------------
-matlabbatch{1}.spm.stats.factorial_design.dir = {'/projects/dsnlab/shared/FP/nonbids_data/fMRI/rx/svc/wave1/illbeing_self_change'};
+matlabbatch{1}.spm.stats.factorial_design.dir = {'/projects/dsnlab/shared/FP/nonbids_data/fMRI/rx/svc/wave1/illbeing_self_change_regression'};
 %%
 matlabbatch{1}.spm.stats.factorial_design.des.t1.scans = {
                                                           '/projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/event_noderiv/sub-FP001/con_0015.nii'
@@ -238,4 +238,10 @@ matlabbatch{3}.spm.stats.con.consess{1}.tcon.sessrep = 'none';
 matlabbatch{3}.spm.stats.con.consess{2}.tcon.name = 'ill-being change > self';
 matlabbatch{3}.spm.stats.con.consess{2}.tcon.weights = -1;
 matlabbatch{3}.spm.stats.con.consess{2}.tcon.sessrep = 'none';
+matlabbatch{3}.spm.stats.con.consess{3}.tcon.name = 'score positive';
+matlabbatch{3}.spm.stats.con.consess{3}.tcon.weights = [0 1];
+matlabbatch{3}.spm.stats.con.consess{3}.tcon.sessrep = 'none';
+matlabbatch{3}.spm.stats.con.consess{4}.tcon.name = 'score negative';
+matlabbatch{3}.spm.stats.con.consess{4}.tcon.weights = [0 -1];
+matlabbatch{3}.spm.stats.con.consess{4}.tcon.sessrep = 'none';
 matlabbatch{3}.spm.stats.con.delete = 1;
