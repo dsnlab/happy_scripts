@@ -1,0 +1,333 @@
+---
+title: "Similarity analysis - runs"
+author: "Dani Cosme"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    code_folding: hide
+    df_print: paged
+    highlight: tango
+    theme: united
+    toc: yes
+    toc_float:
+      collapsed: yes
+      smooth_scroll: yes
+  pdf_document:
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
+options(scipen=999)
+```
+
+# load packages
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(gtools)
+```
+
+# define color palettes
+```{r}
+palette = c("white", "#FEC601", "#F43C13")
+```
+
+# source data
+```{r}
+source("load_data_rsa_cons.R")
+```
+
+# exclude subs
+* Motion exclusions: FP091
+* Technical failure: FP080, FP082
+* Non-compliance: FP021, FP049, FP085, FP121
+* Missing run2: FP067, FP114
+
+```{r}
+data.ex = vox.vals %>%
+  filter(!subjectID %in% c("FP091", "FP080", "FP082", "FP021", "FP049", "FP085", "FP121", "FP067", "FP114"))
+```
+
+# run correlations
+## primary ROIs
+### self > rest
+```{r, fig.width=11, fig.height=4}
+data1 = data.ex %>%
+  filter(instruction == "self") %>%
+  select(-c(instruction, voxel)) %>%
+  unite(construct_run, construct, run)
+
+cors = data1 %>%
+  filter(contrast == "self" & roi %in% c("pgACC", "vmPFC", "VS")) %>%
+  group_by(subjectID, roi) %>%
+  do({
+    constructs.spread = spread(., construct_run, value)
+    cors = cor(constructs.spread[,-c(1:4)], use = "pairwise.complete.obs") %>%
+      as.data.frame() %>%
+      mutate(subjectID = constructs.spread$subjectID[[1]],
+             roi = constructs.spread$roi[[1]],
+             construct_run = colnames(constructs.spread)[-c(1:4)])
+  })
+
+# significance testing
+ps = cors %>%
+  reshape2::melt() %>%
+  filter(grepl("run1", construct_run) & grepl("run2", variable)) %>%
+  rename("run1" = construct_run,
+         "run2" = variable) %>%
+  filter(!is.na(value)) %>%
+  group_by(roi, run1, run2) %>%
+  mutate(fisher.z = psych::fisherz(value)) %>%
+  unite(roirun1run2, roi, run1, run2) %>%
+  select(-value) %>%
+  spread(roirun1run2, fisher.z) %>%
+  na.omit()
+
+lapply(ps[, names(ps)[-1]], function(x) t.test(x, mu = 0, alternative = "two.sided"))
+
+p.key = ps %>%
+  select(-subjectID) %>%
+  gather(run, value) %>%
+  group_by(run) %>%
+    do({
+      data.frame(run = .$run[[1]], p = t.test(.$value, mu = 0, alternative = "two.sided")$p.value)
+    }) %>%
+  extract(run, c("roi", "run1", "run2"), "(.*)_(.*_run1)_(.*run2)") %>%
+  mutate(run1 = gsub("_", " ", run1),
+         run1 = gsub("run1", "run 1", run1),
+         run2 = gsub("_", " ", run2),
+         run2 = gsub("run2", "run 2", run2),
+         adjusted = p.adjust(p, "bonferroni", nrow(.)),
+         significant = ifelse(adjusted < .05, '*', "")) %>%
+  mutate_if(is.numeric, round, 3) %>%
+  arrange(significant)
+
+# plot
+(cor.plot = cors %>%
+  reshape2::melt() %>%
+  filter(grepl("run1", construct_run) & grepl("run2", variable)) %>%
+  rename("run1" = construct_run,
+         "run2" = variable) %>%
+  filter(!is.na(value)) %>%
+  group_by(roi, run1, run2) %>%
+  mutate(fisher.z = psych::fisherz(value)) %>%
+  summarize(mean.value = mean(fisher.z)) %>%
+  ungroup() %>%
+  mutate(run1 = ifelse(run1 == "ill-being_run1", "ill-being run 1",
+                ifelse(run1 == "well-being_run1", "well-being run 1",
+                ifelse(run1 == "social_run1", "social run 1", run1))),
+         run2 = ifelse(run2 == "ill-being_run2", "ill-being run 2",
+                ifelse(run2 == "well-being_run2", "well-being run 2",
+                ifelse(run2 == "social_run2", "social run 2", run1)))) %>%
+  left_join(., p.key) %>%
+  ggplot(aes(run1, run2, fill = mean.value)) +
+    geom_tile(color = "white") +
+    scale_fill_gradientn(name = "fisher z\n", colors = palette, lim = c(0,.5), breaks = c(0, .25, .5)) + 
+    geom_text(aes(label = round(mean.value,2)), size = 4, family = "Futura Medium") + 
+    geom_text(aes(label = significant), size = 4, family = "Futura Medium", nudge_x = .3, nudge_y = .2) + 
+    facet_wrap(~roi, ncol = 3) +
+    labs(x = "", y = "") + 
+    theme_minimal(base_size = 16) +
+    theme(text = element_text(family = "Futura Medium", colour = "black"),
+          legend.text = element_text(size = 8),
+          axis.text = element_text(color = "black"),
+          axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
+          panel.border = element_blank(),
+          panel.background = element_blank()))
+
+ggsave(cor.plot, filename = "correlation_plot.png", width = 10, height = 4.15, dpi = 300)
+```
+
+### self > change
+```{r, fig.width=11, fig.height=4}
+data1 = data.ex %>%
+  filter(instruction == "self") %>%
+  select(-c(instruction, voxel)) %>%
+  unite(construct_run, construct, run)
+
+cors.sc = data1 %>%
+  filter(contrast == "self_change" & roi %in% c("pgACC", "vmPFC", "VS")) %>%
+  group_by(subjectID, roi) %>%
+  do({
+    constructs.spread = spread(., construct_run, value)
+    cors = cor(constructs.spread[,-c(1:4)], use = "pairwise.complete.obs") %>%
+      as.data.frame() %>%
+      mutate(subjectID = constructs.spread$subjectID[[1]],
+             roi = constructs.spread$roi[[1]],
+             construct_run = colnames(constructs.spread)[-c(1:4)])
+  })
+
+cors.sc %>%
+  reshape2::melt() %>%
+  filter(grepl("run1", construct_run) & grepl("run2", variable)) %>%
+  rename("run1" = construct_run,
+         "run2" = variable) %>%
+  filter(!is.na(value)) %>%
+  group_by(roi, run1, run2) %>%
+  mutate(fisher.z = psych::fisherz(value)) %>%
+  summarize(mean.value = mean(fisher.z)) %>%
+  ungroup() %>%
+  mutate(run1 = ifelse(run1 == "ill-being_run1", "ill-being run 1",
+                ifelse(run1 == "well-being_run1", "well-being run 1",
+                ifelse(run1 == "social_run1", "social run 1", run1))),
+         run2 = ifelse(run2 == "ill-being_run2", "ill-being run 2",
+                ifelse(run2 == "well-being_run2", "well-being run 2",
+                ifelse(run2 == "social_run2", "social run 2", run1)))) %>%
+  ggplot(aes(run1, run2, fill = mean.value)) +
+    geom_tile(color = "white") +
+    scale_fill_gradientn(name = "fisher z", colors = palette, lim = c(0,.5)) + 
+    geom_text(aes(label = round(mean.value,2)), size = 4, ) + 
+    facet_wrap(~roi, ncol = 3) +
+    labs(x = "", y = "") + 
+    theme_minimal(base_size = 12) +
+    theme(text = element_text(family = "Futura Medium", colour = "black"),
+          axis.text = element_text(color = "black"),
+          axis.text.x = element_text(angle = 45, vjust = 1, size = 10, hjust = 1),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
+          panel.border = element_blank(),
+          panel.background = element_blank())
+```
+
+## individual ROIs
+### self > rest
+```{r, fig.width=11, fig.height=10}
+cors.ind = data1 %>%
+  filter(contrast == "self" & !roi %in% c("pgACC", "vmPFC", "VS")) %>%
+  group_by(subjectID, roi) %>%
+  do({
+    constructs.spread = spread(., construct_run, value)
+    cors = cor(constructs.spread[,-c(1:4)], use = "pairwise.complete.obs") %>%
+      as.data.frame() %>%
+      mutate(subjectID = constructs.spread$subjectID[[1]],
+             roi = constructs.spread$roi[[1]],
+             construct_run = colnames(constructs.spread)[-c(1:4)])
+  })
+
+cors.ind %>%
+  reshape2::melt() %>%
+  filter(grepl("run1", construct_run) & grepl("run2", variable)) %>%
+  rename("run1" = construct_run,
+         "run2" = variable) %>%
+  filter(!is.na(value)) %>%
+  group_by(roi, run1, run2) %>%
+  mutate(fisher.z = psych::fisherz(value)) %>%
+  summarize(mean.value = mean(fisher.z)) %>%
+  ungroup() %>%
+  mutate(run1 = ifelse(run1 == "ill-being_run1", "ill-being run 1",
+                ifelse(run1 == "well-being_run1", "well-being run 1",
+                ifelse(run1 == "social_run1", "social run 1", run1))),
+         run2 = ifelse(run2 == "ill-being_run2", "ill-being run 2",
+                ifelse(run2 == "well-being_run2", "well-being run 2",
+                ifelse(run2 == "social_run2", "social run 2", run1)))) %>%
+  ggplot(aes(run1, run2, fill = mean.value)) +
+    geom_tile(color = "white") +
+    scale_fill_gradientn(name = "fisher z", colors = palette, lim = c(-0.01,.5)) + 
+    geom_text(aes(label = round(mean.value,2)), size = 4, ) + 
+    facet_wrap(~roi, ncol = 3) +
+    labs(x = "", y = "") + 
+    theme_minimal(base_size = 12) +
+    theme(text = element_text(family = "Futura Medium", colour = "black"),
+          axis.text = element_text(color = "black"),
+          axis.text.x = element_text(angle = 45, vjust = 1, size = 10, hjust = 1),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
+          panel.border = element_blank(),
+          panel.background = element_blank())
+
+```
+
+### self > change
+```{r, fig.width=11, fig.height=10}
+cors.ind.sc = data1 %>%
+  filter(contrast == "self_change" & !roi %in% c("pgACC", "vmPFC", "VS")) %>%
+  group_by(subjectID, roi) %>%
+  do({
+    constructs.spread = spread(., construct_run, value)
+    cors = cor(constructs.spread[,-c(1:4)], use = "pairwise.complete.obs") %>%
+      as.data.frame() %>%
+      mutate(subjectID = constructs.spread$subjectID[[1]],
+             roi = constructs.spread$roi[[1]],
+             construct_run = colnames(constructs.spread)[-c(1:4)])
+  })
+
+cors.ind.sc %>%
+  reshape2::melt() %>%
+  filter(grepl("run1", construct_run) & grepl("run2", variable)) %>%
+  rename("run1" = construct_run,
+         "run2" = variable) %>%
+  filter(!is.na(value)) %>%
+  group_by(roi, run1, run2) %>%
+  mutate(fisher.z = psych::fisherz(value)) %>%
+  summarize(mean.value = mean(fisher.z)) %>%
+  ungroup() %>%
+  mutate(run1 = ifelse(run1 == "ill-being_run1", "ill-being run 1",
+                ifelse(run1 == "well-being_run1", "well-being run 1",
+                ifelse(run1 == "social_run1", "social run 1", run1))),
+         run2 = ifelse(run2 == "ill-being_run2", "ill-being run 2",
+                ifelse(run2 == "well-being_run2", "well-being run 2",
+                ifelse(run2 == "social_run2", "social run 2", run1)))) %>%
+  ggplot(aes(run1, run2, fill = mean.value)) +
+    geom_tile(color = "white") +
+    scale_fill_gradientn(name = "fisher z", colors = palette, lim = c(-0.01,.5)) + 
+    geom_text(aes(label = round(mean.value,2)), size = 4, ) + 
+    facet_wrap(~roi, ncol = 3) +
+    labs(x = "", y = "") + 
+    theme_minimal(base_size = 12) +
+    theme(text = element_text(family = "Futura Medium", colour = "black"),
+          axis.text = element_text(color = "black"),
+          axis.text.x = element_text(angle = 45, vjust = 1, size = 10, hjust = 1),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
+          panel.border = element_blank(),
+          panel.background = element_blank())
+```
+
+## by participant
+### self > rest
+```{r, fig.width=15, fig.height=50}
+cors %>%
+  reshape2::melt() %>%
+  filter(grepl("run1", construct_run) & grepl("run2", variable)) %>%
+  rename("run1" = construct_run,
+         "run2" = variable) %>%
+  filter(!is.na(value)) %>%
+  group_by(roi, run1, run2) %>%
+  mutate(fisher.z = psych::fisherz(value)) %>%
+  group_by(roi, run1, run2, subjectID) %>%
+  summarize(mean.value = mean(fisher.z)) %>%
+  ggplot(aes(run1, run2, fill = mean.value)) +
+    geom_tile(color = "white") +
+    scale_fill_gradientn(colors = c("#345995", "#00A1E4", "#03CEA4", "white", "#EAC435", "#FB4D3D", "#CA1551"), lim = c(-1,1)) + 
+    geom_text(aes(label = round(mean.value,2)), size = 3) + 
+    facet_wrap(~roi + subjectID, ncol = 10) +
+    labs(x = "", y = "") +
+    theme_minimal() + 
+    theme(axis.text.x = element_text(angle = 45, vjust = 1, size = 10, hjust = 1)) +
+    theme(text = element_text(size = 10))
+```
+
+### self > change
+```{r, fig.width=15, fig.height=50}
+cors.sc %>%
+  reshape2::melt() %>%
+  filter(grepl("run1", construct_run) & grepl("run2", variable)) %>%
+  rename("run1" = construct_run,
+         "run2" = variable) %>%
+  filter(!is.na(value)) %>%
+  group_by(roi, run1, run2) %>%
+  mutate(fisher.z = psych::fisherz(value)) %>%
+  group_by(roi, run1, run2, subjectID) %>%
+  summarize(mean.value = mean(fisher.z)) %>%
+  ggplot(aes(run1, run2, fill = mean.value)) +
+    geom_tile(color = "white") +
+    scale_fill_gradientn(colors = c("#345995", "#00A1E4", "#03CEA4", "white", "#EAC435", "#FB4D3D", "#CA1551"), lim = c(-1,1)) + 
+    geom_text(aes(label = round(mean.value,2)), size = 3) + 
+    facet_wrap(~roi + subjectID, ncol = 10) +
+    labs(x = "", y = "") +
+    theme_minimal() + 
+    theme(axis.text.x = element_text(angle = 45, vjust = 1, size = 10, hjust = 1)) +
+    theme(text = element_text(size = 10))
+```

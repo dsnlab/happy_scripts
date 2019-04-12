@@ -1,0 +1,760 @@
+---
+title: "Well-being score analysis"
+author: "Dani Cosme"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    code_folding: hide
+    df_print: paged
+    highlight: tango
+    theme: united
+    toc: yes
+    toc_float:
+      collapsed: yes
+      smooth_scroll: yes
+  pdf_document:
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(scipen=999)
+```
+
+# load packages
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(gtools)
+library(GGally)
+library(lme4)
+library(lmerTest)
+library(knitr)
+```
+
+# define color palettes
+```{r}
+rois_pal = c("#006989", "#56445D", "#8EC922")
+constructs = c("#FEC601", "#F43C13", "#254E70")
+instructions = wesanderson::wes_palette("Darjeeling1", 2, "continuous")
+```
+
+# source data
+```{r}
+source("load_data_wellbeing.R")
+```
+
+# assess variability
+* data is standardized within subject and ROI in `merge_tidy.R`
+```{r}
+rois %>%
+  arrange(desc(meanPE))
+
+# visualize variablity
+pe.var = rois %>%
+  group_by(subjectID, roi, contrast) %>%
+  summarize(n = n(),
+            mean.roi = mean(meanPE, na.rm = TRUE),
+            sd.roi = sd(meanPE, na.rm = TRUE),
+            median.roi = median(meanPE, na.rm = TRUE),
+            min.roi = min(meanPE, na.rm = TRUE),
+            max.roi = max(meanPE, na.rm = TRUE),
+            range.roi = max.roi - min.roi)
+
+# median (points = subs)
+ggplot(pe.var, aes(roi, median.roi)) +
+  geom_boxplot() +
+  geom_jitter(alpha = .1) + 
+  facet_grid(~contrast) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+# sd (points = subs)
+ggplot(pe.var, aes(roi, sd.roi)) +
+  geom_boxplot() +
+  geom_jitter(alpha = .1) + 
+  facet_grid(~contrast) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+## assess variability within participant
+```{r}
+rois %>%
+  group_by(roi) %>%
+  mutate(median = median(meanPE, na.rm = TRUE),
+         sd3 = 3*sd(meanPE, na.rm = TRUE),
+         outlier = ifelse(meanPE > median + sd3 | meanPE < median - sd3, "yes", "no")) %>%
+  group_by(subjectID, roi, outlier) %>%
+  filter(outlier == "yes") %>%
+  arrange(desc(meanPE))
+
+outliers = rois %>%
+  group_by(roi, contrast) %>%
+  mutate(median = median(meanPE, na.rm = TRUE),
+         sd3 = 3*sd(meanPE, na.rm = TRUE),
+         outlier = ifelse(meanPE > median + sd3 | meanPE < median - sd3, "yes", "no"))
+
+outliers %>%
+  ggplot(aes(roi, meanPE)) +
+    geom_boxplot() +
+    geom_jitter(data = filter(outliers, outlier == "yes"), aes(color = outlier), alpha = .5) +
+    facet_grid(~contrast) + 
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+# exclude outliers and standardize
+* exclude outlier values that are > 3 SDs from roi median across subs
+* standardize within roi
+```{r}
+rois.ex = rois %>%
+  group_by(roi, contrast) %>%
+  mutate(median = median(meanPE, na.rm = TRUE),
+         sd3 = 3*sd(meanPE, na.rm = TRUE),
+         outlier = ifelse(meanPE > median + sd3 | meanPE < median - sd3, "yes", "no")) %>%
+  filter(outlier == "no") %>%
+  select(-c(median, sd3, sdPE, outlier)) %>%
+  group_by(roi) %>%
+  mutate(sd.roi = sd(meanPE, na.rm = TRUE),
+         std = meanPE / sd.roi) %>%
+  select(-meanPE, -sd.roi) %>%
+  spread(roi, std)
+
+rois.ex %>%
+  gather(roi, meanPE, unique(as.character(rois$roi))) %>%
+  group_by(roi, contrast) %>%
+  summarize(n = n(),
+            mean.roi = mean(meanPE, na.rm = TRUE),
+            sd.roi = sd(meanPE, na.rm = TRUE),
+            median.roi = median(meanPE, na.rm = TRUE),
+            min.roi = min(meanPE, na.rm = TRUE),
+            max.roi = max(meanPE, na.rm = TRUE),
+            range.roi = max.roi - min.roi)
+```
+
+# tidy
+* merge datasets, and standardize within subject and roi
+* 1 = yes, 2 = no
+* recode negative responses (e.g. no on reversed item = yes)
+```{r}
+data = task %>%
+  filter(instruction == "self") %>%
+  mutate(instruction = as.factor(instruction),
+         construct = as.factor(construct),
+         item = as.character(item),
+         RT = ifelse(RT == "NaN", NA, RT),
+         response = ifelse(response == 1, "yes",
+                    ifelse(response == 2, "no", NA)),
+         responseNum = ifelse(response == "yes" & reversed == 0, 1,
+                       ifelse(response == "yes" & reversed == 1, 0,
+                       ifelse(response == "no" & reversed == 0, 0,
+                       ifelse(response == "no" & reversed == 1, 1, response)))),
+         responseNum = as.integer(responseNum),
+         valence = ifelse(construct %in% c("well-being", "social") & reversed == 0, "positive",
+                   ifelse(construct %in% c("well-being", "social") & reversed == 1, "negative",
+                   ifelse(construct %in% "ill-being" & reversed == 0, "negative",
+                   ifelse(construct %in% "ill-being" & reversed == 1, "positive", NA)))),
+         valence = as.factor(valence)) %>%
+  group_by(construct, instruction, subjectID) %>%
+  summarize(sum = sum(responseNum, na.rm = TRUE),
+            n = n()) %>%
+  mutate(percent = (sum / n) * 100) %>%
+  left_join(., rois.ex) %>%
+  ungroup() %>%
+  mutate(construct = as.factor(construct))
+
+# relevel factors
+data$construct = relevel(data$construct, "well-being")
+```
+
+# exclude subs
+* Motion exclusions: FP091
+* Technical failure: FP080, FP082
+* Non-compliance: FP021, FP049, FP085, FP121
+* Missing run2: FP067, FP114
+
+```{r}
+data.ex = data %>%
+  filter(!subjectID %in% c("FP091", "FP080", "FP082", "FP021", "FP049", "FP085", "FP121", "FP067", "FP114"))
+```
+
+# describe data
+## rois
+```{r}
+# means and SDs
+data.ex %>%
+  gather(roi, value, unique(as.character(rois$roi))) %>%
+  group_by(roi, contrast) %>%
+  summarize(n = n(),
+            mean = mean(value, na.rm = TRUE),
+            sd = sd(value, na.rm = TRUE))
+```
+
+# primary model comparison self > rest
+```{r}
+data.complete = data.ex %>%
+  select(construct, subjectID, percent, contrast, pgACC, vmPFC, VS) %>%
+  unique() %>%
+  gather(roi, value, pgACC, vmPFC, VS) %>%
+  unite(con_roi, contrast, roi) %>%
+  spread(con_roi, value) %>%
+  ungroup() %>%
+  mutate(construct = as.factor(construct)) %>%
+  na.omit()
+
+model.0 = lmer(percent ~ construct + (1 | subjectID), data = data.complete)
+model.1 = lmer(percent ~ construct*self_pgACC  + (1 | subjectID), data = data.complete)
+model.2 = lmer(percent ~ construct*self_pgACC + construct*self_vmPFC + (1 | subjectID), data = data.complete)
+model.3 = lmer(percent ~ construct*self_pgACC + construct*self_vmPFC + construct*self_VS + (1 | subjectID), data = data.complete)
+
+anova(model.0, model.1, model.2, model.3)
+summary(model.0)
+
+cis.construct = confint(model.0) %>%
+  as.data.frame() %>%
+  rownames_to_column()
+```
+
+# primary tables
+```{r}
+# model comparison
+as.data.frame(anova(model.0, model.1, model.2, model.3)) %>%
+  select(AIC, BIC, Chisq, `Chi Df`, `Pr(>Chisq)`) %>%
+  rename("X2" = Chisq,
+         "df" = `Chi Df`,
+         "p" = `Pr(>Chisq)`) %>%
+  mutate(AIC = round(AIC, 2),
+         BIC = round(BIC, 2),
+         X2 = round(X2, 2),
+         df = round(df, 2),
+         p = round(p, 3)) %>%
+  mutate_if(is.numeric, funs(ifelse(is.na(.), "–", .))) %>%
+  `rownames<-`(c("base model", "pgACC model", "pgACC + vmPFC model", "pgACC + vmPFC + VS model")) %>%
+  kable(format = "pandoc")
+
+# best fitting model
+as.data.frame(summary(model.0)$coefficients) %>%
+  rownames_to_column() %>%
+  left_join(., cis.construct) %>%
+  rename("parameter" = rowname,
+         "b" = Estimate,
+         "SE" = `Std. Error`,
+         "t" = `t value`,
+         "p" = `Pr(>|t|)`) %>%
+  mutate(parameter = ifelse(parameter == "(Intercept)", "Intercept (well-being)",
+                     ifelse(parameter == "constructsocial", "Social",
+                     ifelse(parameter == "constructill-being", "Ill-being", parameter)))) %>%
+  select(parameter, b, `2.5 %`, `97.5 %`, everything()) %>%
+  mutate(b = round(b, 2),
+         `2.5 %` = round(`2.5 %`, 2),
+         `97.5 %` = round(`97.5 %`, 2),
+         SE = round(SE, 2),
+         df = round(df, 2),
+         t = round(t, 2),
+         p = round(p, 3),
+         p = ifelse(p == 0.000, "< .001", p)) %>%
+  kable(format = "pandoc")
+```
+
+# multivariate analysis
+## exclude outliers and standardize
+* exclude outlier values that are > 3 SDs from dot median across subs
+* standardize within map and contrast
+```{r}
+dots.ex = dots %>%
+  group_by(map, contrast) %>%
+  mutate(median = median(dotProduct, na.rm = TRUE),
+         sd3 = 3*sd(dotProduct, na.rm = TRUE),
+         outlier = ifelse(dotProduct > median + sd3 | dotProduct < median - sd3, "yes", "no")) %>%
+  filter(outlier == "no") %>%
+  select(-c(median, sd3, outlier)) %>%
+  group_by(map, contrast) %>%
+  mutate(sd.map = sd(dotProduct, na.rm = TRUE),
+         std = dotProduct / sd.map,
+         construct = as.factor(construct)) %>%
+  select(-dotProduct, -sd.map)
+
+# relevel construct
+dots.ex$construct = relevel(dots.ex$construct, "well-being")
+```
+
+## describe dot prodcuts
+```{r}
+# means and SDs
+dots.ex %>%
+  group_by(model, map, contrast) %>%
+  summarize(n = n(),
+            mean = mean(std, na.rm = TRUE),
+            sd = sd(std, na.rm = TRUE))
+
+ggplot(dots.ex, aes(model, std)) +
+  geom_boxplot() +
+  geom_jitter(alpha = .1) + 
+  facet_grid(map~contrast) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+## model comparison with dot products
+```{r}
+data.complete.dot = data.ex %>%
+  left_join(dots.ex) %>%
+  filter((construct == "ill-being" & model == "illbeing_self_change") | (construct == "well-being" & model == "wellbeing_self_change") | (construct == "social" & model == "social_self_change")) %>%
+  select(construct, subjectID, percent, model, contrast, map, std) %>%
+  unite(con_map, contrast, map) %>%
+  spread(con_map, std) %>%
+  ungroup() %>%
+  na.omit()
+
+model.0.dot = lmer(percent ~ construct + (1 | subjectID), data = data.complete.dot)
+model.1.dot = lmer(percent ~ construct*self_con + (1 | subjectID), data = data.complete.dot)
+model.2.dot = lmer(percent ~ construct*self_tmap + (1 | subjectID), data = data.complete.dot)
+model.3.dot = lmer(percent ~ construct*self_con + construct*self_tmap + (1 | subjectID), data = data.complete.dot)
+model.4.dot = lmer(percent ~ construct*self_change_con + (1 | subjectID), data = data.complete.dot)
+model.5.dot = lmer(percent ~ construct*self_change_tmap + (1 | subjectID), data = data.complete.dot)
+model.6.dot = lmer(percent ~ construct*self_change_con + construct*self_change_tmap + (1 | subjectID), data = data.complete.dot)
+model.7.dot = lmer(percent ~ construct*self_con + construct*self_tmap + construct*self_change_con + construct*self_change_tmap + (1 | subjectID), data = data.complete.dot)
+
+
+anova(model.0.dot, model.1.dot, model.2.dot, model.3.dot, model.4.dot, model.5.dot, model.6.dot, model.7.dot)
+summary(model.4.dot)
+summary(model.5.dot)
+```
+
+## model comparison with rois
+```{r, fig.width=12, fig.height=12, message=FALSE, warning=FALSE}
+data.complete.roi = data.ex %>%
+  left_join(dots.ex) %>%
+  filter((construct == "ill-being" & model == "illbeing_self_change") | (construct == "well-being" & model == "wellbeing_self_change") | (construct == "social" & model == "social_self_change")) %>%
+  select(construct, subjectID, percent, contrast, pgACC, vmPFC, VS) %>%
+  unique() %>%
+  gather(roi, value, pgACC, vmPFC, VS) %>%
+  unite(con_roi, contrast, roi) %>%
+  spread(con_roi, value) %>%
+  left_join(., data.complete.dot) %>%
+  na.omit()
+
+# write csv for specfication curve analysis
+write.csv(data.complete.roi, "data_roi.csv", row.names = FALSE)
+
+model.0.roi = lmer(percent ~ construct + (1 | subjectID), data = data.complete.roi)
+model.1.roi = lmer(percent ~ construct*self_change_con + (1 | subjectID), data = data.complete.roi)
+model.2.roi = lmer(percent ~ construct*self_change_con + construct*self_change_pgACC + (1 | subjectID), data = data.complete.roi)
+model.3.roi = lmer(percent ~ construct*self_change_con + construct*self_change_vmPFC + (1 | subjectID), data = data.complete.roi)
+model.4.roi = lmer(percent ~ construct*self_change_con + construct*self_change_VS + (1 | subjectID), data = data.complete.roi)
+model.5.roi = lmer(percent ~ construct*self_change_vmPFC + (1 | subjectID), data = data.complete.roi)
+model.6.roi = lmer(percent ~ construct*self_change_vmPFC + construct*self_change_pgACC + (1 | subjectID), data = data.complete.roi)
+model.7.roi = lmer(percent ~ construct*self_change_vmPFC + construct*self_change_pgACC + construct*self_change_VS + (1 | subjectID), data = data.complete.roi)
+
+anova(model.0.roi, model.1.roi, model.2.roi, model.3.roi, model.4.roi, model.5.roi, model.6.roi, model.7.roi)
+summary(model.3.roi)
+```
+
+# paper plots
+```{r}
+reg.construct.plot = data.ex %>%
+  gather(roi, value, c("pgACC", "vmPFC", "VS")) %>%
+  filter(contrast == "self") %>%
+  select(construct, instruction, subjectID, percent, roi, value) %>%
+  unique() %>%
+  ggplot(aes(value, percent, color = construct)) +
+    geom_point(alpha = .1) +
+    geom_smooth(method = "lm", alpha = .15) +
+    facet_grid(~roi) + 
+    scale_color_manual(values = constructs) +
+    labs(x = "mean parameter estimate (arbitrary units)\n", y = "\npercent yes") +
+    theme_minimal(base_size = 16) +
+    theme(text = element_text(family = "Futura Medium", colour = "black"),
+          legend.title = element_text(size = 10),
+          legend.text = element_text(size = 9),
+          axis.text = element_text(color = "black"),
+          axis.line = element_line(colour = "black"),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
+          panel.border = element_blank(),
+          panel.background = element_blank())
+
+reg.roi.plot = data.ex %>%
+  gather(roi, value, c("pgACC", "vmPFC", "VS")) %>%
+  filter(contrast == "self") %>%
+  select(construct, instruction, subjectID, percent, roi, value) %>%
+  unique() %>%
+  ggplot(aes(value, percent, color = roi)) +
+    geom_point(alpha = .1) +
+    geom_smooth(method = "lm", alpha = .15) +
+    facet_grid(~construct) + 
+    scale_color_manual(values = rois_pal) +
+    labs(x = "\nmean parameter estimate (arbitrary units)", y = "percent yes\n") +
+    theme_minimal(base_size = 16) +
+    theme(text = element_text(family = "Futura Medium", colour = "black"),
+          legend.title = element_text(size = 10),
+          legend.text = element_text(size = 9),
+          axis.text = element_text(color = "black"),
+          axis.line = element_line(colour = "black"),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
+          panel.border = element_blank(),
+          panel.background = element_blank())
+
+dot.plot = data.complete.dot %>%
+  ggplot(aes(self_change_con, percent, color = construct)) +
+    geom_point(alpha = .1) +
+    geom_smooth(method = "lm", alpha = .15) +
+    scale_color_manual(values = constructs) +
+    labs(x = "\npattern expression", y = "percent yes\n") +
+    theme_minimal(base_size = 16) +
+    theme(text = element_text(family = "Futura Medium", colour = "black"),
+          legend.title = element_text(size = 10),
+          legend.text = element_text(size = 9),
+          axis.text = element_text(color = "black"),
+          axis.line = element_line(colour = "black"),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
+          panel.border = element_blank(),
+          panel.background = element_blank())
+
+combined.plot = data.complete.roi %>%
+  rename("pgACC" = self_pgACC,
+         "vmPFC" = self_vmPFC,
+         "VS" = self_VS,
+         "expression self > change" = self_change_con) %>%
+  gather(variable, value, c("pgACC", "vmPFC", "VS", "expression self > change")) %>%
+  select(construct, subjectID, percent, variable, value) %>%
+  unique() %>%
+  ggplot(aes(value, percent, color = construct)) +
+    geom_point(alpha = .1) +
+    geom_smooth(method = "lm", alpha = .15) +
+    facet_wrap(~variable, scales = "free", nrow = 1) + 
+    scale_color_manual(values = constructs) +
+    labs(x = "\nmean parameter estimate or pattern expression value", y = "percent yes\n") +
+    theme_minimal(base_size = 16) +
+    theme(text = element_text(family = "Futura Medium", colour = "black"),
+          legend.title = element_text(size = 10),
+          legend.text = element_text(size = 9),
+          axis.text = element_text(color = "black"),
+          axis.line = element_line(colour = "black"),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
+          panel.border = element_blank(),
+          panel.background = element_blank())
+
+ggsave(reg.roi.plot, filename = "regression_roi_plot.png", width = 8, height = 5, dpi = 300)
+ggsave(reg.construct.plot, filename = "regression_construct_plot.png", width = 8, height = 5, dpi = 300)
+ggsave(dot.plot, filename = "dot_plot.png", width = 6, height = 4, dpi = 300)
+ggsave(combined.plot, filename = "combined_plot.png", width = 13, height = 5, dpi = 300)
+```
+
+# exploratory ROI model comparison
+## self > rest
+```{r}
+model.4 = lmer(percent ~ self_pgACC + self_vmPFC + self_VS + (1 | subjectID), data = data.complete)
+model.5 = lmer(percent ~ construct*self_vmPFC + (1 | subjectID), data = data.complete)
+model.6 = lmer(percent ~ construct*self_VS + (1 | subjectID), data = data.complete)
+model.7 = lmer(percent ~ construct*self_vmPFC + construct*self_VS + (1 | subjectID), data = data.complete)
+model.8 = lmer(percent ~ construct*self_pgACC + construct*self_VS + (1 | subjectID), data = data.complete)
+
+anova(model.0, model.1, model.2, model.3, model.4, model.5, model.6, model.7, model.8)
+summary(model.4)
+summary(model.6)
+```
+
+## compare with self > change
+```{r}
+model.1.con = lmer(percent ~ construct*self_change_pgACC + (1 | subjectID), data = data.complete)
+model.2.con = lmer(percent ~ construct*self_change_pgACC + construct*self_change_vmPFC + (1 | subjectID), data = data.complete)
+model.3.con = lmer(percent ~ construct*self_change_pgACC + construct*self_change_vmPFC + construct*self_change_VS + (1 | subjectID), data = data.complete)
+model.4.con = lmer(percent ~ self_change_pgACC + self_change_vmPFC + self_change_VS + (1 | subjectID), data = data.complete)
+model.5.con = lmer(percent ~ construct*self_change_vmPFC + (1 | subjectID), data = data.complete)
+model.6.con = lmer(percent ~ construct*self_change_VS + (1 | subjectID), data = data.complete)
+model.7.con = lmer(percent ~ construct*self_change_vmPFC + construct*self_change_VS + (1 | subjectID), data = data.complete)
+model.8.con = lmer(percent ~ construct*self_change_pgACC + construct*self_change_VS + (1 | subjectID), data = data.complete)
+
+anova(model.0, model.1, model.2, model.3, model.4, model.5, model.6, model.7, model.8,
+      model.1.con, model.2.con, model.3.con, model.4.con, model.5.con, model.6.con, model.7.con, model.8.con)
+summary(model.5.con)
+```
+
+# sensitivity analysis
+* include all data
+```{r, eval=FALSE}
+rois.sens = rois %>%
+  group_by(roi, contrast) %>%
+  mutate(sd.roi = sd(meanPE, na.rm = TRUE),
+         std = meanPE / sd.roi) %>%
+  select(-meanPE, -sd.roi, -sdPE) %>%
+  spread(roi, std)
+  
+data.complete.sens = task %>%
+  filter(instruction == "self") %>%
+  mutate(instruction = as.factor(instruction),
+         construct = as.factor(construct),
+         item = as.character(item),
+         RT = ifelse(RT == "NaN", NA, RT),
+         response = ifelse(response == 1, "yes",
+                    ifelse(response == 2, "no", NA)),
+         responseNum = ifelse(response == "yes" & reversed == 0, 1,
+                       ifelse(response == "yes" & reversed == 1, 0,
+                       ifelse(response == "no" & reversed == 0, 0,
+                       ifelse(response == "no" & reversed == 1, 1, response)))),
+         responseNum = as.integer(responseNum),
+         valence = ifelse(construct %in% c("well-being", "social") & reversed == 0, "positive",
+                   ifelse(construct %in% c("well-being", "social") & reversed == 1, "negative",
+                   ifelse(construct %in% "ill-being" & reversed == 0, "negative",
+                   ifelse(construct %in% "ill-being" & reversed == 1, "positive", NA))))) %>%
+  group_by(construct, instruction, subjectID) %>%
+  summarize(sum = sum(responseNum, na.rm = TRUE),
+            n = n()) %>%
+  mutate(percent = (sum / n) * 100)  %>%
+  left_join(., rois.sens) %>%
+  filter(!subjectID %in% c("FP091", "FP080", "FP082", "FP021", "FP049", "FP085", "FP121", "FP067", "FP114")) %>%
+  ungroup() %>%
+  mutate(construct = as.factor(construct)) %>%
+  na.omit()
+
+data.complete.sens$construct = relevel(data.complete.sens$construct, "well-being")
+
+data.complete.sens %>%
+  gather(roi, value, c("pgACC", "vmPFC", "VS")) %>%
+  ggplot(aes(percent, value, color = roi)) +
+    geom_point(alpha = .25) +
+    geom_smooth(method = "lm", alpha = .1) +
+    facet_grid(~contrast + construct) + 
+    scale_color_manual(values = rois_pal) +
+    labs(x = "\npercent endorsed", y = "mean parameter estimate (arbitrary units)\n") +
+    theme_minimal(base_size = 12) +
+    theme(text = element_text(family = "Futura Medium"),
+          axis.line = element_line(colour = "black"),
+          #legend.position = c(.9, .2),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
+          panel.border = element_blank(),
+          panel.background = element_blank())
+
+data.complete.sens %>%
+  gather(roi, value, c("pgACC", "vmPFC", "VS")) %>%
+  ggplot(aes(percent, value, color = roi, linetype = contrast)) +
+    geom_point(alpha = .25) +
+    geom_smooth(method = "lm", alpha = .1) +
+    facet_grid(~construct) + 
+    scale_color_manual(values = rois_pal) +
+    labs(x = "\npercent endorsed", y = "mean parameter estimate (arbitrary units)\n") +
+    theme_minimal(base_size = 12) +
+    theme(text = element_text(family = "Futura Medium"),
+          axis.line = element_line(colour = "black"),
+          #legend.position = c(.9, .2),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
+          panel.border = element_blank(),
+          panel.background = element_blank())
+
+model.0.sens = lmer(percent ~ construct, data = filter(data.complete.sens, contrast == "self"))
+model.1.sens = lmer(percent ~ construct*pgACC, data = filter(data.complete.sens, contrast == "self"))
+model.2.sens = lmer(percent ~ construct*pgACC + construct*vmPFC, data = filter(data.complete.sens, contrast == "self"))
+model.3.sens = lmer(percent ~ construct*pgACC + construct*vmPFC + construct*VS, data = filter(data.complete.sens, contrast == "self"))
+
+anova(model.0.sens, model.1.sens, model.2.sens, model.3.sens)
+AICmodel.0.sens, model.1.sens, model.2.sens, model.3.sens)
+summary(model.0.sens)
+
+model.0.sens = lmer(percent ~ construct, data = filter(data.complete.sens, contrast == "self_change"))
+model.1.sens = lmer(percent ~ construct*pgACC, data = filter(data.complete.sens, contrast == "self_change"))
+model.2.sens = lmer(percent ~ construct*pgACC + construct*vmPFC, data = filter(data.complete.sens, contrast == "self_change"))
+model.3.sens = lmer(percent ~ construct*pgACC + construct*vmPFC + construct*VS, data = filter(data.complete.sens, contrast == "self_change"))
+
+anova(model.0.sens, model.1.sens, model.2.sens, model.3.sens)
+AIC(model.0.sens, model.1.sens, model.2.sens, model.3.sens)
+summary(model.0.sens)
+```
+
+# save well-being construct scores
+```{r, eval=FALSE}
+scores = data.ex %>%
+  ungroup() %>%
+  select(subjectID, construct, percent) %>%
+  unique() %>%
+  mutate(percent = round(percent, 3)) %>%
+  spread(construct, percent)
+
+write.table(select(scores, `ill-being`), "ill-being_scores.txt", row.names = FALSE, col.names = FALSE, quote=FALSE, sep = "\t")
+write.table(select(scores, `well-being`), "well-being_scores.txt", row.names = FALSE, col.names = FALSE, quote=FALSE, sep = "\t")
+write.table(select(scores, `social`), "social_scores.txt", row.names = FALSE, col.names = FALSE, quote=FALSE, sep = "\t")
+```
+
+# other plots
+## construct
+```{r, message=FALSE, warning=FALSE}
+# self > rest
+dots.construct.plot.self = dots.ex %>%
+  ungroup() %>%
+  filter(contrast == "self") %>%
+  select(-c(instruction, subjectID, contrast, model, map)) %>%
+  ggpairs(aes(color = construct, alpha = 0.01),
+          #upper = "blank", 
+          switch = "both") +
+    theme(panel.background = element_rect(fill = 'white'),
+          legend.position = "none", 
+          panel.grid.major = element_blank(), 
+          axis.ticks = element_blank(), 
+          panel.border = element_blank())
+
+for (i in 1:dots.construct.plot.self$nrow) {
+  for (j in 1:dots.construct.plot.self$ncol) {
+    dots.construct.plot.self[i,j] = dots.construct.plot.self[i,j] + 
+        scale_fill_manual(values = constructs) +
+        scale_color_manual(values = constructs)  
+  }
+}
+
+# self > change
+dots.construct.plot.self_change = dots.ex %>%
+  ungroup() %>%
+  filter(contrast == "self_change") %>%
+  select(-c(instruction, subjectID, contrast, model, map)) %>%
+  ggpairs(aes(color = construct, alpha = 0.01),
+          #upper = "blank", 
+          switch = "both") +
+    theme(panel.background = element_rect(fill = 'white'),
+          legend.position = "none", 
+          panel.grid.major = element_blank(), 
+          axis.ticks = element_blank(), 
+          panel.border = element_blank())
+
+for (i in 1:dots.construct.plot.self_change$nrow) {
+  for (j in 1:dots.construct.plot.self_change$ncol) {
+    dots.construct.plot.self_change[i,j] = dots.construct.plot.self_change[i,j] + 
+        scale_fill_manual(values = constructs) +
+        scale_color_manual(values = constructs)  
+  }
+}
+
+dots.construct.plot.self
+dots.construct.plot.self_change
+```
+
+## model
+```{r, message=FALSE, warning=FALSE}
+# self > rest
+dots.ex %>%
+  ungroup() %>%
+  filter(contrast == "self") %>%
+  select(-c(instruction, subjectID, contrast, construct, map)) %>%
+  ggpairs(aes(color = model, alpha = 0.01),
+          #upper = "blank", 
+          switch = "both") +
+    theme(text = element_text(family = "Futura Medium"),
+          panel.background = element_rect(fill = 'white'),
+          legend.position = "none", 
+          panel.grid.major = element_blank(), 
+          axis.ticks = element_blank(), 
+          panel.border = element_blank())
+
+# self > change
+dots.ex %>%
+  ungroup() %>%
+  filter(contrast == "self_change") %>%
+  select(-c(instruction, subjectID, contrast, construct, map)) %>%
+  ggpairs(aes(color = model, alpha = 0.01),
+          #upper = "blank", 
+          switch = "both") +
+    theme(text = element_text(family = "Futura Medium"),
+          panel.background = element_rect(fill = 'white'),
+          legend.position = "none", 
+          panel.grid.major = element_blank(), 
+          axis.ticks = element_blank(), 
+          panel.border = element_blank())
+```
+
+## map
+```{r, message=FALSE, warning=FALSE}
+# self > rest
+dots.ex %>%
+  ungroup() %>%
+  filter(contrast == "self") %>%
+  select(-c(instruction, subjectID, contrast, construct, model)) %>%
+  ggpairs(aes(color = map, alpha = 0.01),
+          #upper = "blank", 
+          switch = "both") +
+    theme(text = element_text(family = "Futura Medium"),
+          panel.background = element_rect(fill = 'white'),
+          legend.position = "none", 
+          panel.grid.major = element_blank(), 
+          axis.ticks = element_blank(), 
+          panel.border = element_blank())
+
+# self > change
+dots.ex %>%
+  ungroup() %>%
+  filter(contrast == "self_change") %>%
+  select(-c(instruction, subjectID, contrast, construct, model)) %>%
+  ggpairs(aes(color = map, alpha = 0.01),
+          #upper = "blank", 
+          switch = "both") +
+    theme(text = element_text(family = "Futura Medium"),
+          panel.background = element_rect(fill = 'white'),
+          legend.position = "none", 
+          panel.grid.major = element_blank(), 
+          axis.ticks = element_blank(), 
+          panel.border = element_blank())
+```
+
+## correlations with well-being scores
+```{r, message=FALSE, warning=FALSE, fig.width=10, fig.height=8}
+data.ex %>%
+  left_join(dots.ex) %>%
+  na.omit() %>%
+  ggplot(aes(percent, std, color = construct, linetype = contrast)) +
+    geom_point(alpha = .1) +
+    geom_smooth(method = "lm", alpha = .1) +
+    facet_wrap(~map + model, ncol = 4, scales = "free") + 
+    scale_color_manual(values = constructs) +
+    labs(x = "\npercent endorsed", y = "dot product\n") +
+    theme_minimal(base_size = 12) +
+    theme(text = element_text(family = "Futura Medium"),
+          axis.line = element_line(colour = "black"),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
+          panel.border = element_blank(),
+          panel.background = element_blank())
+
+data.ex %>%
+  left_join(dots.ex) %>%
+  na.omit() %>%
+  ggplot(aes(percent, std, color = map, linetype = contrast)) +
+    geom_point(alpha = .1) +
+    geom_smooth(method = "lm", alpha = .1) +
+    facet_wrap(~construct + model, ncol = 4, scales = "free") + 
+    scale_color_manual(values = rois_pal) +
+    labs(x = "\npercent endorsed", y = "dot product\n") +
+    theme_minimal(base_size = 12) +
+    theme(text = element_text(family = "Futura Medium"),
+          axis.line = element_line(colour = "black"),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
+          panel.border = element_blank(),
+          panel.background = element_blank())
+```
+
+## rois
+```{r, message=FALSE, warning=FALSE}
+construct.dots.roi.plot = data.complete.roi %>%
+  ungroup() %>%
+  select(construct, starts_with("self")) %>%
+  ggpairs(aes(color = construct, alpha = 0.01),
+          #upper = "blank", 
+          switch = "both") +
+    theme(panel.background = element_rect(fill = 'white'),
+          legend.position = "none", 
+          panel.grid.major = element_blank(), 
+          axis.ticks = element_blank(), 
+          panel.border = element_blank())
+
+for (i in 1:construct.dots.roi.plot$nrow) {
+  for (j in 1:construct.dots.roi.plot$ncol) {
+    construct.dots.roi.plot[i,j] = construct.dots.roi.plot[i,j] + 
+        scale_fill_manual(values = constructs) +
+        scale_color_manual(values = constructs)  
+  }
+}
+
+construct.dots.roi.plot
+```
