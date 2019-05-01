@@ -1,6 +1,0 @@
-Running FP067
-/cm/local/apps/slurm/var/spool/job2973130/slurm_script: line 14: cd: /projects/dsnlab/shared/FP/nonbids_data/fMRI/fx/models/svc/wave1/betaseries/sub-FP067: No such file or directory
-Merging betas
-Cannot open volume beta_0001 for reading!
-Gunzipping betas
-gzip: self_betas.nii.gz: No such file or directory

@@ -1,2 +1,0 @@
-Example in:
-/projects/dsnlab/shared/FP/bids_data/tmp_dcm2bids/helper

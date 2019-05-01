@@ -6,7 +6,6 @@
 behavioral/*
 /**/logs_dcm2bids/*
 /**/logs_bidsQC/*
-/**/output/*
 *.log
 *_error.txt
 *_output.txt
