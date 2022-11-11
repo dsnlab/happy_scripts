@@ -6,7 +6,7 @@ This repository contains code for the analyses reported in the following manuscr
 
 ## Compiled analysis files
 
-Trial-level analysea are reported [here]()
+Trial-level analysea are reported [here](https://dsnlab.github.io/happy_scripts/fMRI/betaseries/trial_level_analysis)
 
 ## Directory structure
 
@@ -18,7 +18,7 @@ Trial-level analysea are reported [here]()
 * `RSA` = R code and supporting files to run the representational similarity analyses
 * `rx` = code used to estimate group-level fMRI models
 
-````
+```
 ├── behavioral
 ├── fMRI
 │	├── betaseries
