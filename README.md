@@ -6,7 +6,7 @@ This repository contains code for the analyses reported in the following manuscr
 
 ## Compiled analysis files
 
-Trial-level analysea are reported [here](https://dsnlab.github.io/happy_scripts/fMRI/betaseries/trial_level_analysis)
+Trial-level analyse are reported [here](https://dsnlab.github.io/happy_scripts/fMRI/betaseries/trial_level_analysis)
 
 ## Directory structure
 
