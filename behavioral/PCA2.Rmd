@@ -38,7 +38,7 @@ if (!require(rio)) {
 * `id_column_name` = subject ID column name in Qualtrics survey; can be a regular expression
 ```{r, echo = FALSE}
 cred_file_location = '~/credentials.yaml.DEFAULT'
-sid_column_name = '(Finished|id)'
+sid_column_name = '(Finished|id|Date)'
 survey_name_filter = 'Netzel'
 identifiableData = c('Name', 'EmailAddress', 'IPAddress', 'Check', 'AMAZON_UO_TEXT', 'AMAZON_TEXT', 'CELL', 'CELL_TEXT', 'EMAIL', 'EMAIL_UO', 'PARENT', 'EMAIL_TEXT', 'EMAIL_UO_TEXT', 'PARENT_CELL', 'cell', 'email_personal', 'email_UO') # exclude when printing duplicates
 output_file_dir = '~/Documents/code/dsnlab/FP_scripts/behavioral/SONA/netzel/'
@@ -60,9 +60,13 @@ knitr::kable(arrange(select(surveysFiltered, SurveyName), SurveyName))
 # load data
 ```{r getsurveydata, results = "hide", }
 # get survey data
-svc_data = scorequaltrics::get_survey_data(surveysFiltered, credentials, pid_col = sid_column_name) %>%
-  filter(!item %in% identifiableData) %>% #filter out identifiable data
-  filter(grepl("SVC|SEX|Date", item)) %>%
+svc_data_raw = scorequaltrics::get_survey_data(surveysFiltered, credentials, pid_col = sid_column_name) %>%
+  filter(!item %in% identifiableData) #filter out identifiable data
+
+svc_data = svc_data_raw %>%
+  filter(grepl("SVC|SEX", item)) %>%
+  filter(!grepl("_DO_", item)) %>%
+  filter(!is.na(id)) %>%
   mutate(value = ifelse(value == "5", NA, #code prefer not to respond as NA
                  ifelse(value == "", NA, value))) %>%
   spread(item, value) %>%
@@ -122,57 +126,57 @@ pca.var
 
 ## Merge items and loadings
 ```{r}
-merged = loadings %>%
+merged_pca = loadings %>%
     left_join(., svc_items, by = "item") %>% 
     select(item, text, everything())
 ```
 
 ## Sort by loading on component 1
 ```{r}
-merged %>%
+merged_pca %>%
   arrange(desc(loading.PC1))
 ```
 
 ## Sort by loading on component 2
 ```{r}
-merged %>%
+merged_pca %>%
   arrange(desc(loading.PC2)) %>%
   select(item, text, loading.PC2, everything())
 ```
 
 ## Sort by loading on component 3
 ```{r}
-merged %>%
+merged_pca %>%
   arrange(desc(loading.PC3)) %>%
   select(item, text, loading.PC3, everything())
 ```
 
 ## Sort by loading on component 4
 ```{r}
-merged %>%
+merged_pca %>%
   arrange(desc(loading.PC4)) %>%
   select(item, text, loading.PC4, everything())
 ```
 
 ## Sort by loading on component 5
 ```{r}
-merged %>%
+merged_pca %>%
   arrange(desc(loading.PC5)) %>%
   select(item, text, loading.PC5, everything())
 ```
 
 ## Sort by loading on component 6
 ```{r}
-merged %>%
+merged_pca %>%
   arrange(desc(loading.PC6)) %>%
   select(item, text, loading.PC6, everything())
 ```
 
-# PCA, 3 factors promax
+# PCA, 4 factors promax
 ## Run PCA
 ```{r}
-pca.var2 = principal(svc[,-c(1:3)], rotate = "promax", nfactors = 3, missing = TRUE)
-loadings2 = data.frame(loading = pca.var2$loadings[,1:3]) %>%
+pca.var2 = principal(svc[,-c(1:3)], rotate = "promax", nfactors = 4, missing = TRUE)
+loadings2 = data.frame(loading = pca.var2$loadings[,1:4]) %>%
   mutate(item = rownames(.))
 
 pca.var2
@@ -180,73 +184,86 @@ pca.var2
 
 ## Merge items and loadings
 ```{r}
-merged = loadings2 %>%
+merged_pca2 = loadings2 %>%
     left_join(., svc_items, by = "item") %>% 
     select(item, text, everything())
 ```
 
 ## Sort by loading on component 1
 ```{r}
-merged %>%
-  arrange(desc(loading.RC1)) %>%
-  slice(1:30)
+merged_pca2 %>%
+  arrange(desc(loading.RC1))
 ```
 
 ## Sort by loading on component 2
 ```{r}
-merged %>%
-  arrange(desc(loading.RC2)) %>%
-  slice(1:40)
+merged_pca2 %>%
+  arrange(desc(loading.RC2))
 ```
 
 ## Sort by loading on component 3
 ```{r}
-merged %>%
+merged_pca2 %>%
   arrange(desc(loading.RC3))
 ```
 
 ## Sort by loading on component 4
 ```{r}
-merged %>%
+merged_pca2 %>%
   arrange(desc(loading.RC4))
 ```
 
 # choose words
 ```{r}
-words = left_join(merged, select(loadings, item, loading.PC1)) %>%
-  rename("social" = loading.RC1,
-         "ill-being" = loading.RC2,
-         "health" = loading.RC3,
-         "well-being" = loading.PC1)
+words = left_join(merged_pca2, select(loadings, item, loading.PC1, loading.PC2)) %>%
+  rename("social promax" = loading.RC4,
+         "ill-being" = loading.PC2,
+         "ill-being promax" = loading.RC2,
+         "health promax" = loading.RC3,
+         "well-being" = loading.PC1,
+         "well-being promax" = loading.RC1)
 
 wellbeing = words %>%
   arrange(desc(`well-being`)) %>%
   slice(1:40) %>%
-  filter(!item %in% c("SVC_135","SVC_122","SVC_134","SVC_98","SVC_142","SVC_131","SVC_138","SVC_142","SVC_27","SVC_115","SVC_114","SVC_139","SVC_162","SVC_130","SVC_60","SVC_168","SVC_141","SVC_120","SVC_30","SVC_91","SVC_121", "SVC_83", "SVC_40")) %>%
+  filter(!item %in% c("SVC_135","SVC_122","SVC_134","SVC_98","SVC_142","SVC_131","SVC_138","SVC_142","SVC_27","SVC_115","SVC_114","SVC_139","SVC_162","SVC_130","SVC_60","SVC_168","SVC_141","SVC_120","SVC_30","SVC_91","SVC_121", "SVC_83", "SVC_40", "SVC_155")) %>%
   bind_cols(condition = rep(1,length(.$text)),
-            reverse = rep(0,length(.$text)),
-            syllables = c(2, 5, 6, 2, 3, 4, 6, 2, 2, 5, 4, 3, 3, 3, 2, 1, 5, 4)) %>%
-  select(text, condition, reverse, syllables, item, everything())
+            reverse = rep(0,length(.$text))) %>%
+  select(text, condition, reverse, item, everything())
 
 social = words %>%
-  arrange(desc(social)) %>%
+  arrange(desc(`social promax`)) %>%
   slice(1:28) %>%
-  filter(!item %in% c("SVC_12", "SVC_156", "SVC_43", "SVC_102", "SVC_128", "SVC_120", "SVC_45", "SVC_99", "SVC_10","SVC_22","SVC_108","SVC_104","SVC_115", "SVC_100")) %>%
-  bind_rows(filter(words, item %in% c("SVC_111","SVC_124","SVC_157","SVC_143"))) %>%
+  filter(!item %in% c("SVC_12", "SVC_156", "SVC_43", "SVC_102", "SVC_128", "SVC_120", "SVC_45", "SVC_99", "SVC_10","SVC_22","SVC_108","SVC_104","SVC_115", "SVC_100", "SVC_157")) %>%
+  bind_rows(filter(words, item %in% c("SVC_111","SVC_124","SVC_143", "SVC_32"))) %>%
   bind_cols(condition = rep(2,length(.$text)),
-            reverse = c(rep(0,14), rep(1,4)),
-            syllables = c(3, 5, 3, 1, 2, 5, 6, 7, 4,3, 3, 2, 6, 4, 5, 4, 3, 2)) %>%
-  select(text, condition, reverse, syllables, item, everything())
+            reverse = c(rep(0,14), rep(1,4))) %>%
+  select(text, condition, reverse, item, everything())
 
 illbeing = words %>%
-  arrange(desc(`ill-being`)) %>%
+  arrange(desc(`ill-being promax`)) %>%
   slice(1:21) %>%
-  filter(!item %in% c("SVC_94", "SVC_58", "SVC_143")) %>%
+  filter(!item %in% c("SVC_94", "SVC_58", "SVC_143", "SVC_34")) %>%
   bind_cols(condition = rep(3,length(.$text)),
-            reverse = rep(0,length(.$text)),
-            syllables = c(2, 3, 2, 5, 4, 2, 1, 1, 6, 3, 2, 2, 2, 5, 3, 2, 5, 3)) %>%
-  select(text, condition, reverse, syllables, item, everything()) %>%
+            reverse = rep(0,length(.$text))) %>%
+  select(text, condition, reverse, item, everything()) %>%
   mutate(text = ifelse(text == "fearful of being hurt", "afraid of being hurt", text))
+```
+
+# correlations among facets
+```{r}
+data = svc %>%
+  gather(item, rating, contains("SVC")) %>%
+  mutate(construct = ifelse(item %in% illbeing$item, "ill-being",
+                     ifelse(item %in% wellbeing$item, "well-being", 
+                     ifelse(item %in% social$item, "social", NA)))) %>%
+  filter(!is.na(construct)) %>%
+  group_by(id, construct) %>%
+  summarize(mean = mean(rating, na.rm = TRUE)) %>%
+  spread(construct, mean)
+
+# correlations
+cor.ci(data[,2:4])
 ```
 
 # print words

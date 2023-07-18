@@ -1,0 +1,483 @@
+---
+title: "Trial-level analyses: change"
+author: "Dani Cosme"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    code_folding: hide
+    df_print: paged
+    highlight: tango
+    theme: united
+    toc: yes
+    toc_float:
+      collapsed: yes
+      smooth_scroll: yes
+  pdf_document:
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(scipen = 999)
+```
+
+This code reproduces the trial-level analyses including the change condition reported in the following manuscript:
+
+[Cosme, D., Mobasser, A., & J. H. Pfeifer. If you’re happy and you know it: Neural correlates of self-evaluated psychological health and well-being](https://psyarxiv.com/86n3b/)
+
+# load packages
+```{r, message=FALSE, warning=FALSE}
+if(!require('pacman')) {
+	install.packages('pacman')
+}
+
+pacman::p_load(tidyverse, gtools, GGally, sjstats, lme4, lmerTest, knitr, ggeffects, kableExtra, wesanderson, modelbased, install = TRUE)
+```
+
+# define aesthetics
+```{r}
+rois = c("#006989", "#56445D", "#8EC922")
+constructs = c("#FEC601", "#254E70", "#F43C13")
+instructions = wesanderson::wes_palette("Darjeeling1", 2, "continuous")
+valence = c("#119DA4", "#19647E")
+plot_aes = theme_minimal() +
+  theme(legend.position = "top",
+        legend.text = element_text(size = 12),
+        text = element_text(size = 16, family = "Futura Medium"),
+        axis.text = element_text(color = "black"),
+        axis.line = element_line(colour = "black"),
+        axis.ticks.y = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_blank(),
+        panel.background = element_blank())
+```
+
+# define functions
+```{r}
+model_table = function(model) {
+  model %>%
+    broom.mixed::tidy(., conf.int = TRUE) %>%
+    filter(effect == "fixed") %>%
+    rename("SE" = std.error,
+           "z" = statistic,
+           "p" = p.value) %>%
+    mutate(term = gsub("\\(Intercept\\)", "Intercept", term),
+           term = gsub("log\\(RT\\)", "RT", term),
+           term = gsub("constructill-being", "Construct (ill-being)", term),
+           term = gsub("constructsocial well-being", "Construct (social well-being)", term),
+           term = gsub("instructionchange", "Instructions (change)", term),
+           term = gsub(":", " x ", term),
+           p = ifelse(p < .001, "< .001",
+                      ifelse(p == 1, "1.000", gsub("0.(.*)", ".\\1", sprintf("%.3f", p)))),
+           `b [95% CI]` = sprintf("%.2f [%0.2f, %.2f]", estimate, conf.low, conf.high),
+           z = abs(round(z, 2))) %>%
+    select(term, `b [95% CI]`, z, p) %>%
+    kable() %>%
+    kableExtra::kable_styling()
+
+}
+```
+
+# load data
+```{r}
+task = read.csv("../../data/task_data.csv") %>%
+  mutate(responseYN = as.factor(responseYN),
+         construct = recode(construct, "well-being" = "self-oriented well-being",
+                            "social" = "social well-being"),
+         construct = factor(construct, levels = c("self-oriented well-being", "social well-being", "ill-being")),
+         valence = factor(valence, levels = c("positive", "negative")))
+betas = read.csv("../../data/neuro_data_2s.csv")
+```
+
+# exclude outliers and standardize
+* Exclude outlier trials that are > 3 SDs from roi median across participants
+
+```{r}
+trial_conditions = task %>%
+  select(subjectID, trial, run, instruction)
+
+betas_outlier = betas %>%
+  left_join(., trial_conditions) %>%
+  filter(!is.na(meanPE)) %>%
+  filter(!(run == "run2" & subjectID %in% c("FP067", "FP114"))) %>%
+  group_by(roi) %>%
+  mutate(median = median(meanPE, na.rm = TRUE),
+         sd3 = 3*sd(meanPE, na.rm = TRUE),
+         outlier = ifelse(meanPE > median + sd3 | meanPE < median - sd3, "yes", "no")) 
+
+betas_outlier %>%
+  group_by(outlier) %>%
+  summarize(n = n()) %>%
+  ungroup() %>%
+  mutate(total = sum(n),
+         percent = round((n / total) * 100, 2)) %>%
+  kable(format = "pandoc")
+
+betas_ex = betas_outlier %>%
+  filter(outlier == "no") %>%
+  select(-c(median, sd3, outlier))
+```
+
+# merge data and exclude participants
+* Motion exclusions: FP091
+* Technical failure: FP080, FP082
+* Non-compliance: FP021, FP049, FP085, FP121
+* Standardize within participant and ROI
+
+```{r}
+data_ex = task %>%
+  left_join(., betas_ex) %>%
+  filter(!subjectID %in% c("FP091", "FP080", "FP082", "FP021", "FP049", "FP085", "FP121")) %>%
+  filter(!is.na(meanPE)) %>%
+  group_by(roi, subjectID) %>%
+  mutate(std = meanPE / sd(meanPE, na.rm = TRUE)) %>%
+  select(-sdPE)
+```
+
+# remove missing data for MLM analysis
+```{r}
+data_complete_mod = data_ex %>%
+  select(-meanPE) %>%
+  spread(roi, std) %>%
+  select(subjectID, trial, run, instruction, construct, item, valence, response, responseYN, RT, pgACC, vmPFC, VS) %>%
+  na.omit() %>%
+  mutate(instruction = factor(instruction, levels = c("self", "change")))
+```
+
+# item responses {.tabset}
+## percent endorsements
+```{r}
+percents = data_complete_mod %>%
+  group_by(instruction, construct, item, response) %>%
+  summarize(n = n()) %>%
+  spread(response, n) %>%
+  mutate(no = ifelse(is.na(no), 0, no),
+         yes = ifelse(is.na(yes), 0, yes),
+         total = no + yes) %>%
+  gather(response, n, no, yes) %>%
+  mutate(percent = round((n/total) * 100, 1),
+         n = sprintf("%s / %s", n, total)) %>%
+  filter(response == "yes")
+
+percents %>%
+  select(-response, -total, -n) %>%
+  spread(instruction, percent) %>%
+  arrange(desc(change)) %>%
+  kable() %>%
+  kableExtra::kable_styling()
+```
+
+## percent endorsements for improperly randomized items
+```{r}
+percents %>%
+  filter(total < 10) %>%
+  select(-response, -total, -n) %>%
+  spread(instruction, percent) %>%
+  arrange(desc(construct)) %>%
+  kable() %>%
+  kableExtra::kable_styling()
+```
+
+## plot
+```{r}
+data_complete_mod %>%
+  group_by(instruction, construct, item, responseYN) %>%
+  summarize(n = n()) %>%
+  spread(responseYN, n) %>%
+  mutate(no = ifelse(is.na(no), 0, no),
+         yes = ifelse(is.na(yes), 0, yes),
+         total = no + yes) %>%
+  gather(responseYN, n, no, yes) %>%
+  mutate(percent = round((n/total) * 100, 1)) %>%
+  filter(responseYN == "yes") %>%
+  ggplot(aes(percent, fill = instruction)) +
+  geom_density(color = NA, alpha = .8) +
+  facet_grid(~construct) +
+  scale_fill_manual(values = instructions) +
+  labs(x = "\n percent endorsed") +
+  plot_aes
+```
+
+# ROI descriptives {.tabset}
+## self trials
+```{r}
+# correlations
+pgACC_vmPFC = data_complete_mod %>%
+  filter(instruction == "self") %>%
+   mutate(subjectID = as.factor(subjectID)) %>%
+   select(subjectID, pgACC, vmPFC) %>%
+   rmcorr::rmcorr(subjectID, pgACC, vmPFC, .)
+
+pgACC_VS = data_complete_mod %>%
+  filter(instruction == "self") %>%
+   mutate(subjectID = as.factor(subjectID)) %>%
+   select(subjectID, pgACC, VS) %>%
+   rmcorr::rmcorr(subjectID, pgACC, VS, .)
+
+vmPFC_VS = data_complete_mod %>%
+  filter(instruction == "self") %>%
+   mutate(subjectID = as.factor(subjectID)) %>%
+   select(subjectID, vmPFC, VS) %>%
+   rmcorr::rmcorr(subjectID, vmPFC, VS, .)
+
+# means and SDs
+mean_table = data_complete_mod %>%
+  gather(roi, value, pgACC, vmPFC, VS) %>%
+  group_by(roi) %>%
+  summarize(M = round(mean(value, na.rm = TRUE), 2),
+            SD = round(sd(value, na.rm = TRUE), 2)) %>%
+  mutate(order = ifelse(roi == "pgACC", 1,
+                 ifelse(roi == "vmPFC", 2, 3)),
+         roi = ifelse(roi == "pgACC", "1. pgACC",
+               ifelse(roi == "vmPFC", "2. vmPFC", "3. VS"))) %>%
+  rename("ROI" = roi) %>%
+  arrange(order) %>%
+  select(-order)
+
+# table
+corr_table = data.frame(ROI = c("1. pgACC", "2. vmPFC", "3. VS"),
+           `1` = c("--", paste0(round(pgACC_vmPFC[[1]],2), " [",round(pgACC_vmPFC[[4]][1],2),", ",round(pgACC_vmPFC[[4]][2],2),"]"),
+                   paste0(round(pgACC_VS[[1]],2), " [",round(pgACC_VS[[4]][1],2),", ",round(pgACC_VS[[4]][2],2),"]")),
+           `2` = c("", "--", paste0(round(vmPFC_VS[[1]],2), " [",round(vmPFC_VS[[4]][1],2),", ",round(vmPFC_VS[[4]][2],2),"]")),
+           `3` = c("", "", "--"),
+           check.names = FALSE)
+
+mean_table %>%
+  full_join(., corr_table) %>%
+  knitr::kable(format = "pandoc", caption = "Repeated Measures Correlations Between ROIs (n = 3694). All correlations are statistically significant, p < .001. 95% confidence intervals are bracketed")
+```
+
+## change trials
+```{r}
+# correlations
+pgACC_vmPFC = data_complete_mod %>%
+  filter(instruction == "change") %>%
+   mutate(subjectID = as.factor(subjectID)) %>%
+   select(subjectID, pgACC, vmPFC) %>%
+   rmcorr::rmcorr(subjectID, pgACC, vmPFC, .)
+
+pgACC_VS = data_complete_mod %>%
+  filter(instruction == "change") %>%
+   mutate(subjectID = as.factor(subjectID)) %>%
+   select(subjectID, pgACC, VS) %>%
+   rmcorr::rmcorr(subjectID, pgACC, VS, .)
+
+vmPFC_VS = data_complete_mod %>%
+  filter(instruction == "change") %>%
+   mutate(subjectID = as.factor(subjectID)) %>%
+   select(subjectID, vmPFC, VS) %>%
+   rmcorr::rmcorr(subjectID, vmPFC, VS, .)
+
+# means and SDs
+mean_table = data_complete_mod %>%
+  gather(roi, value, pgACC, vmPFC, VS) %>%
+  group_by(roi) %>%
+  summarize(M = round(mean(value, na.rm = TRUE), 2),
+            SD = round(sd(value, na.rm = TRUE), 2)) %>%
+  mutate(order = ifelse(roi == "pgACC", 1,
+                 ifelse(roi == "vmPFC", 2, 3)),
+         roi = ifelse(roi == "pgACC", "1. pgACC",
+               ifelse(roi == "vmPFC", "2. vmPFC", "3. VS"))) %>%
+  rename("ROI" = roi) %>%
+  arrange(order) %>%
+  select(-order)
+
+# table
+corr_table = data.frame(ROI = c("1. pgACC", "2. vmPFC", "3. VS"),
+           `1` = c("--", paste0(round(pgACC_vmPFC[[1]],2), " [",round(pgACC_vmPFC[[4]][1],2),", ",round(pgACC_vmPFC[[4]][2],2),"]"),
+                   paste0(round(pgACC_VS[[1]],2), " [",round(pgACC_VS[[4]][1],2),", ",round(pgACC_VS[[4]][2],2),"]")),
+           `2` = c("", "--", paste0(round(vmPFC_VS[[1]],2), " [",round(vmPFC_VS[[4]][1],2),", ",round(vmPFC_VS[[4]][2],2),"]")),
+           `3` = c("", "", "--"),
+           check.names = FALSE)
+
+mean_table %>%
+  full_join(., corr_table) %>%
+  knitr::kable(format = "pandoc", caption = "Repeated Measures Correlations Between ROIs (n = 3687). All correlations are statistically significant, p < .001. 95% confidence intervals are bracketed")
+```
+
+# model each construct separately {.tabset}
+## self-oriented well-being {.tabset}
+```{r}
+model_rt_wellbeing = glmer(responseYN ~ RT * instruction + 
+                     pgACC * instruction + vmPFC * instruction + VS * instruction +
+                     (1 | subjectID), 
+                family = binomial, 
+                data = filter(data_complete_mod, construct == "self-oriented well-being"),
+                control = glmerControl(optimizer = "bobyqa"))
+```
+
+### model summary
+```{r}
+summary(model_rt_wellbeing)
+```
+
+### model table
+```{r}
+model_table(model_rt_wellbeing)
+```
+
+## social well-being {.tabset}
+```{r}
+model_rt_social = glmer(responseYN ~ RT * instruction + 
+                     pgACC * instruction + vmPFC * instruction + VS * instruction +
+                     (1 | subjectID), 
+                family = binomial, 
+                data = filter(data_complete_mod, construct == "social well-being"),
+                control = glmerControl(optimizer = "bobyqa"))
+```
+
+### model summary
+```{r}
+summary(model_rt_social)
+```
+
+### model table
+```{r}
+model_table(model_rt_social)
+```
+
+## ill-being {.tabset}
+```{r}
+model_rt_illbeing = glmer(responseYN ~ RT * instruction + 
+                     pgACC * instruction + vmPFC * instruction + VS * instruction +
+                     (1 | subjectID), 
+                family = binomial, 
+                data = filter(data_complete_mod, construct == "ill-being"),
+                control = glmerControl(optimizer = "bobyqa"))
+```
+
+### model summary
+```{r}
+summary(model_rt_illbeing)
+```
+
+### model table
+```{r}
+model_table(model_rt_illbeing)
+```
+
+## plot predicted effects {.tabset}
+### by construct
+```{r, fig.height=8}
+raw_values = data_complete_mod %>%
+  select(subjectID, construct, instruction, RT, pgACC, vmPFC, VS) %>%
+ gather(roi, x, pgACC, VS, vmPFC)
+
+vals = seq(round(min(raw_values$x),1), round(max(raw_values$x), 1), .5)
+
+predicted_sub = ggpredict(model_rt_wellbeing, terms = c("pgACC [vals]", "instruction", "subjectID"), type = "random") %>%
+  data.frame() %>%
+  mutate(roi = "pgACC",
+         construct = "self-oriented well-being") %>%
+  bind_rows(ggpredict(model_rt_wellbeing, terms = c("VS [vals]", "instruction", "subjectID"), type = "random") %>%
+              data.frame() %>%
+              mutate(roi = "VS",
+                     construct = "self-oriented well-being")) %>%
+  bind_rows(ggpredict(model_rt_wellbeing, terms = c("vmPFC [vals]", "instruction", "subjectID"), type = "random") %>%
+              data.frame() %>%
+              mutate(roi = "vmPFC",
+                     construct = "self-oriented well-being")) %>%
+  bind_rows(ggpredict(model_rt_social, terms = c("pgACC [vals]", "instruction", "subjectID"), type = "random") %>%
+              data.frame() %>%
+              mutate(roi = "pgACC",
+                     construct = "social well-being")) %>%
+  bind_rows(ggpredict(model_rt_social, terms = c("VS [vals]", "instruction", "subjectID"), type = "random") %>%
+              data.frame() %>%
+              mutate(roi = "VS",
+                     construct = "social well-being")) %>%
+  bind_rows(ggpredict(model_rt_social, terms = c("vmPFC [vals]", "instruction", "subjectID"), type = "random") %>%
+              data.frame() %>%
+              mutate(roi = "vmPFC",
+                     construct = "social well-being")) %>%
+  bind_rows(ggpredict(model_rt_illbeing, terms = c("pgACC [vals]", "instruction", "subjectID"), type = "random") %>%
+              data.frame() %>%
+              mutate(roi = "pgACC",
+                     construct = "ill-being")) %>%
+  bind_rows(ggpredict(model_rt_illbeing, terms = c("VS [vals]", "instruction", "subjectID"), type = "random") %>%
+              data.frame() %>%
+              mutate(roi = "VS",
+                     construct = "ill-being")) %>%
+  bind_rows(ggpredict(model_rt_illbeing, terms = c("vmPFC [vals]", "instruction", "subjectID"), type = "random") %>%
+              data.frame() %>%
+              mutate(roi = "vmPFC",
+                     construct = "ill-being")) %>%
+  mutate(construct = factor(construct, levels = c("self-oriented well-being", "social well-being", "ill-being")))
+
+predicted = ggeffect(model_rt_wellbeing, terms = c("pgACC [vals]", "instruction")) %>%
+  data.frame() %>%
+  mutate(roi = "pgACC",
+         construct = "self-oriented well-being") %>%
+  bind_rows(ggeffect(model_rt_wellbeing, terms = c("VS [vals]", "instruction")) %>%
+              data.frame() %>%
+              mutate(roi = "VS",
+                     construct = "self-oriented well-being")) %>%
+  bind_rows(ggeffect(model_rt_wellbeing, terms = c("vmPFC [vals]", "instruction")) %>%
+              data.frame() %>%
+              mutate(roi = "vmPFC",
+                     construct = "self-oriented well-being")) %>%
+  bind_rows(ggeffect(model_rt_social, terms = c("pgACC [vals]", "instruction")) %>%
+              data.frame() %>%
+              mutate(roi = "pgACC",
+                     construct = "social well-being")) %>%
+  bind_rows(ggeffect(model_rt_social, terms = c("VS [vals]", "instruction")) %>%
+              data.frame() %>%
+              mutate(roi = "VS",
+                     construct = "social well-being")) %>%
+  bind_rows(ggeffect(model_rt_social, terms = c("vmPFC [vals]", "instruction")) %>%
+              data.frame() %>%
+              mutate(roi = "vmPFC",
+                     construct = "social well-being")) %>%
+  bind_rows(ggeffect(model_rt_illbeing, terms = c("pgACC [vals]", "instruction")) %>%
+              data.frame() %>%
+              mutate(roi = "pgACC",
+                     construct = "ill-being")) %>%
+  bind_rows(ggeffect(model_rt_illbeing, terms = c("VS [vals]", "instruction")) %>%
+              data.frame() %>%
+              mutate(roi = "VS",
+                     construct = "ill-being")) %>%
+  bind_rows(ggeffect(model_rt_illbeing, terms = c("vmPFC [vals]", "instruction")) %>%
+              data.frame() %>%
+              mutate(roi = "vmPFC",
+                     construct = "ill-being")) %>%
+  mutate(construct = factor(construct, levels = c("self-oriented well-being", "social well-being", "ill-being")))
+
+predicted %>%
+  ggplot(aes(x, predicted)) +
+  geom_line(data = predicted_sub, aes(color = construct, group = interaction(construct, group, facet)), size = .25, alpha = .5) +
+  geom_line(aes(color = construct), size = 2) +
+  facet_grid(group~roi) +
+  scale_color_manual(values = constructs, name = "") + 
+  scale_fill_manual(values = constructs, name = "") + 
+  scale_x_continuous(breaks = seq(-6, 6, 2)) +
+  labs(x = "\nparameter estimate (SD)", y = "probability of responding yes\n") + 
+  plot_aes
+```
+
+### by instruction
+```{r, fig.height=9}
+predicted %>%
+  ggplot(aes(x, predicted)) +
+  geom_line(data = predicted_sub, aes(color = group, group = interaction(group, roi, facet)), size = .25, alpha = .5) +
+  geom_line(aes(color = group), size = 2) +
+  facet_grid(construct~roi) +
+  scale_color_manual(values = instructions, name = "") + 
+  scale_fill_manual(values = instructions, name = "") + 
+  scale_x_continuous(breaks = seq(-6, 6, 2)) +
+  labs(x = "\nparameter estimate (SD)", y = "probability of responding yes\n") + 
+  plot_aes
+```
+
+### by ROI
+```{r, fig.height=8}
+predicted %>%
+  ggplot(aes(x, predicted)) +
+  geom_line(data = predicted_sub, aes(color = roi, group = interaction(group, roi, facet)), size = .25, alpha = .5) +
+  geom_line(aes(color = roi), size = 2) +
+  facet_grid(group~construct) +
+  scale_color_manual(values = rois, name = "") + 
+  scale_fill_manual(values = rois, name = "") + 
+  scale_x_continuous(breaks = seq(-6, 6, 2)) +
+  labs(x = "\nparameter estimate (SD)", y = "probability of responding yes\n") + 
+  plot_aes
+```
