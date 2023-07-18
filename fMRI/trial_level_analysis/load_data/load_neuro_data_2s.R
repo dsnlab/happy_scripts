@@ -26,4 +26,4 @@ for (file in file_list) {
 }
 
 # write csv files
-write.csv(filter(betas, roi %in% c("pgACC", "vmPFC", "VS")), "../../data/neuro_data_2s.csv", row.names = FALSE)
+write.csv(filter(betas, roi %in% c("pgACC", "vmPFC", "VS")), "../../../data/neuro_data_2s.csv", row.names = FALSE)

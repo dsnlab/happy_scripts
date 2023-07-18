@@ -61,4 +61,4 @@ task_tidy = task %>%
   ungroup()
 
 # write csv files
-write.csv(task_tidy, "../../data/task_data.csv", row.names = FALSE)
+write.csv(task_tidy, "../../../data/task_data.csv", row.names = FALSE)

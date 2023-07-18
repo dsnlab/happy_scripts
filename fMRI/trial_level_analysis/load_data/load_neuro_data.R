@@ -52,5 +52,5 @@ for (file in file_list) {
 }
 
 # write csv files
-write.csv(task, "../../data/task_data.csv", row.names = FALSE)
-write.csv(filter(betas, roi %in% c("pgACC", "vmPFC", "VS")), "../../data/neuro_data.csv", row.names = FALSE)
+write.csv(task, "../../../data/task_data.csv", row.names = FALSE)
+write.csv(filter(betas, roi %in% c("pgACC", "vmPFC", "VS")), "../../../data/neuro_data.csv", row.names = FALSE)

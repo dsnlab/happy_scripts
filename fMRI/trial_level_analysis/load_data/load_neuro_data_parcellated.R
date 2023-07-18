@@ -4,7 +4,7 @@
 library(tidyverse)
 
 # load glasser atlas key
-key = read.csv("../../data/glasser_key.csv", stringsAsFactors = FALSE)
+key = read.csv("../../../data/glasser_key.csv", stringsAsFactors = FALSE)
 
 # load parameter estimates
 file_dir = "~/Documents/code/dsnlab/FP_scripts/fMRI/betaseries/svc/wave1/parameterEstimates_hcp"
@@ -33,4 +33,4 @@ betas = betas %>%
   left_join(., key)
 
 # write csv files
-write.csv(betas, "../../data/neuro_data_parcellated.csv", row.names = FALSE)
+write.csv(betas, "../../../data/neuro_data_parcellated.csv", row.names = FALSE)
